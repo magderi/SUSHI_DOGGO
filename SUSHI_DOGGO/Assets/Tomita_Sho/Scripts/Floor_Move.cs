@@ -14,6 +14,6 @@ public class Floor_Move : MonoBehaviour
     void Update()
     {
         //À•W‚ğ‘‚«Š·‚¦‚é
-        transform.position += new Vector3(0, 0, -5) * Time.deltaTime;
+        transform.position += new Vector3(0, 0, -10) * Time.deltaTime;
     }
 }
