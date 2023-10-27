@@ -41,13 +41,7 @@ public class Player_Move : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if (rb.velocity.magnitude < 10)
-        {
-            //指定したスピードから現在の速度を引いて加速力を求める
-            float currentSpeed = speed - rb.velocity.magnitude;
-            //調整された加速力で力を加える
-            rb.AddForce(new Vector3(0, 0, currentSpeed));
-        }
+     
 
     }
 
