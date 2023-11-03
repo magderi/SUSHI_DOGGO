@@ -45,5 +45,7 @@ public class StageMove : MonoBehaviour
         else if (other.gameObject.name == "PointF")
             count = 6;
     }
+
+ 
 }
 
