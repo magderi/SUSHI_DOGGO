@@ -1,14 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class DogMoving : MonoBehaviour
 {
     private DogStatus dogStatus;
-    protected Rigidbody dogRB;
+    public Rigidbody dogRB;
 
     //  各行動を取っているかの判定フラグ
-    private bool isJumping = false;
+    public  bool isJumping = false;
     private bool isCurving = false;
     private bool isRightMoving = false;
     private bool isLeftMoving = false;
@@ -43,7 +44,7 @@ public class DogMoving : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        PlayerJump();
+        JumpCoolTime();
         PlayerMove();
           
         //  「カーブ中」なら、
@@ -51,59 +52,20 @@ public class DogMoving : MonoBehaviour
             CurveMoveLimit(dogStatus._maxMoveLimit);
     }
 
-    /// <summary>
-    /// 寿司犬のジャンプ処理
-    /// </summary>
-    private void PlayerJump()
+    public void Jump(InputAction.CallbackContext context)
     {
-        //  クールタイム中なら、
-        if (_jumpedTimer >= _jumpCoolTime)
-        {
-            //  「ジャンプ中」を解除
-            isJumping = false;
-            _jumpedTimer = 0f;
-        }
-        if (isJumping)
-        {
-            //  ジャンプしてからの秒数を計る
-            _jumpedTimer += Time.deltaTime;
-            return;
-        }
-        //  一先ずスペースでジャンプ
-        //  後々 InputSystem に切り替え
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (context.phase == InputActionPhase.Performed && isJumping == false)
         {
             //  statusで設定してある力の分、上に飛ぶ
             dogRB.AddForce(Vector3.up * dogStatus._jumpPower);
             //  「ジャンプ中」に設定
             isJumping = true;
         }
-
     }
-
-    /// <summary>
-    /// 寿司犬の左右の移動処理
-    /// </summary>
-    private void PlayerMove()
-    {
-        //  Aキーで左に移動
-        //  ジャンプ同様後々 InputSystem に切り替え
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            //  X座標を左に10だけ移動
-            _dogGoToPosX -= 10.0f;
-            //  「左に移動中」に設定
-            isLeftMoving = true;
-            //  レーンナンバーをデクリメント
-            _laneNamber--;
-        }
-        else if (Input.GetKeyUp(KeyCode.A))
-            //  入力を離したら「左に移動中」を解除
-            isLeftMoving = false;
-
-        //  Dキーで右に移動
-        //  ジャンプ同様後々 InputSystem に切り替え
-        if (Input.GetKeyDown(KeyCode.D))
+    
+    public void MoveRight(InputAction.CallbackContext context)
+    {   
+        if (context.phase == InputActionPhase.Performed)
         {
             //  X座標を右に10だけ移動
             _dogGoToPosX += 10.0f;
@@ -112,11 +74,53 @@ public class DogMoving : MonoBehaviour
             //  レーンナンバーをインクリメント
             _laneNamber++;
         }
-        else if (Input.GetKeyUp(KeyCode.D))
+        else if (context.phase == InputActionPhase.Canceled)
             //  入力を離したら「右に移動中」を解除
             isRightMoving = false;
+    }
 
+    public void MoveLeft(InputAction.CallbackContext context)
+    {    
+        if (context.phase == InputActionPhase.Performed)
+        {
+            //  X座標を左に10だけ移動
+            _dogGoToPosX -= 10.0f;
+            //  「左に移動中」に設定
+            isLeftMoving = true;
+            //  レーンナンバーをデクリメント
+            _laneNamber--;
+        }
+        else if (context.phase == InputActionPhase.Canceled)
+            //  入力を離したら「左に移動中」を解除
+            isLeftMoving = false;
+    }
 
+    /// <summary>
+    /// 寿司犬が連続で飛べないように
+    /// </summary>
+    private void JumpCoolTime()
+    {
+        //  クールタイム中なら、
+        if (_jumpedTimer >= _jumpCoolTime)
+        {
+            //  「ジャンプ中」を解除
+            isJumping = false;
+            _jumpedTimer = 0f;
+        }
+
+        //  ジャンプしてからの秒数を計る
+        if (isJumping)
+        {
+            _jumpedTimer += Time.deltaTime;
+            return;
+        }
+    }
+
+    /// <summary>
+    /// 寿司犬の左右の移動処理
+    /// </summary>
+    private void PlayerMove()
+    {
         //  「左に移動中」なら、
         if (isLeftMoving)
         {
@@ -124,12 +128,14 @@ public class DogMoving : MonoBehaviour
             if(_dogPosX <= _dogGoToPosX)
             {
                 //  velocity を 0 にして終わる
-                dogRB.velocity = Vector3.zero;
+                dogRB.velocity = Vector3.left * 0;
                 return;
             }
             //  今の position の x を保存して、左に力を加える
             _dogPosX = transform.position.x;
-            dogRB.AddForce(Vector3.left * dogStatus._movePower);
+            //  AddForce で物理挙動をさせるか、 velocity でアニメチックな動きにするか
+            //dogRB.AddForce(Vector3.left * dogStatus._movePower);
+            dogRB.velocity = Vector3.left * dogStatus._jumpPower;
         }
         //  「右に移動中」なら、
         if (isRightMoving)
@@ -138,11 +144,13 @@ public class DogMoving : MonoBehaviour
             if (_dogPosX >= _dogGoToPosX)
             {
                 //  velocity を 0 にして終わる;
+                dogRB.velocity = Vector3.right * 0;
                 return;
             }
             //  今の position の x を保存して、右に力を加える
             _dogPosX = transform.position.x;
-            dogRB.AddForce(Vector3.right * dogStatus._movePower);
+            //dogRB.AddForce(Vector3.right * dogStatus._movePower);
+            dogRB.velocity = Vector3.right * dogStatus._movePower;
         }
     }
 
