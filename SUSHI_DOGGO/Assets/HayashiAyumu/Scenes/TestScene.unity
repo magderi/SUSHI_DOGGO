@@ -383,7 +383,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _jumpPower: 300
-  _movePower: 30
+  _movePower: 300
   _maxMoveLimit: 300
 --- !u!1 &1174247026
 GameObject:
@@ -501,7 +501,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!54 &1906040599
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -696,6 +696,38 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: eeb50bdf-d90e-4cc6-b308-29254c27885d
     m_ActionName: Player/Jump[/DualShock4GamepadHID/buttonEast]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 857297662}
+        m_TargetAssemblyTypeName: DogMoving, Assembly-CSharp
+        m_MethodName: MoveLeft
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 6384c5c1-2caa-46e8-8bcd-196d2d52271c
+    m_ActionName: Player/LeftMove[/DualShock4GamepadHID/leftStick/left,/Keyboard/a]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 857297662}
+        m_TargetAssemblyTypeName: DogMoving, Assembly-CSharp
+        m_MethodName: MoveRight
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 7d8c16d7-45fb-4306-8e0f-512f8c608342
+    m_ActionName: Player/RightMove[/DualShock4GamepadHID/leftStick/right,/Keyboard/d]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

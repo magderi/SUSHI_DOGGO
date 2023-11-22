@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class DogStatus : MonoBehaviour
 {
-    public float _jumpPower = 30f;
-    public float _movePower = 100f;
+    public float _jumpPower = 300f;
+    public float _movePower = 300f;
 
     public float _maxMoveLimit = 5f;
 }

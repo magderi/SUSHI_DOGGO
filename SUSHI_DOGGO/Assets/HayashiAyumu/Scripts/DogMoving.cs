@@ -52,6 +52,7 @@ public class DogMoving : MonoBehaviour
             CurveMoveLimit(dogStatus._maxMoveLimit);
     }
 
+#region InputSystem 周りの入力処理
     public void Jump(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed && isJumping == false)
@@ -74,9 +75,6 @@ public class DogMoving : MonoBehaviour
             //  レーンナンバーをインクリメント
             _laneNamber++;
         }
-        else if (context.phase == InputActionPhase.Canceled)
-            //  入力を離したら「右に移動中」を解除
-            isRightMoving = false;
     }
 
     public void MoveLeft(InputAction.CallbackContext context)
@@ -90,10 +88,8 @@ public class DogMoving : MonoBehaviour
             //  レーンナンバーをデクリメント
             _laneNamber--;
         }
-        else if (context.phase == InputActionPhase.Canceled)
-            //  入力を離したら「左に移動中」を解除
-            isLeftMoving = false;
     }
+#endregion
 
     /// <summary>
     /// 寿司犬が連続で飛べないように
@@ -127,6 +123,8 @@ public class DogMoving : MonoBehaviour
             //  設定した移動先に到達したら
             if(_dogPosX <= _dogGoToPosX)
             {
+                //  「左に移動中」を解除して
+                isLeftMoving = false;
                 //  velocity を 0 にして終わる
                 dogRB.velocity = Vector3.left * 0;
                 return;
@@ -135,7 +133,7 @@ public class DogMoving : MonoBehaviour
             _dogPosX = transform.position.x;
             //  AddForce で物理挙動をさせるか、 velocity でアニメチックな動きにするか
             //dogRB.AddForce(Vector3.left * dogStatus._movePower);
-            dogRB.velocity = Vector3.left * dogStatus._jumpPower;
+            dogRB.velocity = Vector3.left * dogStatus._movePower;
         }
         //  「右に移動中」なら、
         if (isRightMoving)
@@ -143,6 +141,8 @@ public class DogMoving : MonoBehaviour
             //  設定した移動先に到達したら
             if (_dogPosX >= _dogGoToPosX)
             {
+                //  「右に移動中」を解除して
+                isRightMoving = false;
                 //  velocity を 0 にして終わる;
                 dogRB.velocity = Vector3.right * 0;
                 return;
