@@ -5,7 +5,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerInput : MonoBehaviour
 {
-    //  ¡‚Ì‚Æ‚±‚ëg‚Á‚Ä‚¢‚È‚¢
     private DogMoving dogMoving;
 
     private void Start()
