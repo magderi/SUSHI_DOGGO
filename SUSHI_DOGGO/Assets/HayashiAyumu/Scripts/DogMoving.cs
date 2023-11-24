@@ -7,16 +7,15 @@ public class DogMoving : MonoBehaviour
 {
     private DogStatus dogStatus;
     public Rigidbody dogRB;
+    [SerializeField]
+    private GameObject stand;
+    [SerializeField]
+    private StandMoving standMoving;
 
     //  各行動を取っているかの判定フラグ
     public  bool isJumping = false;
+    private  bool isJumpCooling = false;
     private bool isCurving = false;
-    private bool isRightMoving = false;
-    private bool isLeftMoving = false;
-
-    //  今いるレーンを判定するためのint値
-    //  0が一番左、5が一番右の6レーン
-    private int _laneNamber;
 
     //  ジャンプに使うクールタイム
     [SerializeField]
@@ -27,69 +26,36 @@ public class DogMoving : MonoBehaviour
     private float _dogPosX;
     private float _dogGoToPosX;
 
+    Vector3 standVec;
+    Vector3 dogVec;
+    float standX;
+    float standZ;
     // Start is called before the first frame update
     void Start()
     {
         dogRB = GetComponent<Rigidbody>();
         dogStatus = GetComponent<DogStatus>();
-        
-        //  開始時の寿司犬の position.x を取得
-        _dogPosX = transform.position.x;
-        _dogGoToPosX = _dogPosX;
 
-        //  仮に、左から3番目に置いてある想定
-        _laneNamber = 2;
+
+        standVec = stand.transform.position;
+        standX = standVec.x;
+        standZ = standVec.z;
+
+        dogVec = this.transform.position;
+        dogVec = new Vector3(standX, dogVec.y, standZ);
+        this.transform.position = dogVec;
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         JumpCoolTime();
-        PlayerMove();
+        //DogMove();
           
         //  「カーブ中」なら、
         if(isCurving)
             CurveMoveLimit(dogStatus._maxMoveLimit);
     }
-
-#region InputSystem 周りの入力処理
-    public void Jump(InputAction.CallbackContext context)
-    {
-        if (context.phase == InputActionPhase.Performed && isJumping == false)
-        {
-            //  statusで設定してある力の分、上に飛ぶ
-            dogRB.AddForce(Vector3.up * dogStatus._jumpPower);
-            //  「ジャンプ中」に設定
-            isJumping = true;
-        }
-    }
-    
-    public void MoveRight(InputAction.CallbackContext context)
-    {   
-        if (context.phase == InputActionPhase.Performed)
-        {
-            //  X座標を右に10だけ移動
-            _dogGoToPosX += 10.0f;
-            //  「右に移動中」に設定
-            isRightMoving = true;
-            //  レーンナンバーをインクリメント
-            _laneNamber++;
-        }
-    }
-
-    public void MoveLeft(InputAction.CallbackContext context)
-    {    
-        if (context.phase == InputActionPhase.Performed)
-        {
-            //  X座標を左に10だけ移動
-            _dogGoToPosX -= 10.0f;
-            //  「左に移動中」に設定
-            isLeftMoving = true;
-            //  レーンナンバーをデクリメント
-            _laneNamber--;
-        }
-    }
-#endregion
 
     /// <summary>
     /// 寿司犬が連続で飛べないように
@@ -100,12 +66,20 @@ public class DogMoving : MonoBehaviour
         if (_jumpedTimer >= _jumpCoolTime)
         {
             //  「ジャンプ中」を解除
-            isJumping = false;
+            isJumpCooling = false;
             _jumpedTimer = 0f;
+            standMoving.isJumping = isJumpCooling;
         }
 
         //  ジャンプしてからの秒数を計る
         if (isJumping)
+        {
+            dogRB.AddForce(Vector3.up * dogStatus._jumpPower);
+            Debug.Log("ジャンプなう");
+            isJumping = false;
+            isJumpCooling = true;
+        }
+        if(isJumpCooling)
         {
             _jumpedTimer += Time.deltaTime;
             return;
@@ -115,44 +89,16 @@ public class DogMoving : MonoBehaviour
     /// <summary>
     /// 寿司犬の左右の移動処理
     /// </summary>
-    private void PlayerMove()
-    {
-        //  「左に移動中」なら、
-        if (isLeftMoving)
-        {
-            //  設定した移動先に到達したら
-            if(_dogPosX <= _dogGoToPosX)
-            {
-                //  「左に移動中」を解除して
-                isLeftMoving = false;
-                //  velocity を 0 にして終わる
-                dogRB.velocity = Vector3.left * 0;
-                return;
-            }
-            //  今の position の x を保存して、左に力を加える
-            _dogPosX = transform.position.x;
-            //  AddForce で物理挙動をさせるか、 velocity でアニメチックな動きにするか
-            //dogRB.AddForce(Vector3.left * dogStatus._movePower);
-            dogRB.velocity = Vector3.left * dogStatus._movePower;
-        }
-        //  「右に移動中」なら、
-        if (isRightMoving)
-        {
-            //  設定した移動先に到達したら
-            if (_dogPosX >= _dogGoToPosX)
-            {
-                //  「右に移動中」を解除して
-                isRightMoving = false;
-                //  velocity を 0 にして終わる;
-                dogRB.velocity = Vector3.right * 0;
-                return;
-            }
-            //  今の position の x を保存して、右に力を加える
-            _dogPosX = transform.position.x;
-            //dogRB.AddForce(Vector3.right * dogStatus._movePower);
-            dogRB.velocity = Vector3.right * dogStatus._movePower;
-        }
-    }
+    //private void DogMove()
+    //{
+    //    standVec = stand.transform.position;
+    //    standX = standVec.x;
+    //    standZ = standVec.z;
+
+    //    dogVec.x = standX;
+    //    dogVec.z = standZ;
+    //    this.transform.position = dogVec;
+    //}
 
     /// <summary>
     /// カーブ時の処理(未完成)
