@@ -372,6 +372,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d536d462b55924448658b63518e63f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _jumpPower: 30
+  _jumpPower: 300
   _movePower: 300
   _maxMoveLimit: 300
