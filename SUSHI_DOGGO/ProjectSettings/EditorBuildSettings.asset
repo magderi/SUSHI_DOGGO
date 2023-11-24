@@ -4,5 +4,20 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/title.unity
+    guid: 314ac11152da6864b8ab3861454045b2
+  - enabled: 1
+    path: Assets/Scenes/game.unity
+    guid: db0478242502ae142bb6142581db9a79
+  - enabled: 1
+    path: Assets/Scenes/score.unity
+    guid: cfbb402343e2e3e45b363ea465fb392a
+  - enabled: 1
+    path: Assets/HayashiAyumu/Scenes/TestScene.unity
+    guid: 20c31c4b4c2cbb643829f1a92195d650
+  - enabled: 1
+    path: Assets/TomitaSho/Scenes/Game_Scene.unity
+    guid: 49f2b38d48d500047b1f0b6710500aca
   m_configObjects: {}
