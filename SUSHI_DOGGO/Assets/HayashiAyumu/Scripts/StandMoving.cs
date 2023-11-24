@@ -53,10 +53,10 @@ public class StandMoving : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Performed && isJumping == false)
+        if (context.phase == InputActionPhase.Performed && dogMoving.isJumping == false)
         {
             //  「ジャンプ中」に設定
-            isJumping = true;
+            dogMoving.isJumping = true;
         }
     }
 

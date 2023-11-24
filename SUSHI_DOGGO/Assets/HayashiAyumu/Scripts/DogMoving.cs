@@ -37,13 +37,13 @@ public class DogMoving : MonoBehaviour
         dogStatus = GetComponent<DogStatus>();
 
 
-        standVec = stand.transform.position;
-        standX = standVec.x;
-        standZ = standVec.z;
+        //standVec = stand.transform.position;
+        //standX = standVec.x;
+        //standZ = standVec.z;
 
-        dogVec = this.transform.position;
-        dogVec = new Vector3(standX, dogVec.y, standZ);
-        this.transform.position = dogVec;
+        //dogVec = this.transform.position;
+        //dogVec = new Vector3(standX, dogVec.y, standZ);
+        //this.transform.position = dogVec;
     }
 
     // Update is called once per frame
