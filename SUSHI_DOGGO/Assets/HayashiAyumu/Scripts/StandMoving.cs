@@ -25,6 +25,7 @@ public class StandMoving : MonoBehaviour
     //  移動の制限に使うposition値入れ
     private float _dogPosX;
     private float _dogGoToPosX;
+    private float _fGoX = 1.2f;
 
     // Start is called before the first frame update
     void Start()
@@ -65,7 +66,7 @@ public class StandMoving : MonoBehaviour
         if (context.phase == InputActionPhase.Performed)
         {
             //  X座標を右に10だけ移動
-            _dogGoToPosX += 10.0f;
+            _dogGoToPosX += _fGoX;
             //  「右に移動中」に設定
             isRightMoving = true;
             //  レーンナンバーをインクリメント
@@ -78,7 +79,7 @@ public class StandMoving : MonoBehaviour
         if (context.phase == InputActionPhase.Performed)
         {
             //  X座標を左に10だけ移動
-            _dogGoToPosX -= 10.0f;
+            _dogGoToPosX -= _fGoX;
             //  「左に移動中」に設定
             isLeftMoving = true;
             //  レーンナンバーをデクリメント

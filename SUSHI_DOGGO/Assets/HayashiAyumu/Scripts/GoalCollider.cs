@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GoalCollider : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collider)
     {
         Debug.Log("goal!!");
         SceneManager.LoadScene("score");
