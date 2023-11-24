@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4732254, g: 0.8781642, b: 0.86268604, a: 1}
+  m_IndirectSpecularColor: {r: 0.47281617, g: 0.877363, b: 0.8625785, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1077,6 +1077,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcb8914b274d42345bba54fd0081e1ee, type: 3}
+--- !u!1 &714770569 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: bcb8914b274d42345bba54fd0081e1ee, type: 3}
+  m_PrefabInstance: {fileID: 714770568}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &714770570
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 714770569}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.23, y: 2.42, z: 0.07}
+  m_Center: {x: -0.21, y: 0.33, z: 0}
 --- !u!1001 &812874035
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1102,11 +1120,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bcb8914b274d42345bba54fd0081e1ee, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.699
+      value: -2.7
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bcb8914b274d42345bba54fd0081e1ee, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.51
+      value: 2.82
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bcb8914b274d42345bba54fd0081e1ee, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1150,6 +1168,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcb8914b274d42345bba54fd0081e1ee, type: 3}
+--- !u!1 &812874036 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: bcb8914b274d42345bba54fd0081e1ee, type: 3}
+  m_PrefabInstance: {fileID: 812874035}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &812874037
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 812874036}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.4, y: 3.55, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &833812473
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2463,6 +2499,7 @@ GameObject:
   - component: {fileID: 1537363698}
   - component: {fileID: 1537363697}
   - component: {fileID: 1537363696}
+  - component: {fileID: 1537363699}
   m_Layer: 0
   m_Name: Obstacle1 (1)
   m_TagString: Untagged
@@ -2535,6 +2572,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1537363699
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1537363695}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.6374303, y: -3.03, z: 0.02147273}
+  m_Center: {x: -0.07, y: 0.15, z: 0}
 --- !u!1001 &1558585446
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3184,6 +3234,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcb8914b274d42345bba54fd0081e1ee, type: 3}
+--- !u!1 &2021504394 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: bcb8914b274d42345bba54fd0081e1ee, type: 3}
+  m_PrefabInstance: {fileID: 2021504393}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &2021504395
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2021504394}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.21, y: 2.49, z: 0.09}
+  m_Center: {x: -0.19, y: 0.36, z: 0}
 --- !u!54 &2026776171
 Rigidbody:
   m_ObjectHideFlags: 0
