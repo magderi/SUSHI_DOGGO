@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/DENGXIAOLONG/Scenes/title.unity
+    guid: 314ac11152da6864b8ab3861454045b2
+  - enabled: 1
+    path: Assets/DENGXIAOLONG/Scenes/game.unity
+    guid: db0478242502ae142bb6142581db9a79
+  - enabled: 1
+    path: Assets/DENGXIAOLONG/Scenes/score.unity
+    guid: cfbb402343e2e3e45b363ea465fb392a
   m_configObjects: {}
