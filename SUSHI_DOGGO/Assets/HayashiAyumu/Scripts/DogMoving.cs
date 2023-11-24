@@ -37,20 +37,20 @@ public class DogMoving : MonoBehaviour
         dogStatus = GetComponent<DogStatus>();
 
 
-        //standVec = stand.transform.position;
-        //standX = standVec.x;
-        //standZ = standVec.z;
+        standVec = stand.transform.position;
+        standX = standVec.x;
+        standZ = standVec.z;
 
-        //dogVec = this.transform.position;
-        //dogVec = new Vector3(standX, dogVec.y, standZ);
-        //this.transform.position = dogVec;
+        dogVec = this.transform.position;
+        dogVec.x = standX;
+        dogVec.z = standZ;
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
         JumpCoolTime();
-        //DogMove();
+        DogMove();
           
         //  「カーブ中」なら、
         if(isCurving)
@@ -62,7 +62,7 @@ public class DogMoving : MonoBehaviour
     /// </summary>
     private void JumpCoolTime()
     {
-        //  クールタイム中なら、
+        //  クールタイムを過ぎたら、
         if (_jumpedTimer >= _jumpCoolTime)
         {
             //  「ジャンプ中」を解除
@@ -72,7 +72,7 @@ public class DogMoving : MonoBehaviour
         }
 
         //  ジャンプしてからの秒数を計る
-        if (isJumping)
+        if (isJumping && isJumpCooling == false)
         {
             dogRB.AddForce(Vector3.up * dogStatus._jumpPower);
             Debug.Log("ジャンプなう");
@@ -89,16 +89,14 @@ public class DogMoving : MonoBehaviour
     /// <summary>
     /// 寿司犬の左右の移動処理
     /// </summary>
-    //private void DogMove()
-    //{
-    //    standVec = stand.transform.position;
-    //    standX = standVec.x;
-    //    standZ = standVec.z;
+    private void DogMove()
+    {
+        standVec = stand.transform.position;
+        standX = standVec.x;
+        standZ = standVec.z;
 
-    //    dogVec.x = standX;
-    //    dogVec.z = standZ;
-    //    this.transform.position = dogVec;
-    //}
+        this.transform.position = new Vector3 (standX, this.transform.position.y, standZ);
+    }
 
     /// <summary>
     /// カーブ時の処理(未完成)
