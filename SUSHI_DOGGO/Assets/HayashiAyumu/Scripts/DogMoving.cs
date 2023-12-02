@@ -12,6 +12,12 @@ public class DogMoving : MonoBehaviour
     [SerializeField]
     private StandMoving standMoving;
 
+    [SerializeField]
+    private GameManager _gameManager;
+
+    // アニメーター
+    private Animator _sushiAnim = null;
+
     //  各行動を取っているかの判定フラグ
     public  bool isJumping = false;
     private  bool isJumpCooling = false;
@@ -30,9 +36,16 @@ public class DogMoving : MonoBehaviour
     Vector3 dogVec;
     float standX;
     float standZ;
+
+    // ダメージ時に一度だけ処理をするためのBool
+    private bool _oneDamage = true;
+
     // Start is called before the first frame update
     void Start()
     {
+
+        _sushiAnim = GetComponent<Animator>();
+
         dogRB = GetComponent<Rigidbody>();
         dogStatus = GetComponent<DogStatus>();
 
@@ -46,6 +59,36 @@ public class DogMoving : MonoBehaviour
         dogVec.z = standZ;
     }
 
+    //OnCollisionEnter()
+    private void OnCollisionEnter(Collision collision)
+    {
+        //Sphereが衝突したオブジェクトがPlaneだった場合
+        if (collision.gameObject.tag == "Cloud")
+        {
+            _sushiAnim.SetTrigger("SushiDamage");
+
+            if (_oneDamage)
+            {
+                _oneDamage = false;
+
+                _gameManager.SushiDamage();
+
+                Debug.Log("1111111111111111111111111111111");
+            }
+           
+        }
+    }
+
+    //OnCollisionExit()
+    private void OnCollisionExit(Collision collision)
+    {
+        //SphereがPlaneから離れた場合
+        if (collision.gameObject.tag == "Cloud")
+        {
+            _oneDamage = true;
+            Debug.Log("CloudExit");
+        }
+    }
     // Update is called once per frame
     void LateUpdate()
     {

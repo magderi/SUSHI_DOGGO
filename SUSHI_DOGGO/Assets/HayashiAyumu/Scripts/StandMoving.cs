@@ -25,7 +25,7 @@ public class StandMoving : MonoBehaviour
     //  ˆÚ“®‚Ì§ŒÀ‚Ég‚¤position’l“ü‚ê
     private float _dogPosX;
     private float _dogGoToPosX;
-    private float _fGoX = 1.2f;
+    private float _fGoX = 1.1f;
 
     // Start is called before the first frame update
     void Start()
