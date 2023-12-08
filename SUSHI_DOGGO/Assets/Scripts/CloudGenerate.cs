@@ -16,9 +16,10 @@ public class CloudGenerate : MonoBehaviour
     /*
     [SerializeField]
     private GameObject wallPrefab;
-    [SerializeField]
-    private GameObject ballPrefab;
     */
+    [SerializeField]
+    private GameObject spacePrefab;
+    
     [SerializeField]
     private GameObject coinPrefab;
 
@@ -56,11 +57,11 @@ public class CloudGenerate : MonoBehaviour
                         case "w":
                             Instantiate(wallPrefab, new Vector3(-4.5f + j, 0.5f, 4.5f - i), Quaternion.identity);
                             break;
-
-                        case "b":
-                            Instantiate(ballPrefab, new Vector3(-4.5f + j, 0.5f, 4.5f - i), Quaternion.identity);
-                            break;
                         */
+                        case "b":
+                            Instantiate(spacePrefab, new Vector3(-4.5f + j, 3f, 4.5f - i), Quaternion.identity);
+                            break;
+                        
                         case "c":
                             Instantiate(coinPrefab, new Vector3(-2.5f + j, 2.5f, 60f - i), Quaternion.Euler(0, 0, 0));
                             break;

@@ -1,3 +1,5 @@
+using Cysharp.Threading.Tasks;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +16,12 @@ public class DogMoving : MonoBehaviour
 
     [SerializeField]
     private GameManager _gameManager;
+
+    [SerializeField]
+    private BoxCollider _playerBoxCollider;
+
+    [SerializeField]
+    private BoxCollider _playerJudgementCollider;
 
     // アニメーター
     private Animator _sushiAnim = null;
@@ -44,6 +52,8 @@ public class DogMoving : MonoBehaviour
     void Start()
     {
 
+       
+
         _sushiAnim = GetComponent<Animator>();
 
         dogRB = GetComponent<Rigidbody>();
@@ -59,23 +69,33 @@ public class DogMoving : MonoBehaviour
         dogVec.z = standZ;
     }
 
+   public void DogDamageAnim()
+   {
+        _sushiAnim.SetTrigger("SushiDamage");
+    }
+
+
     //OnCollisionEnter()
     private void OnCollisionEnter(Collision collision)
-    {
-        //Sphereが衝突したオブジェクトがPlaneだった場合
-        if (collision.gameObject.tag == "Cloud")
-        {
-            _sushiAnim.SetTrigger("SushiDamage");
+    {    
 
+        //Sphereが衝突したオブジェクトがPlaneだった場合
+        if (collision.gameObject.tag == "SushiinuSalmonStand")
+        {
+           
+        }
+        else
+        {
             if (_oneDamage)
             {
+                // 機能してない
                 _oneDamage = false;
 
-                _gameManager.SushiDamage();
-
-                Debug.Log("1111111111111111111111111111111");
+            
             }
-           
+
+        
+
         }
     }
 
@@ -127,6 +147,15 @@ public class DogMoving : MonoBehaviour
             _jumpedTimer += Time.deltaTime;
             return;
         }
+    }
+
+
+    /// <summary>
+    /// 寿司犬のジャンプモーション
+    /// </summary>
+    public void DogJumpMotion()
+    {
+        _sushiAnim.SetTrigger("SushiJump");
     }
 
     /// <summary>

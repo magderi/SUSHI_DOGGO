@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
+using System;
 
 public class SushiJump : MonoBehaviour
 {
@@ -8,17 +10,36 @@ public class SushiJump : MonoBehaviour
     private Rigidbody rb;
     public bool isJumping = false;
 
+    [SerializeField]
+    private DogMoving _dogMoving;
+
+    [SerializeField]
+    private JumpJudgement _jumpJudgement;
+
+    [SerializeField]
+    private BoxCollider _boxCollider;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
     }
 
-    void Update()
+    async void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
+        if (Input.GetKeyDown(KeyCode.Space) && isJumping)
         {
+            _dogMoving.DogJumpMotion();
             rb.velocity = Vector3.up * jumpPower;
-            isJumping = true;
+            //await UniTask.Delay(TimeSpan.FromSeconds(1));
+            isJumping = false;
+
+            _jumpJudgement._jumpCoolTime = false;
+
+            await UniTask.Delay(TimeSpan.FromSeconds(3));
+
+            _jumpJudgement._jumpCoolTime = true;
+
+
+            Debug.Log("testttttttttttttttttttt");
         }
     }
 
@@ -27,7 +48,7 @@ public class SushiJump : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("SushiinuSalmonStand"))
         {
-            isJumping = false;
+           // isJumping = false;
             Debug.Log("false");
         }
     }
