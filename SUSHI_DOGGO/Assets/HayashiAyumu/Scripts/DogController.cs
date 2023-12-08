@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class StandMoving : MonoBehaviour
+public class DogController : MonoBehaviour
 {
     public Rigidbody standRB;
 
@@ -20,6 +20,8 @@ public class StandMoving : MonoBehaviour
     private bool isCurving = false;
     private bool isRightMoving = false;
     private bool isLeftMoving = false;
+    private bool isMoving = false;
+    private bool isKeyUp = true;
 
     //  今いるレーンを判定するためのint値
     //  0が一番左、5が一番右の6レーン
@@ -68,12 +70,22 @@ public class StandMoving : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         PlayerMove();
         dogMoving.isJumping = isJumping;
 
-        //  「カーブ中」なら、
+        //  移動中でなく、
+        if (isMoving == false)
+        {
+            //  キー入力がされていなければ、
+            if (isKeyUp)
+            {
+
+            }
+        }
+
+        //  「カーブ中」なら、(今のところ未実装)
         if (isCurving)
             CurveMoveLimit(dogStatus._maxMoveLimit);
     }
@@ -113,13 +125,14 @@ public class StandMoving : MonoBehaviour
         }
     }
 
-    
+
 
     /// <summary>
     /// 寿司犬の左右の移動処理
     /// </summary>
     private void PlayerMove()
     {
+        /*
         //  「左に移動中」なら、
         if (isLeftMoving)
         {
@@ -154,6 +167,18 @@ public class StandMoving : MonoBehaviour
             _dogPosX = transform.position.x;
             //dogRB.AddForce(Vector3.right * dogStatus._movePower);
             standRB.velocity = Vector3.right * dogStatus._movePower;
+        }*/
+
+        //  InputSystem の value を読み込む
+        var inputVal = playerController.Player.Move.ReadValue<Vector2>();
+        inputVal.y = 0;
+        //  横の入力があれば
+        if (inputVal.x != 0)
+        {
+            isMoving = true;
+            isKeyUp = false;
+            //  作業の続きはここから！！！
+
         }
     }
 
