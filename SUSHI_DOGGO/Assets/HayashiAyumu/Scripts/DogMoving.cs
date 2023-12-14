@@ -45,8 +45,7 @@ public class DogMoving : MonoBehaviour
     float standX;
     float standZ;
 
-    // ダメージ時に一度だけ処理をするためのBool
-    private bool _oneDamage = true;
+
 
     // Start is called before the first frame update
     void Start()
@@ -72,43 +71,11 @@ public class DogMoving : MonoBehaviour
    public void DogDamageAnim()
    {
         _sushiAnim.SetTrigger("SushiDamage");
-    }
+   }
 
 
-    //OnCollisionEnter()
-    private void OnCollisionEnter(Collision collision)
-    {    
 
-        //Sphereが衝突したオブジェクトがPlaneだった場合
-        if (collision.gameObject.tag == "SushiinuSalmonStand")
-        {
-           
-        }
-        else
-        {
-            if (_oneDamage)
-            {
-                // 機能してない
-                _oneDamage = false;
 
-            
-            }
-
-        
-
-        }
-    }
-
-    //OnCollisionExit()
-    private void OnCollisionExit(Collision collision)
-    {
-        //SphereがPlaneから離れた場合
-        if (collision.gameObject.tag == "Cloud")
-        {
-            _oneDamage = true;
-            Debug.Log("CloudExit");
-        }
-    }
     // Update is called once per frame
     void LateUpdate()
     {

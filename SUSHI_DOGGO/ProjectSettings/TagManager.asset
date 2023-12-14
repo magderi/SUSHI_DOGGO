@@ -6,6 +6,8 @@ TagManager:
   tags:
   - SushiinuSalmonStand
   - Cloud
+  - Sushiinu_salmon
+  - Sushiinu_Maguro
   layers:
   - Default
   - TransparentFX
