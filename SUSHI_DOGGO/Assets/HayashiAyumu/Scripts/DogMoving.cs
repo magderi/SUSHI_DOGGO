@@ -24,7 +24,9 @@ public class DogMoving : MonoBehaviour
     private BoxCollider _playerJudgementCollider;
 
     // アニメーター
-    private Animator _sushiAnim = null;
+    public Animator _sushiSalmonAnim = null;
+
+    public Animator _sushiMaguroAnim = null;
 
     //  各行動を取っているかの判定フラグ
     public  bool isJumping = false;
@@ -45,15 +47,15 @@ public class DogMoving : MonoBehaviour
     float standX;
     float standZ;
 
+    public bool _scoreSalmonJudgement = false;
 
+    public bool _scoreMaguroJudgement = false;
+
+    private bool _scoreJudgement = false;
 
     // Start is called before the first frame update
     void Start()
-    {
-
-       
-
-        _sushiAnim = GetComponent<Animator>();
+    {       
 
         dogRB = GetComponent<Rigidbody>();
         dogStatus = GetComponent<DogStatus>();
@@ -68,17 +70,28 @@ public class DogMoving : MonoBehaviour
         dogVec.z = standZ;
     }
 
-   public void DogDamageAnim()
+   public void SalmonDogDamageAnim()
    {
-        _sushiAnim.SetTrigger("SushiDamage");
-   }
+        _sushiSalmonAnim.SetTrigger("SushiDamage");
 
+        _scoreSalmonJudgement = false;
+    }
+
+   public void MaguroDogDamageAnim()
+   {
+        _sushiMaguroAnim.SetTrigger("SushiDamage");
+
+        _scoreMaguroJudgement = false;
+   }
 
 
 
     // Update is called once per frame
     void LateUpdate()
     {
+
+        JudgementScore();
+
         JumpCoolTime();
         DogMove();
           
@@ -120,9 +133,39 @@ public class DogMoving : MonoBehaviour
     /// <summary>
     /// 寿司犬のジャンプモーション
     /// </summary>
-    public void DogJumpMotion()
+    async public void SalmonDogJumpMotion()
     {
-        _sushiAnim.SetTrigger("SushiJump");
+        _sushiSalmonAnim.SetTrigger("SushiJump");
+
+       _scoreSalmonJudgement = true;
+
+        /*
+
+        await UniTask.Delay(TimeSpan.FromSeconds(3));
+
+        JudgementScore();
+
+        await UniTask.Delay(TimeSpan.FromSeconds(1));
+
+        _scoreSalmonJudgement = false;
+        */
+    }
+
+    async public void MaguroDogJumpMotion()
+    {
+        _sushiMaguroAnim.SetTrigger("SushiJump");
+
+        _scoreMaguroJudgement = true;
+
+        /*
+        await UniTask.Delay(TimeSpan.FromSeconds(3));
+
+        JudgementScore();
+
+        await UniTask.Delay(TimeSpan.FromSeconds(1));
+
+        _scoreMaguroJudgement = false;
+        */
     }
 
     /// <summary>
@@ -154,4 +197,19 @@ public class DogMoving : MonoBehaviour
                 _currentMoveSpeed);
         }
     }
+
+    async private void JudgementScore()
+    {
+        if (_scoreMaguroJudgement && _scoreSalmonJudgement)
+        {
+            _gameManager.ScorePlus();
+
+            _scoreSalmonJudgement = false;
+
+            _scoreMaguroJudgement = false;
+        }
+
+        await UniTask.Delay(TimeSpan.FromSeconds(3));
+    }
+
 }

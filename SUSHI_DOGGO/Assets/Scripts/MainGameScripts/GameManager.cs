@@ -14,6 +14,10 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private TextMeshProUGUI _textMaguroMeshProUGUI;
+
+    // スコアテキスト
+    [SerializeField]
+    private TextMeshProUGUI _textScoreMeshProUGUI;
     // 現在のHP
     int currentSalmonHp;
 
@@ -22,6 +26,9 @@ public class GameManager : MonoBehaviour
     public Slider sliderSalmonHp;
 
     public Slider sliderMaguroHp;
+
+    // スコア
+    private int _scoreInt;
 
     // 寿司犬の体力
     private int _sushiSalmonHp = 100;
@@ -95,5 +102,14 @@ public class GameManager : MonoBehaviour
         }
 
         await UniTask.Delay(TimeSpan.FromSeconds(3));
+    }
+
+   public void ScorePlus()
+   {
+        _scoreInt =+ 5;
+
+        _textScoreMeshProUGUI.text = "Dish:" + _scoreInt.ToString();
+
+        Debug.Log("ScorePlus ");
     }
 }

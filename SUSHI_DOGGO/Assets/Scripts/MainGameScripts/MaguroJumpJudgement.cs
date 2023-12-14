@@ -1,17 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Cysharp.Threading.Tasks;
-using System;
 
-public class JumpJudgement : MonoBehaviour
+public class MaguroJumpJudgement : MonoBehaviour
 {
-
     [SerializeField]
     private SushiJump _sushiJump;
 
     [SerializeField]
-    private GameObject _jumpOKText;
+    private GameObject _jumpOKMaguroText;
 
     public bool _jumpCoolTime = true;
     // Start is called before the first frame update
@@ -33,15 +30,15 @@ public class JumpJudgement : MonoBehaviour
         //接触しているオブジェクトのタグが"Player"のとき
         if (other.CompareTag("Cloud") && _jumpCoolTime)
         {
-            _sushiJump.isJumping = true;
-            _jumpOKText.SetActive(true);
+            _sushiJump.isMaguroJumping = true;
+            _jumpOKMaguroText.SetActive(true);
 
-           
+
 
             Debug.Log("JumpTrue");
 
 
-      
+
 
         }
     }
@@ -53,8 +50,8 @@ public class JumpJudgement : MonoBehaviour
         //離れたオブジェクトのタグが"Player"のとき
         if (other.CompareTag("Cloud"))
         {
-            _sushiJump.isJumping = false;
-            _jumpOKText.SetActive(false);
+            _sushiJump.isMaguroJumping = false;
+            _jumpOKMaguroText.SetActive(false);
             Debug.Log("JumpFalse");
         }
     }

@@ -8,13 +8,16 @@ public class SushiJump : MonoBehaviour
 {
     public float jumpPower;
     private Rigidbody rb;
-    public bool isJumping = false;
-
+    public bool isSalmonJumping = false;
+    public bool isMaguroJumping = false;
     [SerializeField]
     private DogMoving _dogMoving;
 
     [SerializeField]
-    private JumpJudgement _jumpJudgement;
+    private SalmonJumpJudgement _salmonJumpJudgement;
+
+    [SerializeField]
+    private MaguroJumpJudgement _maguroJumpJudgement;
 
     [SerializeField]
     private BoxCollider _boxCollider;
@@ -25,31 +28,40 @@ public class SushiJump : MonoBehaviour
 
     async void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isJumping)
+        // サーモンジャンプ
+        if (Input.GetKeyDown(KeyCode.LeftShift) && isSalmonJumping)
         {
-            _dogMoving.DogJumpMotion();
+            _dogMoving.SalmonDogJumpMotion();
             rb.velocity = Vector3.up * jumpPower;
             //await UniTask.Delay(TimeSpan.FromSeconds(1));
-            isJumping = false;
+            isSalmonJumping = false;
 
-            _jumpJudgement._jumpCoolTime = false;
+            _salmonJumpJudgement._jumpCoolTime = false;
 
             await UniTask.Delay(TimeSpan.FromSeconds(3));
 
-            _jumpJudgement._jumpCoolTime = true;
+            _salmonJumpJudgement._jumpCoolTime = true;
 
 
-            Debug.Log("testttttttttttttttttttt");
+            Debug.Log("test");
         }
-    }
 
-    // ★★追加
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("SushiinuSalmonStand"))
+        // マグロジャンプ
+        if (Input.GetKeyDown(KeyCode.RightShift) && isMaguroJumping)
         {
-           // isJumping = false;
-            Debug.Log("false");
+            _dogMoving.MaguroDogJumpMotion();
+            rb.velocity = Vector3.up * jumpPower;
+            //await UniTask.Delay(TimeSpan.FromSeconds(1));
+            isMaguroJumping = false;
+
+            _maguroJumpJudgement._jumpCoolTime = false;
+
+            await UniTask.Delay(TimeSpan.FromSeconds(3));
+
+            _maguroJumpJudgement._jumpCoolTime = true;
+
+
+            Debug.Log("test");
         }
     }
 }

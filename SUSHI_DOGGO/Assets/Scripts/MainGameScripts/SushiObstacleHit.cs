@@ -30,7 +30,7 @@ public class SushiObstacleHit : MonoBehaviour
 
             Debug.Log("コライダー1に当たりました");
 
-            _dogMoving.DogDamageAnim();
+            _dogMoving.SalmonDogDamageAnim();
 
             // 流す配列を指定して再生する
             _se_Manager.Play(0);
@@ -47,7 +47,7 @@ public class SushiObstacleHit : MonoBehaviour
 
             Debug.Log("コライダー1に当たりました");
 
-            _dogMoving.DogDamageAnim();
+            _dogMoving.MaguroDogDamageAnim();
 
             // 流す配列を指定して再生する
             _se_Manager.Play(0);
