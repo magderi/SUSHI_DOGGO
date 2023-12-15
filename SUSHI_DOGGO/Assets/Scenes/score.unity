@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 9b329ffc8d0294644946c203feeb75ca, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.47281617, g: 0.877363, b: 0.8625785, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -320,17 +320,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f10e5a5fa3afeb347a73057978847c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  imagesToShow:
-  - {fileID: 972155610}
-  - {fileID: 549579184}
-  - {fileID: 762480898}
-  - {fileID: 1970946331}
-  - {fileID: 808618581}
-  - {fileID: 3044242}
-  - {fileID: 1056524980}
-  - {fileID: 1400490821}
-  scoreText: {fileID: 1172076393}
-  bgmAudioSource: {fileID: 587332364}
 --- !u!82 &587332364
 AudioSource:
   m_ObjectHideFlags: 0
@@ -609,6 +598,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit
@@ -1076,16 +1066,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 998753951a96bf54faf4ee42703e6e2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  imagesToShow:
-  - {fileID: 972155610}
-  - {fileID: 549579184}
-  - {fileID: 762480898}
-  - {fileID: 1970946331}
-  - {fileID: 808618581}
-  - {fileID: 3044242}
-  - {fileID: 1056524980}
-  - {fileID: 1400490821}
-  scoreText: {fileID: 1172076393}
 --- !u!1 &1607789072
 GameObject:
   m_ObjectHideFlags: 0
@@ -1256,6 +1236,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2063191835}
   - component: {fileID: 2063191834}
+  - component: {fileID: 2063191836}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -1340,3 +1321,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &2063191836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063191833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}

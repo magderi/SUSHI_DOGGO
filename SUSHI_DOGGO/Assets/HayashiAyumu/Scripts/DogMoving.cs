@@ -47,11 +47,7 @@ public class DogMoving : MonoBehaviour
     float standX;
     float standZ;
 
-    public bool _scoreSalmonJudgement = false;
 
-    public bool _scoreMaguroJudgement = false;
-
-    private bool _scoreJudgement = false;
 
     // Start is called before the first frame update
     void Start()
@@ -74,23 +70,19 @@ public class DogMoving : MonoBehaviour
    {
         _sushiSalmonAnim.SetTrigger("SushiDamage");
 
-        _scoreSalmonJudgement = false;
+        _gameManager._scoreSalmonJudgement = false;
     }
 
    public void MaguroDogDamageAnim()
    {
         _sushiMaguroAnim.SetTrigger("SushiDamage");
 
-        _scoreMaguroJudgement = false;
+        _gameManager._scoreMaguroJudgement = false;
    }
 
     private void Update()
     {
 
-        _scoreSalmonJudgement = true;
-
-
-        _scoreMaguroJudgement = true;
 
     }
 
@@ -98,7 +90,7 @@ public class DogMoving : MonoBehaviour
     void LateUpdate()
     {
 
-        JudgementScore();
+     
 
         JumpCoolTime();
         DogMove();
@@ -145,25 +137,23 @@ public class DogMoving : MonoBehaviour
     {
         _sushiSalmonAnim.SetTrigger("SushiJump");
 
-       _scoreSalmonJudgement = true;
+       _gameManager._scoreSalmonJudgement = true;
 
 
-       _scoreMaguroJudgement = true;
+       _gameManager._scoreMaguroJudgement = true;
         Debug.Log("iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
 
   
 
         await UniTask.Delay(TimeSpan.FromSeconds(3));
 
-        _scoreSalmonJudgement = false;
-
-        _scoreMaguroJudgement = false;
+  
 
         //JudgementScore();
 
         await UniTask.Delay(TimeSpan.FromSeconds(1));
 
-        _scoreSalmonJudgement = false;
+        _gameManager._scoreSalmonJudgement = false;
         
     }
 
@@ -171,25 +161,25 @@ public class DogMoving : MonoBehaviour
     {
         _sushiMaguroAnim.SetTrigger("SushiJump");
 
-        _scoreSalmonJudgement = true;
+        _gameManager._scoreSalmonJudgement = true;
 
 
-        _scoreMaguroJudgement = true;
+        _gameManager._scoreMaguroJudgement = true;
 
       
         Debug.Log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa;");
         
         await UniTask.Delay(TimeSpan.FromSeconds(3));
 
-        _scoreSalmonJudgement = false;
+        _gameManager._scoreSalmonJudgement = false;
 
-        _scoreMaguroJudgement = false;
+        _gameManager._scoreMaguroJudgement = false;
 
         //JudgementScore();
 
         await UniTask.Delay(TimeSpan.FromSeconds(1));
 
-        _scoreMaguroJudgement = false;
+        _gameManager._scoreMaguroJudgement = false;
         
     }
 
@@ -223,18 +213,6 @@ public class DogMoving : MonoBehaviour
         }
     }
 
-    async private void JudgementScore()
-    {
-        if (_scoreMaguroJudgement && _scoreSalmonJudgement)
-        {
-            _gameManager.ScorePlus();
-
-            _scoreSalmonJudgement = false;
-
-            _scoreMaguroJudgement = false;
-        }
-
-        await UniTask.Delay(TimeSpan.FromSeconds(3));
-    }
+  
 
 }

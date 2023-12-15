@@ -119,7 +119,7 @@ public class GameManager : MonoBehaviour
    {
         _scoreInt =+ 5;
 
-        _textScoreMeshProUGUI.text = "Dish:" + _scoreInt.ToString();
+        _textScoreMeshProUGUI.text = _scoreInt.ToString();
 
         Debug.Log("ScorePlus ");
    }
