@@ -85,7 +85,7 @@ public class KeyPressAndHold : MonoBehaviour
                 _Uicanvs.SetActive(false);
 
                 
-                await UniTask.Delay(TimeSpan.FromSeconds(8));
+                await UniTask.Delay(TimeSpan.FromSeconds(9));
 
                 _fadeManager.fadeout = true;
 
