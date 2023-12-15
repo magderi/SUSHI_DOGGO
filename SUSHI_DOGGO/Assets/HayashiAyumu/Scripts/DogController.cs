@@ -11,9 +11,11 @@ public class DogController : MonoBehaviour
     private DogMoving dogMoving;
     [SerializeField]
     private DogStatus dogStatus;
-    private PlayerController playerController;
     [SerializeField]
     private Transform _playerTransform;
+
+    private PlayerController moveController;
+    private PlayerController jumpController;
 
     //  各行動を取っているかの判定フラグ
     public bool isJumping = false;
@@ -54,8 +56,8 @@ public class DogController : MonoBehaviour
         standRB = GetComponent<Rigidbody>();
         dogStatus = GetComponent<DogStatus>();
         //  InputSystem を読み込んで、Enable で有効化
-        playerController = new PlayerController();
-        playerController.Enable();
+        moveController = new PlayerController();
+        moveController.Enable();
 
         _playerPos = _playerTransform.position;
 
@@ -92,7 +94,7 @@ public class DogController : MonoBehaviour
 
                 //  InputSystem の value を読み込む
                 //  逐一 inputVal を読み込まないと、一度移動して死ぬ。なぜ。
-                var inputVal = playerController.Player.Move.ReadValue<Vector2>();
+                var inputVal = moveController.Player.Move.ReadValue<Vector2>();
                 inputVal.y = 0;
                 //  横の入力があれば
                 if (inputVal.x != 0)
@@ -112,11 +114,16 @@ public class DogController : MonoBehaviour
             else
             {
                 //  InputSystem の value を読み込む
-                var inputVal = playerController.Player.Move.ReadValue<Vector2>();
+                var inputVal = moveController.Player.Move.ReadValue<Vector2>();
                 if (inputVal.x == 0)
                     isKeyUp = true;
             }
         }
+    }
+
+    private void OnJump(InputAction.CallbackContext context)
+    {
+        var inputVal = moveController.Player.Jump.triggered;
     }
 
     /// <summary>
