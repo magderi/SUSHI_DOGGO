@@ -18,8 +18,6 @@ public class DogController : MonoBehaviour
     //  各行動を取っているかの判定フラグ
     public bool isJumping = false;
     private bool isCurving = false;
-    private bool isRightMoving = false;
-    private bool isLeftMoving = false;
     private bool isMoving = false;
     private bool isKeyUp = true;
 
@@ -30,8 +28,6 @@ public class DogController : MonoBehaviour
 
     //  移動の制限に使うposition値入れ
     private float _dogPosX;
-    private float _dogGoToPosX;
-    private float _fGoX;
 
     private Vector3 _playerPos;
     private Vector3 _playerGoToPos;
@@ -61,11 +57,6 @@ public class DogController : MonoBehaviour
         playerController = new PlayerController();
         playerController.Enable();
 
-        //  開始時の寿司犬の position.x を取得
-        _dogPosX = transform.position.x;
-        _dogGoToPosX = _dogPosX;
-        _fGoX = 10.0f;
-
         _playerPos = _playerTransform.position;
 
         //  仮に、左から3番目に置いてある想定
@@ -78,16 +69,9 @@ public class DogController : MonoBehaviour
         dogMoving.isJumping = isJumping;
 
         PlayerMove();
-
         //  「カーブ中」なら、(今のところ未実装)
         if (isCurving)
             CurveMoveLimit(dogStatus._maxMoveLimit);
-    }
-
-    private void Jump(InputAction.CallbackContext context)
-    {
-        //  「ジャンプ中」に設定
-        dogMoving.isJumping = true;
     }
 
 
@@ -97,20 +81,23 @@ public class DogController : MonoBehaviour
     private void PlayerMove()
     {
        
-        //  InputSystem の value を読み込む
-        var inputVal = playerController.Player.Move.ReadValue<Vector2>();
-        inputVal.y = 0;
         //  「移動中」でなく、
         if (!isMoving)
         {
+            Debug.Log("移動中じゃないよ。");
             //  「入力中」でなければ
             if (isKeyUp)
             {
+                Debug.Log("入力中じゃないよ。");
+
+                //  InputSystem の value を読み込む
+                //  逐一 inputVal を読み込まないと、一度移動して死ぬ。なぜ。
+                var inputVal = playerController.Player.Move.ReadValue<Vector2>();
+                inputVal.y = 0;
                 //  横の入力があれば
                 if (inputVal.x != 0)
                 {
-                    //  「移動中」かつ「入力中」に
-                    isMoving = true;
+                    //  「入力中」に
                     isKeyUp = false;
                     //  12/15/作業の続きはここから！！！
                     //  現在の position から、それぞれに応じた移動幅を加算
@@ -121,10 +108,13 @@ public class DogController : MonoBehaviour
                         _playerGoToPos = _playerPos + _addVector[MoveType.Left];
                     StartCoroutine(MoveCor());
                 }
-                else
-                {
+            }
+            else
+            {
+                //  InputSystem の value を読み込む
+                var inputVal = playerController.Player.Move.ReadValue<Vector2>();
+                if (inputVal.x == 0)
                     isKeyUp = true;
-                }
             }
         }
     }
@@ -149,7 +139,8 @@ public class DogController : MonoBehaviour
 
     private IEnumerator MoveCor()
     {
-
+        //  「移動中」に
+        isMoving = true;
         //  _moveTimer 秒経ったら終わる繰り返し処理
         //  1fと書いてはいるが、1秒で終わるわけではない。
         float actionTimer = 0f;
