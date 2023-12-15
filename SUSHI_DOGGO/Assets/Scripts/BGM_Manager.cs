@@ -40,12 +40,12 @@ public class BGM_Manager : MonoBehaviour
 
 
     }
-    private IEnumerator fadeVolue()
+    public IEnumerator fadeVolue()
     {
         while (true)
         {
             yield return new WaitForSeconds(0.01f);
-            Audio_Source_BGM.volume -= 0.01f;
+            Audio_Source_BGM.volume -= 0.001f;
             if (Audio_Source_BGM.volume <= 0)
                 break;
 

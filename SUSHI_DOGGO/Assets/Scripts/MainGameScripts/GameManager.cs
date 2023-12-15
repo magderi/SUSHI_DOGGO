@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        JudgementScore();
+        ScorePlus();
     }
     async public void SushiSalmonDamage()
     {
@@ -117,7 +117,7 @@ public class GameManager : MonoBehaviour
 
    public void ScorePlus()
    {
-        _scoreInt =+ 5;
+        _scoreInt = currentMaguroHp + currentSalmonHp ;
 
         _textScoreMeshProUGUI.text = _scoreInt.ToString();
 
