@@ -84,7 +84,15 @@ public class DogMoving : MonoBehaviour
         _scoreMaguroJudgement = false;
    }
 
+    private void Update()
+    {
 
+        _scoreSalmonJudgement = true;
+
+
+        _scoreMaguroJudgement = true;
+
+    }
 
     // Update is called once per frame
     void LateUpdate()
@@ -139,33 +147,50 @@ public class DogMoving : MonoBehaviour
 
        _scoreSalmonJudgement = true;
 
-        /*
+
+       _scoreMaguroJudgement = true;
+        Debug.Log("iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
+
+  
 
         await UniTask.Delay(TimeSpan.FromSeconds(3));
 
-        JudgementScore();
+        _scoreSalmonJudgement = false;
+
+        _scoreMaguroJudgement = false;
+
+        //JudgementScore();
 
         await UniTask.Delay(TimeSpan.FromSeconds(1));
 
         _scoreSalmonJudgement = false;
-        */
+        
     }
 
     async public void MaguroDogJumpMotion()
     {
         _sushiMaguroAnim.SetTrigger("SushiJump");
 
+        _scoreSalmonJudgement = true;
+
+
         _scoreMaguroJudgement = true;
 
-        /*
+      
+        Debug.Log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa;");
+        
         await UniTask.Delay(TimeSpan.FromSeconds(3));
 
-        JudgementScore();
+        _scoreSalmonJudgement = false;
+
+        _scoreMaguroJudgement = false;
+
+        //JudgementScore();
 
         await UniTask.Delay(TimeSpan.FromSeconds(1));
 
         _scoreMaguroJudgement = false;
-        */
+        
     }
 
     /// <summary>

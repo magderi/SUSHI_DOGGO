@@ -887,9 +887,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 1
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -4643,7 +4643,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 556618547}
-  m_LocalRotation: {x: 0.1858239, y: -0.000000008453348, z: 0.0000000015986783, w: 0.9825831}
+  m_LocalRotation: {x: 0.1858239, y: 0.00000000845335, z: -0.0000000015986786, w: 0.9825831}
   m_LocalPosition: {x: 0.008299693, y: 6.24, z: -3.8399997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6926,7 +6926,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.1858239, y: -0.000000008453348, z: 0.0000000015986783, w: 0.9825831}
+  m_LocalRotation: {x: 0.1858239, y: 0.00000000845335, z: -0.0000000015986786, w: 0.9825831}
   m_LocalPosition: {x: 0.008299693, y: 6.24, z: -3.8399997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -16753,8 +16753,8 @@ MonoBehaviour:
   _sushiMaguroAnim: {fileID: 919132148016616791}
   isJumping: 0
   _jumpCoolTime: 2
-  _scoreSalmonJudgement: 1
-  _scoreMaguroJudgement: 1
+  _scoreSalmonJudgement: 0
+  _scoreMaguroJudgement: 0
 --- !u!54 &919132148016616790
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -17626,6 +17626,18 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 7d8c16d7-45fb-4306-8e0f-512f8c608342
     m_ActionName: Player/RightMove[/DualShock4GamepadHID/leftStick/right,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 213778fe-f387-420d-b7a5-a9cc6f213ada
+    m_ActionName: Maguro/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2872fafd-b82f-4472-9d67-2dbb4c02e0b1
+    m_ActionName: Maguro/LeftMove[/Keyboard/j]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6c85080f-8179-4838-8f4f-930ebb15b2a8
+    m_ActionName: Maguro/RightMove[/Keyboard/l]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -20808,8 +20820,8 @@ MonoBehaviour:
   _sushiMaguroAnim: {fileID: 919132148016616791}
   isJumping: 0
   _jumpCoolTime: 2
-  _scoreSalmonJudgement: 1
-  _scoreMaguroJudgement: 1
+  _scoreSalmonJudgement: 0
+  _scoreMaguroJudgement: 0
 --- !u!54 &8697126130682493695
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -31,6 +31,8 @@ public class SushiJump : MonoBehaviour
         // サーモンジャンプ
         if (Input.GetKeyDown(KeyCode.LeftShift) && isSalmonJumping)
         {
+           
+
             _dogMoving.SalmonDogJumpMotion();
             rb.velocity = Vector3.up * jumpPower;
             //await UniTask.Delay(TimeSpan.FromSeconds(1));
@@ -49,6 +51,8 @@ public class SushiJump : MonoBehaviour
         // マグロジャンプ
         if (Input.GetKeyDown(KeyCode.RightShift) && isMaguroJumping)
         {
+         
+
             _dogMoving.MaguroDogJumpMotion();
             rb.velocity = Vector3.up * jumpPower;
             //await UniTask.Delay(TimeSpan.FromSeconds(1));

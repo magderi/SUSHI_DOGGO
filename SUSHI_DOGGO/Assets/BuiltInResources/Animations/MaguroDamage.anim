@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Damage
+  m_Name: MaguroDamage
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -289,7 +289,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._BaseColor.r
-    path: salmon
+    path: maguro
     classID: 137
     script: {fileID: 0}
   - curve:
@@ -344,7 +344,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._BaseColor.g
-    path: salmon
+    path: maguro
     classID: 137
     script: {fileID: 0}
   - curve:
@@ -399,7 +399,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._BaseColor.b
-    path: salmon
+    path: maguro
     classID: 137
     script: {fileID: 0}
   - curve:
@@ -454,7 +454,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._BaseColor.a
-    path: salmon
+    path: maguro
     classID: 137
     script: {fileID: 0}
   m_PPtrCurves: []
@@ -473,7 +473,7 @@ AnimationClip:
       customType: 22
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 3786845134
+      path: 2503336294
       attribute: 1136458424
       script: {fileID: 0}
       typeID: 137
@@ -501,21 +501,21 @@ AnimationClip:
       customType: 22
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 3786845134
+      path: 2503336294
       attribute: 1404893880
       script: {fileID: 0}
       typeID: 137
       customType: 22
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 3786845134
+      path: 2503336294
       attribute: 1673329336
       script: {fileID: 0}
       typeID: 137
       customType: 22
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 3786845134
+      path: 2503336294
       attribute: 1941764792
       script: {fileID: 0}
       typeID: 137
@@ -815,7 +815,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._BaseColor.r
-    path: salmon
+    path: maguro
     classID: 137
     script: {fileID: 0}
   - curve:
@@ -870,7 +870,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._BaseColor.g
-    path: salmon
+    path: maguro
     classID: 137
     script: {fileID: 0}
   - curve:
@@ -925,7 +925,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._BaseColor.b
-    path: salmon
+    path: maguro
     classID: 137
     script: {fileID: 0}
   - curve:
@@ -980,7 +980,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._BaseColor.a
-    path: salmon
+    path: maguro
     classID: 137
     script: {fileID: 0}
   m_EulerEditorCurves: []
