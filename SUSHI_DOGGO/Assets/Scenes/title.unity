@@ -504,7 +504,7 @@ MonoBehaviour:
   targetKey: 97
   circleEffect: {fileID: 33929688}
   holdDuration: 1.5
-  nextSceneName: score
+  nextSceneName: MainGame
 --- !u!4 &542142812
 Transform:
   m_ObjectHideFlags: 0
@@ -720,7 +720,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 809882211}
-  - component: {fileID: 809882210}
   - component: {fileID: 809882209}
   - component: {fileID: 809882212}
   m_Layer: 0
@@ -826,18 +825,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &809882210
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 809882208}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f6a3f252544a7046836c00660b34078, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &809882211
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1200,14 +1187,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1378936156}
-  m_LocalRotation: {x: 0.14435482, y: -0.063155614, z: 0.009232544, w: 0.9874654}
-  m_LocalPosition: {x: 4.06, y: 4.86, z: -14.72}
+  m_LocalRotation: {x: 0.14278561, y: -0.13406776, z: 0.01952491, w: 0.9804371}
+  m_LocalPosition: {x: 5.22, y: 4.88, z: -14.54}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 16.634, y: -7.319, z: 0}
+  m_LocalEulerAnglesHint: {x: 16.572, y: -15.573, z: 0}
 --- !u!114 &1378936160
 MonoBehaviour:
   m_ObjectHideFlags: 0

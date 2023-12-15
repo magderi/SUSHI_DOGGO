@@ -4,9 +4,9 @@ using UnityEngine.SceneManagement;
 
 public class KeyPressAndHold : MonoBehaviour
 {
-    public KeyCode targetKey = KeyCode.A;       // Ä¿±ê°´¼ü
-    public Image circleEffect;                  // Î§ÈÆ°´¼ü»­È¦µÄUI Image
-    public float holdDuration = 3f;             // °´×¡µÄ×î¶ÌÊ±¼ä£¨Ãë£©
+    public KeyCode targetKey = KeyCode.A;       // Ä¿±E´¼E
+    public Image circleEffect;                  // Î§ÈÆ°´¼E­È¦µÄUI Image
+    public float holdDuration = 3f;             // °´×¡µÄ×ûÒÌÊ±¼ä£¨ÃE©
     public string nextSceneName = "YourScene";  // ÏÂÒ»¸ö³¡¾°µÄÃû³Æ
 
     private bool isPressing = false;
@@ -42,7 +42,7 @@ public class KeyPressAndHold : MonoBehaviour
         {
             float pressDuration = Time.time - pressStartTime;
 
-            // ¸üĞÂÔ²È¦µÄÌî³äÁ¿
+            // ¸EÂÔ²È¦µÄÌûÏäÁ¿
             float fillAmount = Mathf.Clamp01(pressDuration / holdDuration);
             circleEffect.fillAmount = fillAmount;
 
@@ -58,7 +58,7 @@ public class KeyPressAndHold : MonoBehaviour
     {
         isPressing = false;
 
-        // ÖØÖÃÔ²È¦µÄÌî³äÁ¿
+        // ÖØÖÃÔ²È¦µÄÌûÏäÁ¿
         circleEffect.fillAmount = 0f;
     }
 
