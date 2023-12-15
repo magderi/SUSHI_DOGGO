@@ -627,6 +627,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _jumpPower: 300
   _movePower: 300
+  _moveTimer: 0.5
   _maxMoveLimit: 300
 --- !u!33 &3440215837402883562
 MeshFilter:
@@ -722,6 +723,7 @@ GameObject:
   - component: {fileID: 3440215837402883567}
   - component: {fileID: 3440215837402883560}
   - component: {fileID: 3440215837402883561}
+  - component: {fileID: 3440215837402883568}
   m_Layer: 0
   m_Name: Dog
   m_TagString: Untagged
@@ -745,6 +747,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &3440215837402883568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3440215837402883566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad36ac5859e15894eac118ad9527d522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  standRB: {fileID: 0}
+  dogMoving: {fileID: 0}
+  dogStatus: {fileID: 0}
+  _playerTransform: {fileID: 0}
+  isJumping: 0
+  _playerGoToPosX: 1.2
 --- !u!1 &8067776539760690512
 GameObject:
   m_ObjectHideFlags: 0
@@ -798,6 +818,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _jumpPower: 30
   _movePower: 300
+  _moveTimer: 0.5
   _maxMoveLimit: 5
 --- !u!114 &8067776539760690521
 MonoBehaviour:
@@ -876,6 +897,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 138eeaa6-0832-4e21-b1bf-336aa4022ecd
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2d129cd5-95b3-4d11-b621-86352d9c5a2f
+    m_ActionName: Player/Jump[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
