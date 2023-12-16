@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     // スコアテキスト
     [SerializeField]
     private TextMeshProUGUI _textScoreMeshProUGUI;
+
+
     // 現在のHP
     int currentSalmonHp;
 

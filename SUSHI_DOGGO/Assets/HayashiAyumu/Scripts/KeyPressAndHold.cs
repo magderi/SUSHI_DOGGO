@@ -24,10 +24,10 @@ public class KeyPressAndHold : MonoBehaviour
     [SerializeField]
     private BGM_Manager _bgmManager;
 
-    public KeyCode targetKey = KeyCode.A;       // Ä¿±E´¼E
-    public Image circleEffect;                  // Î§ÈÆ°´¼E­È¦µÄUI Image
-    public float holdDuration = 3f;             // °´×¡µÄ×ûÒÌÊ±¼ä£¨ÃE©
-    public string nextSceneName = "YourScene";  // ÏÂÒ»¸ö³¡¾°µÄÃû³Æ
+    public KeyCode targetKey = KeyCode.A;       // Ä¿ï¿½ï¿½Eï¿½ï¿½ï¿½E
+    public Image circleEffect;                  // Î§ï¿½Æ°ï¿½ï¿½ï¿½Eï¿½È¦ï¿½ï¿½UI Image
+    public float holdDuration = 3f;             // ï¿½ï¿½×¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä£¨ÃEï¿½
+    public string nextSceneName = "YourScene";  // ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
     private bool isPressing = false;
     private float pressStartTime;
@@ -69,11 +69,11 @@ public class KeyPressAndHold : MonoBehaviour
 
             float pressDuration = Time.time - pressStartTime;
 
-            // ¸EÂÔ²È¦µÄÌûÏäÁ¿
+            // ï¿½ï¿½Eï¿½Ô²È¦ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             float fillAmount = Mathf.Clamp01(pressDuration / holdDuration);
             circleEffect.fillAmount = fillAmount;
 
-            // Èç¹û°´×¡Ê±¼ä³¬¹ıÖ¸¶¨³ÖĞøÊ±¼ä£¬¼ÓÔØÏÂÒ»¸ö³¡¾°
+            // ï¿½ï¿½ï¿½ï¿½ï¿½×¡Ê±ï¿½ä³¬ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             if (pressDuration >= holdDuration)
             {
                 _seManager.Play(0);
@@ -100,13 +100,13 @@ public class KeyPressAndHold : MonoBehaviour
     {
         isPressing = false;
 
-        // ÖØÖÃÔ²È¦µÄÌûÏäÁ¿
+        // ï¿½ï¿½ï¿½ï¿½Ô²È¦ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         circleEffect.fillAmount = 0f;
     }
 
     public void LoadNextScene()
     {
-        // ¼ÓÔØÏÂÒ»¸ö³¡¾°
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         SceneManager.LoadScene(nextSceneName);
     }
 }
