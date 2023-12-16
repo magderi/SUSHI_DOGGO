@@ -45,7 +45,7 @@ public class BGM_Manager : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(0.01f);
-            Audio_Source_BGM.volume -= 0.001f;
+            Audio_Source_BGM.volume -= 0.005f;
             if (Audio_Source_BGM.volume <= 0)
                 break;
 

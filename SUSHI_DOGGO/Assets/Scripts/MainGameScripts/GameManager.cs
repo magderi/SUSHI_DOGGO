@@ -27,8 +27,8 @@ public class GameManager : MonoBehaviour
 
     public Slider sliderMaguroHp;
 
-    // ƒXƒRƒA
-    private int _scoreInt;
+    [SerializeField]
+    private DishScore _dishScore;
 
     // ŽõŽiŒ¢‚Ì‘Ì—Í
     private int _sushiSalmonHp = 100;
@@ -117,9 +117,9 @@ public class GameManager : MonoBehaviour
 
    public void ScorePlus()
    {
-        _scoreInt = currentMaguroHp + currentSalmonHp ;
+        _dishScore._scoreInt = currentMaguroHp + currentSalmonHp ;
 
-        _textScoreMeshProUGUI.text = _scoreInt.ToString();
+        _textScoreMeshProUGUI.text = _dishScore._scoreInt.ToString();
 
         Debug.Log("ScorePlus ");
    }

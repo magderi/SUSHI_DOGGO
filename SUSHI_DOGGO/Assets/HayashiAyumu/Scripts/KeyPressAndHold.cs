@@ -85,15 +85,13 @@ public class KeyPressAndHold : MonoBehaviour
                 _Uicanvs.SetActive(false);
 
                 
-                await UniTask.Delay(TimeSpan.FromSeconds(8));
+               // await UniTask.Delay(TimeSpan.FromSeconds(8));
 
-                _fadeManager.fadeout = true;
+              //  _fadeManager.fadeout = true;
 
-                StartCoroutine( _bgmManager.fadeVolue());
-
-                await UniTask.Delay(TimeSpan.FromSeconds(3));
-
-                LoadNextScene();
+               // StartCoroutine( _bgmManager.fadeVolue());
+         
+                //LoadNextScene();
             }
         }
     }
@@ -106,7 +104,7 @@ public class KeyPressAndHold : MonoBehaviour
         circleEffect.fillAmount = 0f;
     }
 
-    void LoadNextScene()
+    public void LoadNextScene()
     {
         // 加载下一个场景
         SceneManager.LoadScene(nextSceneName);
