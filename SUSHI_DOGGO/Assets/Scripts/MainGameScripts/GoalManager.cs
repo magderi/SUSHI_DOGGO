@@ -39,10 +39,6 @@ public class GoalManager : MonoBehaviour
 
         await UniTask.Delay(TimeSpan.FromSeconds(3));
 
-        _fadeManager.fadeout = true;
-
-        await UniTask.Delay(TimeSpan.FromSeconds(3));
-
-        SceneManager.LoadScene("score");
+        SceneManager.LoadScene("title");
     }
 }

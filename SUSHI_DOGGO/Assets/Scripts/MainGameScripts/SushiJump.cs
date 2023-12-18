@@ -21,9 +21,36 @@ public class SushiJump : MonoBehaviour
 
     [SerializeField]
     private BoxCollider _boxCollider;
+
+    [SerializeField]
+    private ParticleSystem _jumpSalmonParticle;
+
+    [SerializeField]
+    private ParticleSystem _jumpMaguroParticle;
+
+    [SerializeField]
+    private SE_Manager _seManager;
     void Start()
     {
+        _jumpSalmonParticle.Stop();
+
+        _jumpMaguroParticle.Stop();
+
         rb = GetComponent<Rigidbody>();
+    }
+
+    public void SalmonDogJumpParticle()
+    {
+        _jumpSalmonParticle.Play();
+
+        _seManager.Play(2);
+    }
+
+    public void MaguroDogJumpParticle()
+    {
+        _jumpMaguroParticle.Play();
+
+        _seManager.Play(2);
     }
 
     async void Update()
@@ -67,5 +94,6 @@ public class SushiJump : MonoBehaviour
 
             Debug.Log("test");
         }
-    }
+    }   
+
 }
