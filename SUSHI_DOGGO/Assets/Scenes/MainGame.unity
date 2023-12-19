@@ -11458,7 +11458,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 556618547}
-  m_LocalRotation: {x: 0.18582392, y: -0.0000000169067, z: 0.0000000031973577, w: 0.9825831}
+  m_LocalRotation: {x: 0.18582392, y: 0.000000016906696, z: -0.000000003197357, w: 0.9825831}
   m_LocalPosition: {x: 0.008299693, y: 4.83, z: -3.8399997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -22468,7 +22468,7 @@ GameObject:
   - component: {fileID: 963194230}
   - component: {fileID: 963194231}
   m_Layer: 0
-  m_Name: Main Camera
+  m_Name: Main Camera&Sushiinu
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22532,7 +22532,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.18582392, y: -0.0000000169067, z: 0.0000000031973577, w: 0.9825831}
+  m_LocalRotation: {x: 0.18582392, y: 0.000000016906696, z: -0.000000003197357, w: 0.9825831}
   m_LocalPosition: {x: 0.008299693, y: 4.83, z: -3.8399997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -39566,8 +39566,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Goal!!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a9a88e291034e7845b990151e70bf7db, type: 2}
-  m_sharedMaterial: {fileID: -3541312361604938452, guid: a9a88e291034e7845b990151e70bf7db, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1c37725dc94e8254f9879b7745ca4cdd, type: 2}
+  m_sharedMaterial: {fileID: 1804863670656068254, guid: 1c37725dc94e8254f9879b7745ca4cdd, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -39630,7 +39630,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1320070984
@@ -81718,11 +81718,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfca6adf6a4e7384bb262685a34854f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpPower: 5
   isSalmonJumping: 0
   isMaguroJumping: 0
   _dogMoving: {fileID: 919132148016616789}
-  _salmonJumpJudgement: {fileID: 0}
+  _salmonJumpJudgement: {fileID: 2119338775}
   _maguroJumpJudgement: {fileID: 1478559284}
   _boxCollider: {fileID: 7363168381943390524}
   _jumpSalmonParticle: {fileID: 7677311374538155860}
@@ -120146,12 +120145,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfca6adf6a4e7384bb262685a34854f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpPower: 5
   isSalmonJumping: 0
   isMaguroJumping: 0
   _dogMoving: {fileID: 8697126130682493694}
   _salmonJumpJudgement: {fileID: 2119338775}
-  _maguroJumpJudgement: {fileID: 0}
+  _maguroJumpJudgement: {fileID: 1478559284}
   _boxCollider: {fileID: 2288166689581988687}
   _jumpSalmonParticle: {fileID: 7677311374538155860}
   _jumpMaguroParticle: {fileID: 2030771545}

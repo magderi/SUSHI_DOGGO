@@ -61,7 +61,7 @@ public class KeyPressAndHold : MonoBehaviour
         pressStartTime = Time.time;
     }
 
-    async void ContinuePress()
+    void ContinuePress()
     {
         if (isPressing)
         {

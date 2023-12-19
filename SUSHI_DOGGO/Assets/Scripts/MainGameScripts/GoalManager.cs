@@ -23,8 +23,6 @@ public class GoalManager : MonoBehaviour
     void Start()
     {
         _bgmManager.Play(0);
-
-        DontDestroyOnLoad(gameObject);
     }
 
     // Update is called once per frame

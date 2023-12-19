@@ -71,7 +71,7 @@ public class SushiJump : MonoBehaviour
     async void Update()
     {
         // サーモンジャンプ
-        if (Input.GetKeyDown(KeyCode.LeftShift)) //&& isSalmonJumping)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && isSalmonJumping)
         {
 
             // DogMovingの関数を使用
@@ -80,13 +80,13 @@ public class SushiJump : MonoBehaviour
             // rb.velocity = Vector3.up * jumpPower;
             //await UniTask.Delay(TimeSpan.FromSeconds(1));
 
-            // 同時着地の制作途中の名残
-            // isSalmonJumping = false;
+            // 以下ジャンプのクールタイム処理
+            isSalmonJumping = false;
 
-            // ジャンプのクールタイム処理
+            
             _salmonJumpJudgement._jumpCoolTime = false;
 
-            await UniTask.Delay(TimeSpan.FromSeconds(1));
+            await UniTask.Delay(TimeSpan.FromSeconds(1.5));
 
             _salmonJumpJudgement._jumpCoolTime = true;
 
@@ -95,20 +95,21 @@ public class SushiJump : MonoBehaviour
         }
 
         // マグロジャンプ
-        if (Input.GetKeyDown(KeyCode.RightShift)) //&& isMaguroJumping)
+        if (Input.GetKeyDown(KeyCode.RightShift) && isMaguroJumping)
         {
 
             // DogMovingの関数を使用
             _dogMoving.MaguroDogJumpMotion();
 
-           // rb.velocity = Vector3.up * jumpPower;
+            // rb.velocity = Vector3.up * jumpPower;
             //await UniTask.Delay(TimeSpan.FromSeconds(1));
-           // isMaguroJumping = false;
+            // 以下ジャンプのクールタイム処理
+            isMaguroJumping = false;
 
-            // ジャンプのクールタイム処理
+            
             _maguroJumpJudgement._jumpCoolTime = false;
 
-            await UniTask.Delay(TimeSpan.FromSeconds(1));
+            await UniTask.Delay(TimeSpan.FromSeconds(1.5));
 
             _maguroJumpJudgement._jumpCoolTime = true;
 

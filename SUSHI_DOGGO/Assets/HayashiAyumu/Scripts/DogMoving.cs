@@ -131,7 +131,7 @@ public class DogMoving : MonoBehaviour
     /// <summary>
     /// 寿司犬のジャンプモーション
     /// </summary>
-    public void SalmonDogJumpMotion()
+    async public void SalmonDogJumpMotion()
     {
         // アニメーションのトリガーを起動
         _sushiSalmonAnim.SetTrigger("SushiJump");
@@ -141,9 +141,9 @@ public class DogMoving : MonoBehaviour
        //_gameManager._scoreMaguroJudgement = true;
         Debug.Log("iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
 
-  
 
-       // await UniTask.Delay(TimeSpan.FromSeconds(3));
+        // 三秒待機させて連続ジャンプ回避
+        await UniTask.Delay(TimeSpan.FromSeconds(3));
 
   
 
@@ -155,7 +155,7 @@ public class DogMoving : MonoBehaviour
         
     }
 
-    public void MaguroDogJumpMotion()
+    async public void MaguroDogJumpMotion()
     {
         // アニメーションのトリガーを起動
         _sushiMaguroAnim.SetTrigger("SushiJump");
@@ -167,7 +167,8 @@ public class DogMoving : MonoBehaviour
       
         Debug.Log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa;");
         
-        //await UniTask.Delay(TimeSpan.FromSeconds(3));
+        // 三秒待機させて連続ジャンプ回避
+        await UniTask.Delay(TimeSpan.FromSeconds(3));
 
         //_gameManager._scoreSalmonJudgement = false;
 

@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     public bool _scoreMaguroJudgement = false;
 
-    private bool _scoreJudgement = false;
+   // private bool _scoreJudgement = false;
     private void Start()
     {
         _textSalmonMeshProUGUI.text = _sushiSalmonHp.ToString();
