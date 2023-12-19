@@ -2,25 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class DishScore : MonoBehaviour
 {
-    // スコア
-    public static int score;
+    [SerializeField]
+    private GameManager gameManager;
 
-    public int _scoreInt;
+    public static class GlobalVariables
+    {
+        public static int score;
+    }
+
     private void Update()
     {
+        GlobalVariables.score = gameManager._score;
+
         // プレイヤーの操作などでスコアが変わる場合、ここで処理する
         // 例: _scoreIntがスコアを表す場合
-        score = _scoreInt;
+        //score ;
     }
 
-    private void OnDestroy()
-    {
-        // シーンが破棄される時にスコアを保存
-        PlayerPrefs.SetInt("Score", score);
-        PlayerPrefs.Save();
-    }
 }
 

@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
 using System;
+using static DishScore;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class ScoreManager : MonoBehaviour
 
     
     [SerializeField]
-    private DishScore _dishScore;
+    private SE_Manager _seManager;
 
     // ‚±‚±‚ð‰æ‘œ‚Ì”z—ñ‚É‚µ‚½‚¢
 
@@ -39,47 +40,54 @@ public class ScoreManager : MonoBehaviour
     private GameObject _lowImage;
 
     // Start is called before the first frame update
-    async void Start()
-    {
+   void Start()
+   {
         Score();
+     
+   }
 
-        await UniTask.Delay(TimeSpan.FromSeconds(4));
+    async private void Score()
+    {
+        _seManager.Play(0);
+
+        await UniTask.Delay(TimeSpan.FromSeconds(3));
+
+        _textScoreMeshProUGUI.text = GlobalVariables.score.ToString();
+
+        await UniTask.Delay(TimeSpan.FromSeconds(2));
 
         ScoreCheck();
     }
 
-    private void Score()
-    {
-        _textScoreMeshProUGUI.text = _dishScore._scoreInt.ToString();
-    }
-
-    private void ScoreCheck()
-    {
-        if (_dishScore._scoreInt >= 180)
+    async private void ScoreCheck()
+    {       
+        if (GlobalVariables.score >= 180)
         {
-            _highImage.SetActive(true);
+            _seManager.Play(1);
             _sImage.SetActive(true);
+            await UniTask.Delay(TimeSpan.FromSeconds(2));            
+            _highImage.SetActive(true);
         }
-        else if (_dishScore._scoreInt >= 140)
+        else if (GlobalVariables.score >= 140)
         {
-            _midleImage.SetActive(true);
+            _seManager.Play(1);
             _aImage.SetActive(true);
+            await UniTask.Delay(TimeSpan.FromSeconds(2));
+            _midleImage.SetActive(true);           
         }
-        else if (_dishScore._scoreInt >= 80)
+        else if (GlobalVariables.score >= 80)
         {
-            _midleImage.SetActive(true);
+            _seManager.Play(1);
             _bImage.SetActive(true);
+            await UniTask.Delay(TimeSpan.FromSeconds(2));
+            _midleImage.SetActive(true);            
         }
-        else if (_dishScore._scoreInt >= 0)
+        else
         {
+            _seManager.Play(1);
+            _dImage.SetActive(true);            
+            await UniTask.Delay(TimeSpan.FromSeconds(2));
             _lowImage.SetActive(true);
-            _dImage.SetActive(true);
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        Score();
     }
 }

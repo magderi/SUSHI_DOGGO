@@ -9,6 +9,7 @@ using System;
 
 public class GameManager : MonoBehaviour
 {
+
     [SerializeField]
     private TextMeshProUGUI _textSalmonMeshProUGUI;
 
@@ -31,6 +32,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private DishScore _dishScore;
+
+    //　スコア
+    public int _score;
 
     // 寿司犬の体力
     private int _sushiSalmonHp = 100;
@@ -66,7 +70,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        ScorePlus();
+        ScorePlus();    
     }
     async public void SushiSalmonDamage()
     {
@@ -119,9 +123,9 @@ public class GameManager : MonoBehaviour
 
    public void ScorePlus()
    {
-        _dishScore._scoreInt = currentMaguroHp + currentSalmonHp ;
+        _score = currentMaguroHp + currentSalmonHp ;
 
-        _textScoreMeshProUGUI.text = _dishScore._scoreInt.ToString();
+        _textScoreMeshProUGUI.text = _score.ToString();
 
         Debug.Log("ScorePlus ");
    }

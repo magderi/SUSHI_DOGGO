@@ -33,7 +33,7 @@ public class SushiObstacleHit : MonoBehaviour
             _dogMoving.SalmonDogDamageAnim();
 
             // 流す配列を指定して再生する
-            _se_Manager.Play(0);
+            _se_Manager.Play(5);
 
             //オブジェクトの色を赤に変更する
             // GetComponent<Renderer>().material.color = Color.red;

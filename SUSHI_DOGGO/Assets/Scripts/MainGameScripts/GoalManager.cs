@@ -23,6 +23,8 @@ public class GoalManager : MonoBehaviour
     void Start()
     {
         _bgmManager.Play(0);
+
+        DontDestroyOnLoad(gameObject);
     }
 
     // Update is called once per frame
@@ -39,6 +41,6 @@ public class GoalManager : MonoBehaviour
 
         await UniTask.Delay(TimeSpan.FromSeconds(3));
 
-        SceneManager.LoadScene("title");
+        SceneManager.LoadScene("score");
     }
 }
