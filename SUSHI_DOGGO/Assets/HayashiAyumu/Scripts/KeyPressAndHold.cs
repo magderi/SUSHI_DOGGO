@@ -61,6 +61,10 @@ public class KeyPressAndHold : MonoBehaviour
         pressStartTime = Time.time;
     }
 
+    public void SEPlay()
+    {
+        _seManager.Play(0);
+    }
     void ContinuePress()
     {
         if (isPressing)
@@ -75,8 +79,7 @@ public class KeyPressAndHold : MonoBehaviour
 
             // �����סʱ�䳬��ָ������ʱ�䣬������һ������
             if (pressDuration >= holdDuration)
-            {
-                _seManager.Play(0);
+            {              
 
                 _maguroAnim.SetTrigger("WakeUp");
 

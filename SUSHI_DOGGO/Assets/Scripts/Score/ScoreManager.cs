@@ -39,8 +39,11 @@ public class ScoreManager : MonoBehaviour
     [SerializeField]
     private GameObject _lowImage;
 
+    [SerializeField]
+    private GameObject _buttonImage;
+
     // Start is called before the first frame update
-   void Start()
+    void Start()
    {
         Score();
      
@@ -67,20 +70,23 @@ public class ScoreManager : MonoBehaviour
             _sImage.SetActive(true);
             await UniTask.Delay(TimeSpan.FromSeconds(2));            
             _highImage.SetActive(true);
+            _buttonImage.SetActive(true);
         }
         else if (GlobalVariables.score >= 140)
         {
             _seManager.Play(1);
             _aImage.SetActive(true);
             await UniTask.Delay(TimeSpan.FromSeconds(2));
-            _midleImage.SetActive(true);           
+            _midleImage.SetActive(true);
+            _buttonImage.SetActive(true);
         }
         else if (GlobalVariables.score >= 80)
         {
             _seManager.Play(1);
             _bImage.SetActive(true);
             await UniTask.Delay(TimeSpan.FromSeconds(2));
-            _midleImage.SetActive(true);            
+            _midleImage.SetActive(true);
+            _buttonImage.SetActive(true);
         }
         else
         {
@@ -88,6 +94,7 @@ public class ScoreManager : MonoBehaviour
             _dImage.SetActive(true);            
             await UniTask.Delay(TimeSpan.FromSeconds(2));
             _lowImage.SetActive(true);
+            _buttonImage.SetActive(true);
         }
     }
 }

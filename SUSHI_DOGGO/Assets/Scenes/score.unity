@@ -217,7 +217,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &34078451
 RectTransform:
   m_ObjectHideFlags: 0
@@ -333,6 +333,7 @@ MonoBehaviour:
   _highImage: {fileID: 1056524978}
   _midleImage: {fileID: 3044240}
   _lowImage: {fileID: 808618579}
+  _buttonImage: {fileID: 34078450}
 --- !u!4 &133493022
 Transform:
   m_ObjectHideFlags: 0
