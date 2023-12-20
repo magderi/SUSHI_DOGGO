@@ -12,7 +12,7 @@ public class DogMoving : MonoBehaviour
     [SerializeField]
     private GameObject stand;
     [SerializeField]
-    private DogController dogController;
+    private StandMoving standMoving;
 
     [SerializeField]
     private GameManager _gameManager;
@@ -109,7 +109,7 @@ public class DogMoving : MonoBehaviour
             //  「ジャンプ中」を解除
             isJumpCooling = false;
             _jumpedTimer = 0f;
-            dogController.isJumping = isJumpCooling;
+            standMoving.isJumping = isJumpCooling;
         }
 
         //  ジャンプしてからの秒数を計る

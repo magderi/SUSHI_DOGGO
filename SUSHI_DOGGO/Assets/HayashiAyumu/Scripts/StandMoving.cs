@@ -5,65 +5,39 @@ using UnityEngine.InputSystem;
 
 public class StandMoving : MonoBehaviour
 {
+    private DogStatus dogStatus;
     public Rigidbody standRB;
 
     [SerializeField]
     private DogMoving dogMoving;
-    [SerializeField]
-    private DogStatus dogStatus;
-    private PlayerController playerController;
-    [SerializeField]
-    private Transform _playerTransform;
 
-    //  ï¿½eï¿½sï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½é‚©ï¿½Ì”ï¿½ï¿½ï¿½tï¿½ï¿½ï¿½O
+    //  Šes“®‚ğæ‚Á‚Ä‚¢‚é‚©‚Ì”»’èƒtƒ‰ƒO
     public bool isJumping = false;
     private bool isCurving = false;
     private bool isRightMoving = false;
     private bool isLeftMoving = false;
 
-    //  ï¿½ï¿½ï¿½ï¿½ï¿½éƒŒï¿½[ï¿½ï¿½ï¿½ğ”»’è‚·ï¿½é‚½ï¿½ß‚ï¿½intï¿½l
-    //  0ï¿½ï¿½ï¿½ï¿½Ôï¿½ï¿½A5ï¿½ï¿½ï¿½ï¿½Ô‰Eï¿½ï¿½6ï¿½ï¿½ï¿½[ï¿½ï¿½
+    //  ¡‚¢‚éƒŒ[ƒ“‚ğ”»’è‚·‚é‚½‚ß‚Ìint’l
+    //  0‚ªˆê”Ô¶A5‚ªˆê”Ô‰E‚Ì6ƒŒ[ƒ“
     private int _laneNamber;
 
 
-    //  ï¿½Ú“ï¿½ï¿½Ìï¿½ï¿½ï¿½ï¿½Égï¿½ï¿½positionï¿½lï¿½ï¿½ï¿½ï¿½
+    //  ˆÚ“®‚Ì§ŒÀ‚Ég‚¤position’l“ü‚ê
     private float _dogPosX;
     private float _dogGoToPosX;
-    private float _fGoX;
-
-    private Vector3 _playerPos;
-    [SerializeField]
-    private float _playerGoToPosX = 1.2f;
-
-    //  ï¿½Ú“ï¿½ï¿½Ìï¿½Ş“ï¿½ï¿½ï¿½
-    private enum MoveType
-    {
-        None,
-        Left,
-        Right,
-    }
-    private Dictionary<MoveType, Vector3> _addVector = new Dictionary<MoveType, Vector3>()
-    {
-        //  Xï¿½ï¿½floatï¿½ï¿½ï¿½Ú“ï¿½ï¿½ï¿½
-        { MoveType.Left, new Vector3(-3.1f, 0, 0) },
-        { MoveType.Right, new Vector3(3.1f, 0, 0) },
-    };
+    private float _fGoX = 1.1f;
 
     // Start is called before the first frame update
     void Start()
     {
         standRB = GetComponent<Rigidbody>();
         dogStatus = GetComponent<DogStatus>();
-        //  InputSystem ï¿½ï¿½Ç‚İï¿½ï¿½ï¿½ÅAEnable ï¿½Å—Lï¿½ï¿½ï¿½ï¿½
-        playerController = new PlayerController();
-        playerController.Enable();
 
-        //  ï¿½Jï¿½nï¿½ï¿½ï¿½Ìï¿½ï¿½iï¿½ï¿½ï¿½ï¿½ position.x ï¿½ï¿½ï¿½æ“¾
+        //  ŠJn‚ÌõiŒ¢‚Ì position.x ‚ğæ“¾
         _dogPosX = transform.position.x;
         _dogGoToPosX = _dogPosX;
-        _fGoX = 10.0f;
 
-        //  ï¿½ï¿½ï¿½ÉAï¿½ï¿½ï¿½ï¿½ï¿½ï¿½3ï¿½Ô–Ú‚É’uï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½zï¿½ï¿½
+        //  ‰¼‚ÉA¶‚©‚ç3”Ô–Ú‚É’u‚¢‚Ä‚ ‚é‘z’è
         _laneNamber = 2;
     }
 
@@ -73,7 +47,7 @@ public class StandMoving : MonoBehaviour
         PlayerMove();
         dogMoving.isJumping = isJumping;
 
-        //  ï¿½uï¿½Jï¿½[ï¿½uï¿½ï¿½ï¿½vï¿½È‚ï¿½A
+        //  uƒJ[ƒu’†v‚È‚çA
         if (isCurving)
             CurveMoveLimit(dogStatus._maxMoveLimit);
     }
@@ -82,7 +56,7 @@ public class StandMoving : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Performed && dogMoving.isJumping == false)
         {
-            //  ï¿½uï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½vï¿½ï¿½ï¿½vï¿½Éİ’ï¿½
+            //  uƒWƒƒƒ“ƒv’†v‚Éİ’è
             dogMoving.isJumping = true;
         }
     }
@@ -91,11 +65,11 @@ public class StandMoving : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Performed)
         {
-            //  Xï¿½ï¿½ï¿½Wï¿½ï¿½ï¿½Eï¿½ï¿½10ï¿½ï¿½ï¿½ï¿½ï¿½Ú“ï¿½
+            //  XÀ•W‚ğ‰E‚É10‚¾‚¯ˆÚ“®
             _dogGoToPosX += _fGoX;
-            //  ï¿½uï¿½Eï¿½ÉˆÚ“ï¿½ï¿½ï¿½ï¿½vï¿½Éİ’ï¿½
+            //  u‰E‚ÉˆÚ“®’†v‚Éİ’è
             isRightMoving = true;
-            //  ï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½iï¿½ï¿½ï¿½oï¿½[ï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½Nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½g
+            //  ƒŒ[ƒ“ƒiƒ“ƒo[‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
             _laneNamber++;
         }
     }
@@ -104,11 +78,11 @@ public class StandMoving : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Performed)
         {
-            //  Xï¿½ï¿½ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½ï¿½10ï¿½ï¿½ï¿½ï¿½ï¿½Ú“ï¿½
+            //  XÀ•W‚ğ¶‚É10‚¾‚¯ˆÚ“®
             _dogGoToPosX -= _fGoX;
-            //  ï¿½uï¿½ï¿½ï¿½ÉˆÚ“ï¿½ï¿½ï¿½ï¿½vï¿½Éİ’ï¿½
+            //  u¶‚ÉˆÚ“®’†v‚Éİ’è
             isLeftMoving = true;
-            //  ï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½iï¿½ï¿½ï¿½oï¿½[ï¿½ï¿½ï¿½fï¿½Nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½g
+            //  ƒŒ[ƒ“ƒiƒ“ƒo[‚ğƒfƒNƒŠƒƒ“ƒg
             _laneNamber--;
         }
     }
@@ -116,41 +90,41 @@ public class StandMoving : MonoBehaviour
     
 
     /// <summary>
-    /// ï¿½ï¿½ï¿½iï¿½ï¿½ï¿½Ìï¿½ï¿½Eï¿½ÌˆÚ“ï¿½ï¿½ï¿½ï¿½ï¿½
+    /// õiŒ¢‚Ì¶‰E‚ÌˆÚ“®ˆ—
     /// </summary>
     private void PlayerMove()
     {
-        //  ï¿½uï¿½ï¿½ï¿½ÉˆÚ“ï¿½ï¿½ï¿½ï¿½vï¿½È‚ï¿½A
+        //  u¶‚ÉˆÚ“®’†v‚È‚çA
         if (isLeftMoving)
         {
-            //  ï¿½İ’è‚µï¿½ï¿½ï¿½Ú“ï¿½ï¿½ï¿½É“ï¿½ï¿½Bï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            //  İ’è‚µ‚½ˆÚ“®æ‚É“’B‚µ‚½‚ç
             if (_dogPosX <= _dogGoToPosX)
             {
-                //  ï¿½uï¿½ï¿½ï¿½ÉˆÚ“ï¿½ï¿½ï¿½ï¿½vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÄA
+                //  u¶‚ÉˆÚ“®’†v‚ğ‰ğœ‚µ‚ÄA
                 isLeftMoving = false;
-                //  velocity ï¿½ï¿½ 0 ï¿½É‚ï¿½ï¿½ÄIï¿½ï¿½ï¿½
+                //  velocity ‚ğ 0 ‚É‚µ‚ÄI‚í‚é
                 standRB.velocity = Vector3.left * 0;
                 return;
             }
-            //  ï¿½ï¿½ï¿½ï¿½ position ï¿½ï¿½ x ï¿½ï¿½Û‘ï¿½ï¿½ï¿½ï¿½ÄAï¿½ï¿½ï¿½É—Í‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            //  ¡‚Ì position ‚Ì x ‚ğ•Û‘¶‚µ‚ÄA¶‚É—Í‚ğ‰Á‚¦‚é
             _dogPosX = transform.position.x;
-            //  AddForce ï¿½Å•ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½é‚©ï¿½A velocity ï¿½ÅƒAï¿½jï¿½ï¿½ï¿½`ï¿½bï¿½Nï¿½È“ï¿½ï¿½ï¿½ï¿½É‚ï¿½ï¿½é‚©
+            //  AddForce ‚Å•¨—‹““®‚ğ‚³‚¹‚é‚©A velocity ‚ÅƒAƒjƒƒ`ƒbƒN‚È“®‚«‚É‚·‚é‚©
             //dogRB.AddForce(Vector3.left * dogStatus._movePower);
             standRB.velocity = Vector3.left * dogStatus._movePower;
         }
-        //  ï¿½uï¿½Eï¿½ÉˆÚ“ï¿½ï¿½ï¿½ï¿½vï¿½È‚ï¿½A
+        //  u‰E‚ÉˆÚ“®’†v‚È‚çA
         if (isRightMoving)
         {
-            //  ï¿½İ’è‚µï¿½ï¿½ï¿½Ú“ï¿½ï¿½ï¿½É“ï¿½ï¿½Bï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            //  İ’è‚µ‚½ˆÚ“®æ‚É“’B‚µ‚½‚ç
             if (_dogPosX >= _dogGoToPosX)
             {
-                //  ï¿½uï¿½Eï¿½ÉˆÚ“ï¿½ï¿½ï¿½ï¿½vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÄA
+                //  u‰E‚ÉˆÚ“®’†v‚ğ‰ğœ‚µ‚ÄA
                 isRightMoving = false;
-                //  velocity ï¿½ï¿½ 0 ï¿½É‚ï¿½ï¿½ÄIï¿½ï¿½ï¿½;
+                //  velocity ‚ğ 0 ‚É‚µ‚ÄI‚í‚é;
                 standRB.velocity = Vector3.right * 0;
                 return;
             }
-            //  ï¿½ï¿½ï¿½ï¿½ position ï¿½ï¿½ x ï¿½ï¿½Û‘ï¿½ï¿½ï¿½ï¿½ÄAï¿½Eï¿½É—Í‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            //  ¡‚Ì position ‚Ì x ‚ğ•Û‘¶‚µ‚ÄA‰E‚É—Í‚ğ‰Á‚¦‚é
             _dogPosX = transform.position.x;
             //dogRB.AddForce(Vector3.right * dogStatus._movePower);
             standRB.velocity = Vector3.right * dogStatus._movePower;
@@ -158,12 +132,12 @@ public class StandMoving : MonoBehaviour
     }
 
     /// <summary>
-    /// ï¿½Jï¿½[ï¿½uï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
+    /// ƒJ[ƒu‚Ìˆ—(–¢Š®¬)
     /// </summary>
     /// <param name="MaxMoveLimit"></param>
     private void CurveMoveLimit(float MaxMoveLimit)
     {
-        //  ï¿½Ú“ï¿½ï¿½ï¿½ï¿½xï¿½Éï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â‚ï¿½ï¿½ÄŠï¿½ï¿½ç‚©ï¿½É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½...ï¿½Í‚ï¿½ï¿½H
+        //  ˆÚ“®‘¬“x‚É§ŒÀ‚ğ‚Â‚¯‚ÄŠŠ‚ç‚©‚É“®‚©‚»‚¤‚Æ‚µ‚Ä‚¢‚é...‚Í‚¸H
         float _currentMoveSpeed = standRB.velocity.z;
         if (_currentMoveSpeed > MaxMoveLimit)
         {
