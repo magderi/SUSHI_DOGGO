@@ -12,7 +12,7 @@ public class DogMoving : MonoBehaviour
     [SerializeField]
     private GameObject stand;
     [SerializeField]
-    private DogController dogController;
+    private StandMoving standMoving;
 
     [SerializeField]
     private GameManager _gameManager;
@@ -20,6 +20,7 @@ public class DogMoving : MonoBehaviour
     [SerializeField]
     private BoxCollider _playerBoxCollider;
 
+    // 正面に雲があるかの判定用
     [SerializeField]
     private BoxCollider _playerJudgementCollider;
 
@@ -66,25 +67,22 @@ public class DogMoving : MonoBehaviour
         dogVec.z = standZ;
     }
 
+    // 寿司犬ダメージ関数
    public void SalmonDogDamageAnim()
    {
         _sushiSalmonAnim.SetTrigger("SushiDamage");
 
         _gameManager._scoreSalmonJudgement = false;
     }
-
-   public void MaguroDogDamageAnim()
+    // 寿司犬ダメージ関数
+    public void MaguroDogDamageAnim()
    {
         _sushiMaguroAnim.SetTrigger("SushiDamage");
 
         _gameManager._scoreMaguroJudgement = false;
    }
 
-    private void Update()
-    {
 
-
-    }
 
     // Update is called once per frame
     void LateUpdate()
@@ -111,7 +109,7 @@ public class DogMoving : MonoBehaviour
             //  「ジャンプ中」を解除
             isJumpCooling = false;
             _jumpedTimer = 0f;
-            dogController.isJumping = isJumpCooling;
+            standMoving.isJumping = isJumpCooling;
         }
 
         //  ジャンプしてからの秒数を計る
@@ -135,51 +133,52 @@ public class DogMoving : MonoBehaviour
     /// </summary>
     async public void SalmonDogJumpMotion()
     {
+        // アニメーションのトリガーを起動
         _sushiSalmonAnim.SetTrigger("SushiJump");
 
-       _gameManager._scoreSalmonJudgement = true;
-
-
-       _gameManager._scoreMaguroJudgement = true;
+        // 同時ジャンプ処理の名残
+       //_gameManager._scoreSalmonJudgement = true;
+       //_gameManager._scoreMaguroJudgement = true;
         Debug.Log("iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
 
-  
 
+        // 三秒待機させて連続ジャンプ回避
         await UniTask.Delay(TimeSpan.FromSeconds(3));
 
   
 
         //JudgementScore();
 
-        await UniTask.Delay(TimeSpan.FromSeconds(1));
+       // await UniTask.Delay(TimeSpan.FromSeconds(1));
 
-        _gameManager._scoreSalmonJudgement = false;
+       // _gameManager._scoreSalmonJudgement = false;
         
     }
 
     async public void MaguroDogJumpMotion()
     {
+        // アニメーションのトリガーを起動
         _sushiMaguroAnim.SetTrigger("SushiJump");
 
-        _gameManager._scoreSalmonJudgement = true;
-
-
-        _gameManager._scoreMaguroJudgement = true;
+        // 同時ジャンプ処理の名残
+      //  _gameManager._scoreSalmonJudgement = true;
+       // _gameManager._scoreMaguroJudgement = true;
 
       
         Debug.Log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa;");
         
+        // 三秒待機させて連続ジャンプ回避
         await UniTask.Delay(TimeSpan.FromSeconds(3));
 
-        _gameManager._scoreSalmonJudgement = false;
+        //_gameManager._scoreSalmonJudgement = false;
 
-        _gameManager._scoreMaguroJudgement = false;
+        //_gameManager._scoreMaguroJudgement = false;
 
         //JudgementScore();
 
-        await UniTask.Delay(TimeSpan.FromSeconds(1));
+        //await UniTask.Delay(TimeSpan.FromSeconds(1));
 
-        _gameManager._scoreMaguroJudgement = false;
+        //_gameManager._scoreMaguroJudgement = false;
         
     }
 
