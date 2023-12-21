@@ -22467,6 +22467,7 @@ GameObject:
   - component: {fileID: 963194226}
   - component: {fileID: 963194230}
   - component: {fileID: 963194231}
+  - component: {fileID: 963194232}
   m_Layer: 0
   m_Name: Main Camera&Sushiinu
   m_TagString: MainCamera
@@ -22609,6 +22610,36 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &963194232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: bb71cfe5e90996e4b9b20257fe56ee6c, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &963497874
 GameObject:
   m_ObjectHideFlags: 0
@@ -30426,8 +30457,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   standRB: {fileID: 1122788779}
-  dogMoving: {fileID: 919132148016616789}
   isJumping: 0
+  dogMoving: {fileID: 919132148016616789}
+  _playerTransform: {fileID: 1122788776}
 --- !u!114 &1122788781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30442,6 +30474,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _jumpPower: 0
   _movePower: 3
+  _moveTimer: 0.2
   _maxMoveLimit: 1
 --- !u!114 &1122788782
 MonoBehaviour:
@@ -30528,6 +30561,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 6c85080f-8179-4838-8f4f-930ebb15b2a8
     m_ActionName: Maguro/RightMove[/Keyboard/l]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 14f4a660-5f51-4eb7-9b08-f33c3e27f03c
+    m_ActionName: Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Maguro
@@ -81741,6 +81778,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _jumpPower: 0
   _movePower: 0
+  _moveTimer: 0.2
   _maxMoveLimit: 0
 --- !u!114 &919132148016616789
 MonoBehaviour:
@@ -82728,8 +82766,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   standRB: {fileID: 2224143881440203347}
-  dogMoving: {fileID: 6815394311784559338}
   isJumping: 0
+  dogMoving: {fileID: 6815394311784559338}
+  _playerTransform: {fileID: 0}
 --- !u!114 &2224143881440203354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82744,6 +82783,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _jumpPower: 30
   _movePower: 300
+  _moveTimer: 0.2
   _maxMoveLimit: 5
 --- !u!114 &2224143881440203355
 MonoBehaviour:
@@ -82962,8 +83002,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   standRB: {fileID: 2247759957744702106}
-  dogMoving: {fileID: 8697126130682493694}
   isJumping: 0
+  dogMoving: {fileID: 8697126130682493694}
+  _playerTransform: {fileID: 1475620922404112428}
 --- !u!54 &2247759957744702106
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -82993,7 +83034,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: 5eb780992e9183c429605d336f3c77d5, type: 3}
-  m_NotificationBehavior: 2
+  m_NotificationBehavior: 0
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -83065,6 +83106,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 6c85080f-8179-4838-8f4f-930ebb15b2a8
     m_ActionName: Maguro/RightMove[/Keyboard/l]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 14f4a660-5f51-4eb7-9b08-f33c3e27f03c
+    m_ActionName: Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -83084,6 +83129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _jumpPower: 0
   _movePower: 3
+  _moveTimer: 0.2
   _maxMoveLimit: 1
 --- !u!95 &2247759957744702109
 Animator:
@@ -104759,6 +104805,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _jumpPower: 300
   _movePower: 300
+  _moveTimer: 0.2
   _maxMoveLimit: 300
 --- !u!1 &6815394311784559340
 GameObject:
@@ -120094,6 +120141,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _jumpPower: 0
   _movePower: 0
+  _moveTimer: 0.2
   _maxMoveLimit: 0
 --- !u!114 &8697126130682493694
 MonoBehaviour:
