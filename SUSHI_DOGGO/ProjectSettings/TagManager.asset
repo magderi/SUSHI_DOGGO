@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - SushiinuSalmonStand
+  - Cloud
+  - Sushiinu_salmon
+  - Sushiinu_Maguro
   layers:
   - Default
   - TransparentFX
