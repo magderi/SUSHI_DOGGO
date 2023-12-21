@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class DogController : MonoBehaviour
+public class StandMoveController : MonoBehaviour
 {
     public Rigidbody standRB;
 
