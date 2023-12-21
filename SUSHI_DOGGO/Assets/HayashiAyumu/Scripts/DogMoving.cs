@@ -12,34 +12,33 @@ public class DogMoving : MonoBehaviour
     [SerializeField]
     private GameObject stand;
     [SerializeField]
-    private StandMoving standMoving;
-
+    private StandMoveController dogController;
     [SerializeField]
     private GameManager _gameManager;
 
     [SerializeField]
     private BoxCollider _playerBoxCollider;
 
-    // ³–Ê‚É‰_‚ª‚ ‚é‚©‚Ì”»’è—p
+    // æ­£é¢ã«é›²ãŒã‚ã‚‹ã‹ã®åˆ¤å®šç”¨
     [SerializeField]
     private BoxCollider _playerJudgementCollider;
 
-    // ƒAƒjƒ[ƒ^[
+    // ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚¿ãƒ¼
     public Animator _sushiSalmonAnim = null;
 
     public Animator _sushiMaguroAnim = null;
 
-    //  Šes“®‚ğæ‚Á‚Ä‚¢‚é‚©‚Ì”»’èƒtƒ‰ƒO
+    //  å„è¡Œå‹•ã‚’å–ã£ã¦ã„ã‚‹ã‹ã®åˆ¤å®šãƒ•ãƒ©ã‚°
     public  bool isJumping = false;
     private  bool isJumpCooling = false;
     private bool isCurving = false;
 
-    //  ƒWƒƒƒ“ƒv‚Ég‚¤ƒN[ƒ‹ƒ^ƒCƒ€
+    //  ã‚¸ãƒ£ãƒ³ãƒ—ã«ä½¿ã†ã‚¯ãƒ¼ãƒ«ã‚¿ã‚¤ãƒ 
     [SerializeField]
     private float _jumpCoolTime = 2f;
     private float _jumpedTimer = 0f;
 
-    //  ˆÚ“®‚Ì§ŒÀ‚Ég‚¤position’l“ü‚ê
+    //  ç§»å‹•ã®åˆ¶é™ã«ä½¿ã†positionå€¤å…¥ã‚Œ
     private float _dogPosX;
     private float _dogGoToPosX;
 
@@ -67,14 +66,14 @@ public class DogMoving : MonoBehaviour
         dogVec.z = standZ;
     }
 
-    // õiŒ¢ƒ_ƒ[ƒWŠÖ”
+    // å¯¿å¸çŠ¬ãƒ€ãƒ¡ãƒ¼ã‚¸é–¢æ•°
    public void SalmonDogDamageAnim()
    {
         _sushiSalmonAnim.SetTrigger("SushiDamage");
 
         _gameManager._scoreSalmonJudgement = false;
     }
-    // õiŒ¢ƒ_ƒ[ƒWŠÖ”
+    // å¯¿å¸çŠ¬ãƒ€ãƒ¡ãƒ¼ã‚¸é–¢æ•°
     public void MaguroDogDamageAnim()
    {
         _sushiMaguroAnim.SetTrigger("SushiDamage");
@@ -93,30 +92,30 @@ public class DogMoving : MonoBehaviour
         JumpCoolTime();
         DogMove();
           
-        //  uƒJ[ƒu’†v‚È‚çA
+        //  ã€Œã‚«ãƒ¼ãƒ–ä¸­ã€ãªã‚‰ã€
         if(isCurving)
             CurveMoveLimit(dogStatus._maxMoveLimit);
     }
 
     /// <summary>
-    /// õiŒ¢‚ª˜A‘±‚Å”ò‚×‚È‚¢‚æ‚¤‚É
+    /// å¯¿å¸çŠ¬ãŒé€£ç¶šã§é£›ã¹ãªã„ã‚ˆã†ã«
     /// </summary>
     private void JumpCoolTime()
     {
-        //  ƒN[ƒ‹ƒ^ƒCƒ€‚ğ‰ß‚¬‚½‚çA
+        //  ã‚¯ãƒ¼ãƒ«ã‚¿ã‚¤ãƒ ã‚’éããŸã‚‰ã€
         if (_jumpedTimer >= _jumpCoolTime)
         {
-            //  uƒWƒƒƒ“ƒv’†v‚ğ‰ğœ
+            //  ã€Œã‚¸ãƒ£ãƒ³ãƒ—ä¸­ã€ã‚’è§£é™¤
             isJumpCooling = false;
             _jumpedTimer = 0f;
             standMoving.isJumping = isJumpCooling;
         }
 
-        //  ƒWƒƒƒ“ƒv‚µ‚Ä‚©‚ç‚Ì•b”‚ğŒv‚é
+        //  ã‚¸ãƒ£ãƒ³ãƒ—ã—ã¦ã‹ã‚‰ã®ç§’æ•°ã‚’è¨ˆã‚‹
         if (isJumping && isJumpCooling == false)
         {
             dogRB.AddForce(Vector3.up * dogStatus._jumpPower);
-            Debug.Log("ƒWƒƒƒ“ƒv‚È‚¤");
+            Debug.Log("ã‚¸ãƒ£ãƒ³ãƒ—ãªã†");
             isJumping = false;
             isJumpCooling = true;
         }
@@ -129,20 +128,20 @@ public class DogMoving : MonoBehaviour
 
 
     /// <summary>
-    /// õiŒ¢‚ÌƒWƒƒƒ“ƒvƒ‚[ƒVƒ‡ƒ“
+    /// å¯¿å¸çŠ¬ã®ã‚¸ãƒ£ãƒ³ãƒ—ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³
     /// </summary>
     async public void SalmonDogJumpMotion()
     {
-        // ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌƒgƒŠƒK[‚ğ‹N“®
+        // ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒˆãƒªã‚¬ãƒ¼ã‚’èµ·å‹•
         _sushiSalmonAnim.SetTrigger("SushiJump");
 
-        // “¯ƒWƒƒƒ“ƒvˆ—‚Ì–¼c
+        // åŒæ™‚ã‚¸ãƒ£ãƒ³ãƒ—å‡¦ç†ã®åæ®‹
        //_gameManager._scoreSalmonJudgement = true;
        //_gameManager._scoreMaguroJudgement = true;
         Debug.Log("iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
 
 
-        // O•b‘Ò‹@‚³‚¹‚Ä˜A‘±ƒWƒƒƒ“ƒv‰ñ”ğ
+        // ä¸‰ç§’å¾…æ©Ÿã•ã›ã¦é€£ç¶šã‚¸ãƒ£ãƒ³ãƒ—å›é¿
         await UniTask.Delay(TimeSpan.FromSeconds(3));
 
   
@@ -157,17 +156,17 @@ public class DogMoving : MonoBehaviour
 
     async public void MaguroDogJumpMotion()
     {
-        // ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌƒgƒŠƒK[‚ğ‹N“®
+        // ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒˆãƒªã‚¬ãƒ¼ã‚’èµ·å‹•
         _sushiMaguroAnim.SetTrigger("SushiJump");
 
-        // “¯ƒWƒƒƒ“ƒvˆ—‚Ì–¼c
+        // åŒæ™‚ã‚¸ãƒ£ãƒ³ãƒ—å‡¦ç†ã®åæ®‹
       //  _gameManager._scoreSalmonJudgement = true;
        // _gameManager._scoreMaguroJudgement = true;
 
       
         Debug.Log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa;");
         
-        // O•b‘Ò‹@‚³‚¹‚Ä˜A‘±ƒWƒƒƒ“ƒv‰ñ”ğ
+        // ä¸‰ç§’å¾…æ©Ÿã•ã›ã¦é€£ç¶šã‚¸ãƒ£ãƒ³ãƒ—å›é¿
         await UniTask.Delay(TimeSpan.FromSeconds(3));
 
         //_gameManager._scoreSalmonJudgement = false;
@@ -183,7 +182,7 @@ public class DogMoving : MonoBehaviour
     }
 
     /// <summary>
-    /// õiŒ¢‚Ì¶‰E‚ÌˆÚ“®ˆ—
+    /// å¯¿å¸çŠ¬ã®å·¦å³ã®ç§»å‹•å‡¦ç†
     /// </summary>
     private void DogMove()
     {
@@ -195,12 +194,12 @@ public class DogMoving : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒJ[ƒu‚Ìˆ—(–¢Š®¬)
+    /// ã‚«ãƒ¼ãƒ–æ™‚ã®å‡¦ç†(æœªå®Œæˆ)
     /// </summary>
     /// <param name="MaxMoveLimit"></param>
     private void CurveMoveLimit(float MaxMoveLimit)
     {
-        //  ˆÚ“®‘¬“x‚É§ŒÀ‚ğ‚Â‚¯‚ÄŠŠ‚ç‚©‚É“®‚©‚»‚¤‚Æ‚µ‚Ä‚¢‚é...‚Í‚¸H
+        //  ç§»å‹•é€Ÿåº¦ã«åˆ¶é™ã‚’ã¤ã‘ã¦æ»‘ã‚‰ã‹ã«å‹•ã‹ãã†ã¨ã—ã¦ã„ã‚‹...ã¯ãšï¼Ÿ
         float _currentMoveSpeed = dogRB.velocity.z;
         if(_currentMoveSpeed > MaxMoveLimit)
         {
