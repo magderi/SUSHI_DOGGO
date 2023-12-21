@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
-public class DogController : MonoBehaviour
+public class DogController_T : MonoBehaviour
 {
     [SerializeField]
     private Transform m_Target;
