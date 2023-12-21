@@ -78,8 +78,8 @@ public class StandMoving : MonoBehaviour
     {
         if(isJumping == false)
         {
-            var inputVal = dogController.Player.Jump.triggered;
-            if(inputVal)
+            var inputPress = dogController.Player.Jump.triggered;
+            if(inputPress)
             {
                 dogMoving.isJumping = true;
             }
@@ -103,17 +103,22 @@ public class StandMoving : MonoBehaviour
 
                 //  InputSystem の value を読み込む
                 //  逐一 inputVal を読み込まないと、一度移動して死ぬ。なぜ。
-                var inputVal = dogController.Player.Move.ReadValue<Vector2>();
-                inputVal.y = 0;
+                //var inputVal = dogController.Player.Move.ReadValue<Vector2>();
+                //inputVal.y = 0;
+                float inputX = 0;
+                if (_connectGamepad != null)
+                {
+                    inputX = _connectGamepad.leftStick.x.ReadValue();
+                }
                 //  横の入力があれば
-                if (inputVal.x != 0)
+                if (inputX != 0)
                 {
                     //  「入力中」に
                     isKeyUp = false;
                     //  12/15/作業の続きはここから！！！
                     //  現在の position から、それぞれに応じた移動幅を加算
                     _playerGoToPos = Vector3.zero;
-                    if (inputVal.x > 0)
+                    if (inputX > 0)
                         _playerGoToPos = _playerTransform.position + _addVector[MoveType.Right];
                     else
                         _playerGoToPos = _playerTransform.position + _addVector[MoveType.Left];
@@ -124,7 +129,8 @@ public class StandMoving : MonoBehaviour
             {
                 //  InputSystem の value を読み込む
                 var inputVal = dogController.Player.Move.ReadValue<Vector2>();
-                if (inputVal.x == 0)
+                float inputX = _connectGamepad.leftStick.x.ReadValue();
+                if (inputX == 0)
                     isKeyUp = true;
             }
         }

@@ -30460,6 +30460,7 @@ MonoBehaviour:
   isJumping: 0
   dogMoving: {fileID: 919132148016616789}
   _playerTransform: {fileID: 1122788776}
+  _connectGamepadNum: 0
 --- !u!114 &1122788781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30469,7 +30470,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1122788775}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d536d462b55924448658b63518e63f7, type: 3}
+  m_Script: {fileID: 11500000, guid: 32ca7c5dbafc95740a56c2ef9e70eaef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _jumpPower: 0
@@ -81773,7 +81774,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 919132148016616786}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d536d462b55924448658b63518e63f7, type: 3}
+  m_Script: {fileID: 11500000, guid: 32ca7c5dbafc95740a56c2ef9e70eaef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _jumpPower: 0
@@ -82769,6 +82770,7 @@ MonoBehaviour:
   isJumping: 0
   dogMoving: {fileID: 6815394311784559338}
   _playerTransform: {fileID: 0}
+  _connectGamepadNum: 0
 --- !u!114 &2224143881440203354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82778,7 +82780,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2224143881440203346}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d536d462b55924448658b63518e63f7, type: 3}
+  m_Script: {fileID: 11500000, guid: 32ca7c5dbafc95740a56c2ef9e70eaef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _jumpPower: 30
@@ -82870,6 +82872,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 6c85080f-8179-4838-8f4f-930ebb15b2a8
     m_ActionName: Maguro/RightMove[/Keyboard/l]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 14f4a660-5f51-4eb7-9b08-f33c3e27f03c
+    m_ActionName: Player/Move[/DualShock4GamepadHID/leftStick,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -83005,6 +83011,7 @@ MonoBehaviour:
   isJumping: 0
   dogMoving: {fileID: 8697126130682493694}
   _playerTransform: {fileID: 1475620922404112428}
+  _connectGamepadNum: 0
 --- !u!54 &2247759957744702106
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -83124,7 +83131,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2247759957744702102}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d536d462b55924448658b63518e63f7, type: 3}
+  m_Script: {fileID: 11500000, guid: 32ca7c5dbafc95740a56c2ef9e70eaef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _jumpPower: 0
@@ -104800,7 +104807,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6815394311784559340}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d536d462b55924448658b63518e63f7, type: 3}
+  m_Script: {fileID: 11500000, guid: 32ca7c5dbafc95740a56c2ef9e70eaef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _jumpPower: 300
@@ -120136,7 +120143,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8356911306320158790}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d536d462b55924448658b63518e63f7, type: 3}
+  m_Script: {fileID: 11500000, guid: 32ca7c5dbafc95740a56c2ef9e70eaef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _jumpPower: 0
