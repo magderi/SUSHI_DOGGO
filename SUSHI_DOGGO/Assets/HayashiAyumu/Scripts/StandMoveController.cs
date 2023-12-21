@@ -14,7 +14,7 @@ public class StandMoveController : MonoBehaviour
     [SerializeField]
     private Transform _playerTransform;
 
-    private PlayerController moveController;
+    private ISPlayerMove ISPlayerMove;
     private PlayerController jumpController;
 
     //  各行動を取っているかの判定フラグ
@@ -56,8 +56,8 @@ public class StandMoveController : MonoBehaviour
         standRB = GetComponent<Rigidbody>();
         dogStatus = GetComponent<DogStatus>();
         //  InputSystem を読み込んで、Enable で有効化
-        moveController = new PlayerController();
-        moveController.Enable();
+        ISPlayerMove = new ISPlayerMove();
+        ISPlayerMove.Enable();
 
         _playerPos = _playerTransform.position;
 
@@ -94,7 +94,7 @@ public class StandMoveController : MonoBehaviour
 
                 //  InputSystem の value を読み込む
                 //  逐一 inputVal を読み込まないと、一度移動して死ぬ。なぜ。
-                var inputVal = moveController.Player.Move.ReadValue<Vector2>();
+                var inputVal = ISPlayerMove.Player.Move.ReadValue<Vector2>();
                 inputVal.y = 0;
                 //  横の入力があれば
                 if (inputVal.x != 0)
@@ -114,7 +114,7 @@ public class StandMoveController : MonoBehaviour
             else
             {
                 //  InputSystem の value を読み込む
-                var inputVal = moveController.Player.Move.ReadValue<Vector2>();
+                var inputVal = ISPlayerMove.Player.Move.ReadValue<Vector2>();
                 if (inputVal.x == 0)
                     isKeyUp = true;
             }
@@ -123,7 +123,7 @@ public class StandMoveController : MonoBehaviour
 
     private void OnJump(InputAction.CallbackContext context)
     {
-        var inputVal = moveController.Player.Jump.triggered;
+        var inputVal = ISPlayerMove.Player.Jump.triggered;
     }
 
     /// <summary>
