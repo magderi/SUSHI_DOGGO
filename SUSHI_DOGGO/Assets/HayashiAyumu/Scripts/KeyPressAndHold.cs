@@ -1,16 +1,41 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Cysharp.Threading.Tasks;
+using System;
 
 public class KeyPressAndHold : MonoBehaviour
 {
-    public KeyCode targetKey = KeyCode.A;       // Ä¿±E´¼E
-    public Image circleEffect;                  // Î§ÈÆ°´¼E­È¦µÄUI Image
-    public float holdDuration = 3f;             // °´×¡µÄ×ûÒÌÊ±¼ä£¨ÃE©
-    public string nextSceneName = "YourScene";  // ÏÂÒ»¸ö³¡¾°µÄÃû³Æ
+    [SerializeField]
+    private Animator _salmonAnim;
+
+    [SerializeField]
+    private Animator _maguroAnim;
+
+    [SerializeField]
+    private FadeManager _fadeManager;
+
+    [SerializeField]
+    private GameObject _Uicanvs;
+
+    [SerializeField]
+    private SE_Manager _seManager;
+
+    [SerializeField]
+    private BGM_Manager _bgmManager;
+
+    public KeyCode targetKey = KeyCode.A;       // Ä¿ï¿½ï¿½Eï¿½ï¿½ï¿½E
+    public Image circleEffect;                  // Î§ï¿½Æ°ï¿½ï¿½ï¿½Eï¿½È¦ï¿½ï¿½UI Image
+    public float holdDuration = 3f;             // ï¿½ï¿½×¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä£¨ÃEï¿½
+    public string nextSceneName = "YourScene";  // ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
     private bool isPressing = false;
     private float pressStartTime;
+
+    private void Start()
+    {
+        _bgmManager.Play(0);
+    }
 
     void Update()
     {
@@ -36,20 +61,40 @@ public class KeyPressAndHold : MonoBehaviour
         pressStartTime = Time.time;
     }
 
+    public void SEPlay()
+    {
+        _seManager.Play(0);
+    }
     void ContinuePress()
     {
         if (isPressing)
         {
+            _fadeManager.fadein = false;
+
             float pressDuration = Time.time - pressStartTime;
 
-            // ¸EÂÔ²È¦µÄÌûÏäÁ¿
+            // ï¿½ï¿½Eï¿½Ô²È¦ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             float fillAmount = Mathf.Clamp01(pressDuration / holdDuration);
             circleEffect.fillAmount = fillAmount;
 
-            // Èç¹û°´×¡Ê±¼ä³¬¹ýÖ¸¶¨³ÖÐøÊ±¼ä£¬¼ÓÔØÏÂÒ»¸ö³¡¾°
+            // ï¿½ï¿½ï¿½ï¿½ï¿½×¡Ê±ï¿½ä³¬ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             if (pressDuration >= holdDuration)
-            {
-                LoadNextScene();
+            {              
+
+                _maguroAnim.SetTrigger("WakeUp");
+
+                _salmonAnim.SetTrigger("WakeUp");
+
+                _Uicanvs.SetActive(false);
+
+                
+               // await UniTask.Delay(TimeSpan.FromSeconds(8));
+
+              //  _fadeManager.fadeout = true;
+
+               // StartCoroutine( _bgmManager.fadeVolue());
+         
+                //LoadNextScene();
             }
         }
     }
@@ -58,13 +103,13 @@ public class KeyPressAndHold : MonoBehaviour
     {
         isPressing = false;
 
-        // ÖØÖÃÔ²È¦µÄÌûÏäÁ¿
+        // ï¿½ï¿½ï¿½ï¿½Ô²È¦ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         circleEffect.fillAmount = 0f;
     }
 
-    void LoadNextScene()
+    public void LoadNextScene()
     {
-        // ¼ÓÔØÏÂÒ»¸ö³¡¾°
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         SceneManager.LoadScene(nextSceneName);
     }
 }
