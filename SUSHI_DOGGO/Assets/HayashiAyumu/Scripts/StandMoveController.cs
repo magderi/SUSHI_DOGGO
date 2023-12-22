@@ -23,9 +23,6 @@ public class StandMoveController : MonoBehaviour
     private bool isMoving = false;
     private bool isKeyUp = true;
 
-    //  今いるレーンを判定するためのint値
-    //  0が一番左、5が一番右の6レーン
-    private int _laneNamber;
 
 
     //  移動の制限に使うposition値入れ
@@ -33,8 +30,6 @@ public class StandMoveController : MonoBehaviour
 
     private Vector3 _playerPos;
     private Vector3 _playerGoToPos;
-    [SerializeField]
-    private float _playerGoToPosX = 1.2f;
 
     //  移動の種類入れ
     private enum MoveType
@@ -60,9 +55,6 @@ public class StandMoveController : MonoBehaviour
         dogController.Enable();
 
         _playerPos = _playerTransform.position;
-
-        //  仮に、左から3番目に置いてある想定
-        _laneNamber = 2;
     }
 
     // Update is called once per frame

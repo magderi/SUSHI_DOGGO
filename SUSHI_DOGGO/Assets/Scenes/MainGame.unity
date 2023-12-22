@@ -22619,27 +22619,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 963194225}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Script: {fileID: 11500000, guid: f91f438a7aa84a742abd243d1dd29966, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: bb71cfe5e90996e4b9b20257fe56ee6c, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
+  salmonMoving: {fileID: 2247759957744702105}
+  tunaMoving: {fileID: 1122788780}
 --- !u!1 &963497874
 GameObject:
   m_ObjectHideFlags: 0
@@ -30458,9 +30442,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   standRB: {fileID: 1122788779}
   isJumping: 0
+  _laneNamber: 0
+  canRightMove: 1
+  canLeftMove: 1
   dogMoving: {fileID: 919132148016616789}
   _playerTransform: {fileID: 1122788776}
-  _connectGamepadNum: 0
+  _connectGamepadNum: 1
+  sushiJump: {fileID: 919132148016616787}
 --- !u!114 &1122788781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30566,6 +30554,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 14f4a660-5f51-4eb7-9b08-f33c3e27f03c
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e2a2df40-8701-414b-a8fd-5ed9c579fa62
+    m_ActionName: UI/Select[/XInputControllerWindows/buttonEast,/XInputControllerWindows1/buttonEast,/Keyboard/a]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Maguro
@@ -81765,6 +81757,8 @@ MonoBehaviour:
   _jumpSalmonParticle: {fileID: 7677311374538155860}
   _jumpMaguroParticle: {fileID: 2030771545}
   _seManager: {fileID: 1177204523}
+  isSalmonJump: 0
+  isMaguroJump: 0
 --- !u!114 &919132148016616788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82768,9 +82762,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   standRB: {fileID: 2224143881440203347}
   isJumping: 0
+  _laneNamber: 0
+  canRightMove: 1
+  canLeftMove: 1
   dogMoving: {fileID: 6815394311784559338}
   _playerTransform: {fileID: 0}
   _connectGamepadNum: 0
+  sushiJump: {fileID: 0}
 --- !u!114 &2224143881440203354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83009,9 +83007,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   standRB: {fileID: 2247759957744702106}
   isJumping: 0
+  _laneNamber: 0
+  canRightMove: 1
+  canLeftMove: 1
   dogMoving: {fileID: 8697126130682493694}
   _playerTransform: {fileID: 1475620922404112428}
   _connectGamepadNum: 0
+  sushiJump: {fileID: 8697126130682493697}
 --- !u!54 &2247759957744702106
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -120209,6 +120211,8 @@ MonoBehaviour:
   _jumpSalmonParticle: {fileID: 7677311374538155860}
   _jumpMaguroParticle: {fileID: 2030771545}
   _seManager: {fileID: 1177204523}
+  isSalmonJump: 0
+  isMaguroJump: 0
 --- !u!95 &8697126130682493699
 Animator:
   serializedVersion: 5

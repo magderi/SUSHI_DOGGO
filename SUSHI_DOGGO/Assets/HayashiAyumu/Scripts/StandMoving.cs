@@ -12,12 +12,14 @@ public class StandMoving : MonoBehaviour
     public bool isJumping = false;
     private bool isCurving = false;
     //  今いるレーンを判定するためのint値
-    //  0が一番左、5が一番右の6レーン
-    //private int _laneNamber;
+    //  0が一番左、5が一番右の合計6レーン
+    public int _laneNamber;
 
     //  試遊会直前追加分
     private bool isMoving = false;
     private bool isKeyUp = true;
+    public bool canRightMove = true;
+    public bool canLeftMove = true;
 
     [SerializeField]
     private DogMoving dogMoving;
@@ -43,9 +45,11 @@ public class StandMoving : MonoBehaviour
     };
 
     [SerializeField]
-    private int _connectGamepadNum;
-    private Gamepad _connectGamepad;
+    public int _connectGamepadNum;
+    public Gamepad _connectGamepad;
 
+    [SerializeField]
+    private SushiJump sushiJump;
 
     // Start is called before the first frame update
     void Start()
@@ -59,10 +63,19 @@ public class StandMoving : MonoBehaviour
 
         //  コントローラー接続振り分け
         _connectGamepad = Gamepad.all[_connectGamepadNum];
+
+        if(_connectGamepadNum == 0)
+        {
+            _laneNamber = 1;
+        }
+        else if(_connectGamepadNum == 1)
+        {
+            _laneNamber = 5;
+        }
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         PlayerMove();
         PlayerJump();
@@ -78,10 +91,24 @@ public class StandMoving : MonoBehaviour
     {
         if(isJumping == false)
         {
-            var inputPress = dogController.Player.Jump.triggered;
+            bool inputPress = _connectGamepad.buttonSouth.wasPressedThisFrame;
+            //bool inputRelease = _connectGamepad.buttonSouth.wasReleasedThisFrame;
             if(inputPress)
             {
-                dogMoving.isJumping = true;
+                //dogMoving.isJumping = true;
+                
+                if(_connectGamepadNum == 0)
+                    sushiJump.isSalmonJump = true;
+                if(_connectGamepadNum == 1)
+                    sushiJump.isMaguroJump = true;
+            }
+            //else if(inputRelease)
+            else
+            {
+                if (_connectGamepadNum == 0)
+                    sushiJump.isSalmonJump = false;
+                if (_connectGamepadNum == 1)
+                    sushiJump.isMaguroJump = false;
             }
         }
     }
@@ -95,12 +122,9 @@ public class StandMoving : MonoBehaviour
         //  「移動中」でなく、
         if (!isMoving)
         {
-            Debug.Log("移動中じゃないよ。");
             //  「入力中」でなければ
             if (isKeyUp)
             {
-                Debug.Log("入力中じゃないよ。");
-
                 //  InputSystem の value を読み込む
                 //  逐一 inputVal を読み込まないと、一度移動して死ぬ。なぜ。
                 //var inputVal = dogController.Player.Move.ReadValue<Vector2>();
@@ -117,21 +141,38 @@ public class StandMoving : MonoBehaviour
                     isKeyUp = false;
                     //  12/15/作業の続きはここから！！！
                     //  現在の position から、それぞれに応じた移動幅を加算
-                    _playerGoToPos = Vector3.zero;
-                    if (inputX > 0)
-                        _playerGoToPos = _playerTransform.position + _addVector[MoveType.Right];
-                    else
-                        _playerGoToPos = _playerTransform.position + _addVector[MoveType.Left];
+                    _playerGoToPos = _playerTransform.position;
+                    
+
+                    //  右移動
+                    if (inputX > 0 && canRightMove)
+                    {
+                        _playerGoToPos += _addVector[MoveType.Right];
+                        _laneNamber++;
+                        _laneNamber = Mathf.Min(_laneNamber, 5);
+                    }
+                    //  左移動
+                    else if (inputX < 0 && canLeftMove)
+                    {
+                        _playerGoToPos += _addVector[MoveType.Left];
+                        _laneNamber--;
+                        _laneNamber = Mathf.Max(0, _laneNamber);
+                    }
+                    //if(canRightMove && canLeftMove)
                     StartCoroutine(MoveCor());
                 }
             }
             else
             {
                 //  InputSystem の value を読み込む
-                var inputVal = dogController.Player.Move.ReadValue<Vector2>();
+                //var inputVal = dogController.Player.Move.ReadValue<Vector2>();
                 float inputX = _connectGamepad.leftStick.x.ReadValue();
                 if (inputX == 0)
+                {
                     isKeyUp = true;
+                    canLeftMove = true;
+                    canRightMove = true;
+                }
             }
         }
     }
