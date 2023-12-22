@@ -95,7 +95,7 @@ public class SushiJump : MonoBehaviour
             
             _salmonJumpJudgement._jumpCoolTime = false;
 
-            await UniTask.Delay(TimeSpan.FromSeconds(1.5));
+            await UniTask.Delay(TimeSpan.FromSeconds(1.0));
 
             _salmonJumpJudgement._jumpCoolTime = true;
         }
@@ -115,7 +115,7 @@ public class SushiJump : MonoBehaviour
             
             _maguroJumpJudgement._jumpCoolTime = false;
 
-            await UniTask.Delay(TimeSpan.FromSeconds(1.5));
+            await UniTask.Delay(TimeSpan.FromSeconds(1.0));
 
             _maguroJumpJudgement._jumpCoolTime = true;
 
