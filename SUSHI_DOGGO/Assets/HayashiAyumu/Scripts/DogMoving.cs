@@ -91,7 +91,6 @@ public class DogMoving : MonoBehaviour
      
 
         JumpCoolTime();
-        DogMove();
           
         //  「カーブ中」なら、
         if(isCurving)
@@ -180,18 +179,6 @@ public class DogMoving : MonoBehaviour
 
         //_gameManager._scoreMaguroJudgement = false;
         
-    }
-
-    /// <summary>
-    /// 寿司犬の左右の移動処理
-    /// </summary>
-    private void DogMove()
-    {
-        standVec = stand.transform.position;
-        standX = standVec.x;
-        standZ = standVec.z;
-
-        this.transform.position = new Vector3 (standX, this.transform.position.y, standZ);
     }
 
     /// <summary>

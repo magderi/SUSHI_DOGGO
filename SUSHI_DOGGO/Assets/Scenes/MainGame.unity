@@ -11458,7 +11458,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 556618547}
-  m_LocalRotation: {x: 0.18582392, y: -0.0000000169067, z: 0.0000000031973577, w: 0.9825831}
+  m_LocalRotation: {x: 0.18582392, y: 0.000000016906696, z: -0.000000003197357, w: 0.9825831}
   m_LocalPosition: {x: 0.008299693, y: 4.83, z: -3.8399997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -22533,7 +22533,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.18582392, y: -0.0000000169067, z: 0.0000000031973577, w: 0.9825831}
+  m_LocalRotation: {x: 0.18582392, y: 0.000000016906696, z: -0.000000003197357, w: 0.9825831}
   m_LocalPosition: {x: 0.008299693, y: 4.83, z: -3.8399997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -30442,12 +30442,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   standRB: {fileID: 1122788779}
   isJumping: 0
-  _laneNamber: 0
+  _laneNamber: 1
   canRightMove: 1
   canLeftMove: 1
   dogMoving: {fileID: 919132148016616789}
   _playerTransform: {fileID: 1122788776}
-  _connectGamepadNum: 1
+  _connectGamepadNum: 0
   sushiJump: {fileID: 919132148016616787}
 --- !u!114 &1122788781
 MonoBehaviour:
@@ -30477,7 +30477,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 5eb780992e9183c429605d336f3c77d5, type: 3}
+  m_Actions: {fileID: -944628639613478452, guid: 75485b45443e461478729f9123bdcca9, type: 3}
   m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
@@ -30492,75 +30492,83 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: eeb50bdf-d90e-4cc6-b308-29254c27885d
-    m_ActionName: Player/Jump[/Keyboard/space]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 6384c5c1-2caa-46e8-8bcd-196d2d52271c
-    m_ActionName: Player/LeftMove[/Keyboard/a]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 7d8c16d7-45fb-4306-8e0f-512f8c608342
-    m_ActionName: Player/RightMove[/Keyboard/d]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1122788780}
-        m_TargetAssemblyTypeName: StandMoving, Assembly-CSharp
-        m_MethodName: Jump
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 213778fe-f387-420d-b7a5-a9cc6f213ada
-    m_ActionName: Maguro/Jump[/Keyboard/space]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1122788780}
-        m_TargetAssemblyTypeName: StandMoving, Assembly-CSharp
-        m_MethodName: MoveLeft
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 2872fafd-b82f-4472-9d67-2dbb4c02e0b1
-    m_ActionName: Maguro/LeftMove[/Keyboard/j]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1122788780}
-        m_TargetAssemblyTypeName: StandMoving, Assembly-CSharp
-        m_MethodName: MoveRight
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 6c85080f-8179-4838-8f4f-930ebb15b2a8
-    m_ActionName: Maguro/RightMove[/Keyboard/l]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 14f4a660-5f51-4eb7-9b08-f33c3e27f03c
+    m_ActionId: b7469599-0e49-44ba-91ea-f5df9c6fa7fb
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: e2a2df40-8701-414b-a8fd-5ed9c579fa62
-    m_ActionName: UI/Select[/XInputControllerWindows/buttonEast,/XInputControllerWindows1/buttonEast,/Keyboard/a]
+    m_ActionId: 47cad2e9-e945-4c92-831c-1f87920c7ba2
+    m_ActionName: Player/Look[/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 33429a78-fcdd-4cbc-8ef1-2dbf73eb12c5
+    m_ActionName: Player/Fire[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1c75020e-f121-4eb8-b853-13106941068f
+    m_ActionName: Player/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4a6ca904-d73c-4c0d-93f9-961d7c17739b
+    m_ActionName: UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 715707b0-946a-4f51-bd4c-ff513c9b7fb9
+    m_ActionName: UI/Submit[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 084ea1dd-cc60-4488-879f-0ab8592b347b
+    m_ActionName: UI/Cancel[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 36092118-ac99-451e-a715-23be6023f461
+    m_ActionName: UI/Point[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: db1cf54c-3933-4555-baa4-7cfad3ba1f13
+    m_ActionName: UI/Click[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e9200f22-4c83-407d-bb6f-a6f14907c355
+    m_ActionName: UI/ScrollWheel[/Mouse/scroll]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5272400d-042d-41b3-a21f-7115ddf8d538
+    m_ActionName: UI/MiddleClick[/Mouse/middleButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c7886930-2fe9-4453-a748-87eb98f858ea
+    m_ActionName: UI/RightClick[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3a86c9a2-b755-4e06-bf60-f1b12270ca5c
+    m_ActionName: UI/TrackedDevicePosition
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7258e97e-28fa-4e9f-9dee-971ff72df6c7
+    m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2cdec84c-50a5-4b48-9fa6-0a6147fd0239
+    m_ActionName: UI/GameStart[/Keyboard/a]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3b1e6646-9a20-490a-904d-41ab7808660e
+    m_ActionName: DebugTuna/Move[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e8ace9ac-f701-4700-bf91-7e2364e16b91
+    m_ActionName: DebugTuna/Jump[/Keyboard/rightShift]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8e49bf3f-3e65-49d6-8511-cbb8701cd3f6
+    m_ActionName: DebugSalmon/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e75a58b1-203a-4e4c-9195-4249a4690cd3
+    m_ActionName: DebugSalmon/Jump[/Keyboard/leftShift]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Maguro
+  m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!1 &1123696062
@@ -83042,7 +83050,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 5eb780992e9183c429605d336f3c77d5, type: 3}
+  m_Actions: {fileID: -944628639613478452, guid: 75485b45443e461478729f9123bdcca9, type: 3}
   m_NotificationBehavior: 0
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:

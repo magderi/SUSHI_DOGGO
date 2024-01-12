@@ -402,6 +402,15 @@ public partial class @ISPlayerMove: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""GameStart"",
+                    ""type"": ""Button"",
+                    ""id"": ""2cdec84c-50a5-4b48-9fa6-0a6147fd0239"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -822,6 +831,212 @@ public partial class @ISPlayerMove: IInputActionCollection2, IDisposable
                     ""action"": ""TrackedDeviceOrientation"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""632cb027-3de1-4bdc-b959-3ad72f061bc1"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""GameStart"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5d7f90f4-0766-45ad-b937-6764483f4c21"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""GameStart"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""DebugTuna"",
+            ""id"": ""d3752e1c-60d3-423c-9d9d-b0378d9362e1"",
+            ""actions"": [
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""3b1e6646-9a20-490a-904d-41ab7808660e"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""e8ace9ac-f701-4700-bf91-7e2364e16b91"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""Arrows"",
+                    ""id"": ""552b282a-1126-456d-bc8d-907af255ae3b"",
+                    ""path"": ""Dpad"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""63618dab-cdfb-4584-b964-3089eaf13385"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""ac40336b-0a9c-4532-b474-94ed6f1becd1"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""f8f677ac-ec63-4463-8cc6-c457b9c781ed"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""b1b314de-1de9-4247-ae8e-328031b5f44f"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d7628c71-e55b-42ea-8cef-be8b1c1334c6"",
+                    ""path"": ""<Keyboard>/rightShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""DebugSalmon"",
+            ""id"": ""525bb1d8-21db-43f9-8994-9e9d0c0231a6"",
+            ""actions"": [
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""8e49bf3f-3e65-49d6-8511-cbb8701cd3f6"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""e75a58b1-203a-4e4c-9195-4249a4690cd3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""WASD"",
+                    ""id"": ""8b8687d8-48ec-4f4e-a7a6-f9b7bf50db5f"",
+                    ""path"": ""Dpad"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""01e90e52-2171-405d-92f0-87c79d414371"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""15491149-8f3e-4931-a9a7-dd81fdac6b75"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""a272841e-8e81-414a-92bf-cf683679b36a"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""24308cce-2d06-46b5-b846-d0112d3ecbda"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4ccde3a4-a9e5-46be-802e-4881359f5dd2"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -907,6 +1122,15 @@ public partial class @ISPlayerMove: IInputActionCollection2, IDisposable
         m_UI_RightClick = m_UI.FindAction("RightClick", throwIfNotFound: true);
         m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
+        m_UI_GameStart = m_UI.FindAction("GameStart", throwIfNotFound: true);
+        // DebugTuna
+        m_DebugTuna = asset.FindActionMap("DebugTuna", throwIfNotFound: true);
+        m_DebugTuna_Move = m_DebugTuna.FindAction("Move", throwIfNotFound: true);
+        m_DebugTuna_Jump = m_DebugTuna.FindAction("Jump", throwIfNotFound: true);
+        // DebugSalmon
+        m_DebugSalmon = asset.FindActionMap("DebugSalmon", throwIfNotFound: true);
+        m_DebugSalmon_Move = m_DebugSalmon.FindAction("Move", throwIfNotFound: true);
+        m_DebugSalmon_Jump = m_DebugSalmon.FindAction("Jump", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1048,6 +1272,7 @@ public partial class @ISPlayerMove: IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_RightClick;
     private readonly InputAction m_UI_TrackedDevicePosition;
     private readonly InputAction m_UI_TrackedDeviceOrientation;
+    private readonly InputAction m_UI_GameStart;
     public struct UIActions
     {
         private @ISPlayerMove m_Wrapper;
@@ -1062,6 +1287,7 @@ public partial class @ISPlayerMove: IInputActionCollection2, IDisposable
         public InputAction @RightClick => m_Wrapper.m_UI_RightClick;
         public InputAction @TrackedDevicePosition => m_Wrapper.m_UI_TrackedDevicePosition;
         public InputAction @TrackedDeviceOrientation => m_Wrapper.m_UI_TrackedDeviceOrientation;
+        public InputAction @GameStart => m_Wrapper.m_UI_GameStart;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1101,6 +1327,9 @@ public partial class @ISPlayerMove: IInputActionCollection2, IDisposable
             @TrackedDeviceOrientation.started += instance.OnTrackedDeviceOrientation;
             @TrackedDeviceOrientation.performed += instance.OnTrackedDeviceOrientation;
             @TrackedDeviceOrientation.canceled += instance.OnTrackedDeviceOrientation;
+            @GameStart.started += instance.OnGameStart;
+            @GameStart.performed += instance.OnGameStart;
+            @GameStart.canceled += instance.OnGameStart;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
@@ -1135,6 +1364,9 @@ public partial class @ISPlayerMove: IInputActionCollection2, IDisposable
             @TrackedDeviceOrientation.started -= instance.OnTrackedDeviceOrientation;
             @TrackedDeviceOrientation.performed -= instance.OnTrackedDeviceOrientation;
             @TrackedDeviceOrientation.canceled -= instance.OnTrackedDeviceOrientation;
+            @GameStart.started -= instance.OnGameStart;
+            @GameStart.performed -= instance.OnGameStart;
+            @GameStart.canceled -= instance.OnGameStart;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -1152,6 +1384,114 @@ public partial class @ISPlayerMove: IInputActionCollection2, IDisposable
         }
     }
     public UIActions @UI => new UIActions(this);
+
+    // DebugTuna
+    private readonly InputActionMap m_DebugTuna;
+    private List<IDebugTunaActions> m_DebugTunaActionsCallbackInterfaces = new List<IDebugTunaActions>();
+    private readonly InputAction m_DebugTuna_Move;
+    private readonly InputAction m_DebugTuna_Jump;
+    public struct DebugTunaActions
+    {
+        private @ISPlayerMove m_Wrapper;
+        public DebugTunaActions(@ISPlayerMove wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Move => m_Wrapper.m_DebugTuna_Move;
+        public InputAction @Jump => m_Wrapper.m_DebugTuna_Jump;
+        public InputActionMap Get() { return m_Wrapper.m_DebugTuna; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(DebugTunaActions set) { return set.Get(); }
+        public void AddCallbacks(IDebugTunaActions instance)
+        {
+            if (instance == null || m_Wrapper.m_DebugTunaActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_DebugTunaActionsCallbackInterfaces.Add(instance);
+            @Move.started += instance.OnMove;
+            @Move.performed += instance.OnMove;
+            @Move.canceled += instance.OnMove;
+            @Jump.started += instance.OnJump;
+            @Jump.performed += instance.OnJump;
+            @Jump.canceled += instance.OnJump;
+        }
+
+        private void UnregisterCallbacks(IDebugTunaActions instance)
+        {
+            @Move.started -= instance.OnMove;
+            @Move.performed -= instance.OnMove;
+            @Move.canceled -= instance.OnMove;
+            @Jump.started -= instance.OnJump;
+            @Jump.performed -= instance.OnJump;
+            @Jump.canceled -= instance.OnJump;
+        }
+
+        public void RemoveCallbacks(IDebugTunaActions instance)
+        {
+            if (m_Wrapper.m_DebugTunaActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IDebugTunaActions instance)
+        {
+            foreach (var item in m_Wrapper.m_DebugTunaActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_DebugTunaActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public DebugTunaActions @DebugTuna => new DebugTunaActions(this);
+
+    // DebugSalmon
+    private readonly InputActionMap m_DebugSalmon;
+    private List<IDebugSalmonActions> m_DebugSalmonActionsCallbackInterfaces = new List<IDebugSalmonActions>();
+    private readonly InputAction m_DebugSalmon_Move;
+    private readonly InputAction m_DebugSalmon_Jump;
+    public struct DebugSalmonActions
+    {
+        private @ISPlayerMove m_Wrapper;
+        public DebugSalmonActions(@ISPlayerMove wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Move => m_Wrapper.m_DebugSalmon_Move;
+        public InputAction @Jump => m_Wrapper.m_DebugSalmon_Jump;
+        public InputActionMap Get() { return m_Wrapper.m_DebugSalmon; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(DebugSalmonActions set) { return set.Get(); }
+        public void AddCallbacks(IDebugSalmonActions instance)
+        {
+            if (instance == null || m_Wrapper.m_DebugSalmonActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_DebugSalmonActionsCallbackInterfaces.Add(instance);
+            @Move.started += instance.OnMove;
+            @Move.performed += instance.OnMove;
+            @Move.canceled += instance.OnMove;
+            @Jump.started += instance.OnJump;
+            @Jump.performed += instance.OnJump;
+            @Jump.canceled += instance.OnJump;
+        }
+
+        private void UnregisterCallbacks(IDebugSalmonActions instance)
+        {
+            @Move.started -= instance.OnMove;
+            @Move.performed -= instance.OnMove;
+            @Move.canceled -= instance.OnMove;
+            @Jump.started -= instance.OnJump;
+            @Jump.performed -= instance.OnJump;
+            @Jump.canceled -= instance.OnJump;
+        }
+
+        public void RemoveCallbacks(IDebugSalmonActions instance)
+        {
+            if (m_Wrapper.m_DebugSalmonActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IDebugSalmonActions instance)
+        {
+            foreach (var item in m_Wrapper.m_DebugSalmonActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_DebugSalmonActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public DebugSalmonActions @DebugSalmon => new DebugSalmonActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -1216,5 +1556,16 @@ public partial class @ISPlayerMove: IInputActionCollection2, IDisposable
         void OnRightClick(InputAction.CallbackContext context);
         void OnTrackedDevicePosition(InputAction.CallbackContext context);
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
+        void OnGameStart(InputAction.CallbackContext context);
+    }
+    public interface IDebugTunaActions
+    {
+        void OnMove(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
+    }
+    public interface IDebugSalmonActions
+    {
+        void OnMove(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
     }
 }
