@@ -12,7 +12,8 @@ public class DogMoving : MonoBehaviour
     [SerializeField]
     private GameObject stand;
     [SerializeField]
-    private StandMoveController dogController;
+    private StandMoving standMoving;
+
     [SerializeField]
     private GameManager _gameManager;
 

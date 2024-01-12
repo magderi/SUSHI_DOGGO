@@ -14,29 +14,24 @@ public class StandMoveController : MonoBehaviour
     [SerializeField]
     private Transform _playerTransform;
 
-    private ISPlayerMove ISPlayerMove;
+    private DogController dogController;
     private PlayerController jumpController;
 
-    //  Šes“®‚ğæ‚Á‚Ä‚¢‚é‚©‚Ì”»’èƒtƒ‰ƒO
+    //  å„è¡Œå‹•ã‚’å–ã£ã¦ã„ã‚‹ã‹ã®åˆ¤å®šãƒ•ãƒ©ã‚°
     public bool isJumping = false;
     private bool isCurving = false;
     private bool isMoving = false;
     private bool isKeyUp = true;
 
-    //  ¡‚¢‚éƒŒ[ƒ“‚ğ”»’è‚·‚é‚½‚ß‚Ìint’l
-    //  0‚ªˆê”Ô¶A5‚ªˆê”Ô‰E‚Ì6ƒŒ[ƒ“
-    private int _laneNamber;
 
 
-    //  ˆÚ“®‚Ì§ŒÀ‚Ég‚¤position’l“ü‚ê
+    //  ç§»å‹•ã®åˆ¶é™ã«ä½¿ã†positionå€¤å…¥ã‚Œ
     private float _dogPosX;
 
     private Vector3 _playerPos;
     private Vector3 _playerGoToPos;
-    [SerializeField]
-    private float _playerGoToPosX = 1.2f;
 
-    //  ˆÚ“®‚Ìí—Ş“ü‚ê
+    //  ç§»å‹•ã®ç¨®é¡å…¥ã‚Œ
     private enum MoveType
     {
         None,
@@ -45,7 +40,7 @@ public class StandMoveController : MonoBehaviour
     }
     private Dictionary<MoveType, Vector3> _addVector = new Dictionary<MoveType, Vector3>()
     {
-        //  X‚Ìfloat‚ªˆÚ“®•
+        //  Xã®floatãŒç§»å‹•å¹…
         { MoveType.Left, new Vector3(-3.1f, 0, 0) },
         { MoveType.Right, new Vector3(3.1f, 0, 0) },
     };
@@ -55,14 +50,11 @@ public class StandMoveController : MonoBehaviour
     {
         standRB = GetComponent<Rigidbody>();
         dogStatus = GetComponent<DogStatus>();
-        //  InputSystem ‚ğ“Ç‚İ‚ñ‚ÅAEnable ‚Å—LŒø‰»
-        ISPlayerMove = new ISPlayerMove();
-        ISPlayerMove.Enable();
+        //  InputSystem ã‚’èª­ã¿è¾¼ã‚“ã§ã€Enable ã§æœ‰åŠ¹åŒ–
+        dogController = new DogController();
+        dogController.Enable();
 
         _playerPos = _playerTransform.position;
-
-        //  ‰¼‚ÉA¶‚©‚ç3”Ô–Ú‚É’u‚¢‚Ä‚ ‚é‘z’è
-        _laneNamber = 2;
     }
 
     // Update is called once per frame
@@ -71,38 +63,38 @@ public class StandMoveController : MonoBehaviour
         dogMoving.isJumping = isJumping;
 
         PlayerMove();
-        //  uƒJ[ƒu’†v‚È‚çA(¡‚Ì‚Æ‚±‚ë–¢À‘•)
+        //  ã€Œã‚«ãƒ¼ãƒ–ä¸­ã€ãªã‚‰ã€(ä»Šã®ã¨ã“ã‚æœªå®Ÿè£…)
         if (isCurving)
             CurveMoveLimit(dogStatus._maxMoveLimit);
     }
 
 
     /// <summary>
-    /// õiŒ¢‚Ì¶‰E‚ÌˆÚ“®ˆ—
+    /// å¯¿å¸çŠ¬ã®å·¦å³ã®ç§»å‹•å‡¦ç†
     /// </summary>
     private void PlayerMove()
     {
        
-        //  uˆÚ“®’†v‚Å‚È‚­A
+        //  ã€Œç§»å‹•ä¸­ã€ã§ãªãã€
         if (!isMoving)
         {
-            Debug.Log("ˆÚ“®’†‚¶‚á‚È‚¢‚æB");
-            //  u“ü—Í’†v‚Å‚È‚¯‚ê‚Î
+            Debug.Log("ç§»å‹•ä¸­ã˜ã‚ƒãªã„ã‚ˆã€‚");
+            //  ã€Œå…¥åŠ›ä¸­ã€ã§ãªã‘ã‚Œã°
             if (isKeyUp)
             {
-                Debug.Log("“ü—Í’†‚¶‚á‚È‚¢‚æB");
+                Debug.Log("å…¥åŠ›ä¸­ã˜ã‚ƒãªã„ã‚ˆã€‚");
 
-                //  InputSystem ‚Ì value ‚ğ“Ç‚İ‚Ş
-                //  ’€ˆê inputVal ‚ğ“Ç‚İ‚Ü‚È‚¢‚ÆAˆê“xˆÚ“®‚µ‚Ä€‚ÊB‚È‚ºB
-                var inputVal = ISPlayerMove.Player.Move.ReadValue<Vector2>();
+                //  InputSystem ã® value ã‚’èª­ã¿è¾¼ã‚€
+                //  é€ä¸€ inputVal ã‚’èª­ã¿è¾¼ã¾ãªã„ã¨ã€ä¸€åº¦ç§»å‹•ã—ã¦æ­»ã¬ã€‚ãªãœã€‚
+                var inputVal = dogController.Player.Move.ReadValue<Vector2>();
                 inputVal.y = 0;
-                //  ‰¡‚Ì“ü—Í‚ª‚ ‚ê‚Î
+                //  æ¨ªã®å…¥åŠ›ãŒã‚ã‚Œã°
                 if (inputVal.x != 0)
                 {
-                    //  u“ü—Í’†v‚É
+                    //  ã€Œå…¥åŠ›ä¸­ã€ã«
                     isKeyUp = false;
-                    //  12/15/ì‹Æ‚Ì‘±‚«‚Í‚±‚±‚©‚çIII
-                    //  Œ»İ‚Ì position ‚©‚çA‚»‚ê‚¼‚ê‚É‰‚¶‚½ˆÚ“®•‚ğ‰ÁZ
+                    //  12/15/ä½œæ¥­ã®ç¶šãã¯ã“ã“ã‹ã‚‰ï¼ï¼ï¼
+                    //  ç¾åœ¨ã® position ã‹ã‚‰ã€ãã‚Œãã‚Œã«å¿œã˜ãŸç§»å‹•å¹…ã‚’åŠ ç®—
                     _playerGoToPos = Vector3.zero;
                     if (inputVal.x > 0)
                         _playerGoToPos = _playerPos + _addVector[MoveType.Right];
@@ -113,8 +105,8 @@ public class StandMoveController : MonoBehaviour
             }
             else
             {
-                //  InputSystem ‚Ì value ‚ğ“Ç‚İ‚Ş
-                var inputVal = ISPlayerMove.Player.Move.ReadValue<Vector2>();
+                //  InputSystem ã® value ã‚’èª­ã¿è¾¼ã‚€
+                var inputVal = dogController.Player.Move.ReadValue<Vector2>();
                 if (inputVal.x == 0)
                     isKeyUp = true;
             }
@@ -123,16 +115,16 @@ public class StandMoveController : MonoBehaviour
 
     private void OnJump(InputAction.CallbackContext context)
     {
-        var inputVal = ISPlayerMove.Player.Jump.triggered;
+        var inputVal = dogController.Player.Jump.triggered;
     }
 
     /// <summary>
-    /// ƒJ[ƒu‚Ìˆ—(–¢Š®¬)
+    /// ã‚«ãƒ¼ãƒ–æ™‚ã®å‡¦ç†(æœªå®Œæˆ)
     /// </summary>
     /// <param name="MaxMoveLimit"></param>
     private void CurveMoveLimit(float MaxMoveLimit)
     {
-        //  ˆÚ“®‘¬“x‚É§ŒÀ‚ğ‚Â‚¯‚ÄŠŠ‚ç‚©‚É“®‚©‚»‚¤‚Æ‚µ‚Ä‚¢‚é...‚Í‚¸H
+        //  ç§»å‹•é€Ÿåº¦ã«åˆ¶é™ã‚’ã¤ã‘ã¦æ»‘ã‚‰ã‹ã«å‹•ã‹ãã†ã¨ã—ã¦ã„ã‚‹...ã¯ãšï¼Ÿ
         float _currentMoveSpeed = standRB.velocity.z;
         if (_currentMoveSpeed > MaxMoveLimit)
         {
@@ -146,24 +138,24 @@ public class StandMoveController : MonoBehaviour
 
     private IEnumerator MoveCor()
     {
-        //  uˆÚ“®’†v‚É
+        //  ã€Œç§»å‹•ä¸­ã€ã«
         isMoving = true;
-        //  _moveTimer •bŒo‚Á‚½‚çI‚í‚éŒJ‚è•Ô‚µˆ—
-        //  1f‚Æ‘‚¢‚Ä‚Í‚¢‚é‚ªA1•b‚ÅI‚í‚é‚í‚¯‚Å‚Í‚È‚¢B
+        //  _moveTimer ç§’çµŒã£ãŸã‚‰çµ‚ã‚ã‚‹ç¹°ã‚Šè¿”ã—å‡¦ç†
+        //  1fã¨æ›¸ã„ã¦ã¯ã„ã‚‹ãŒã€1ç§’ã§çµ‚ã‚ã‚‹ã‚ã‘ã§ã¯ãªã„ã€‚
         float actionTimer = 0f;
         while (actionTimer < 1f)
         {
             actionTimer += Time.deltaTime / dogStatus._moveTimer;
             actionTimer = Mathf.Min(actionTimer, 1f);
-            //  üŒ^•âŠÔ‚ğg‚Á‚Ä“¹’†‚ÌˆÚ“®‚ğ©‘R‚É
+            //  ç·šå‹è£œé–“ã‚’ä½¿ã£ã¦é“ä¸­ã®ç§»å‹•ã‚’è‡ªç„¶ã«
             var movingPos = _playerPos;
             movingPos.x = Mathf.Lerp(_playerPos.x, _playerGoToPos.x, actionTimer);
             _playerTransform.position = movingPos;
             yield return null;
         }
-        //  Œ»İ‚Ì position ‚ğ‘ã“ü
+        //  ç¾åœ¨ã® position ã‚’ä»£å…¥
         _playerPos = _playerTransform.position;
-        //  uˆÚ“®’†v‚ğ false ‚É
+        //  ã€Œç§»å‹•ä¸­ã€ã‚’ false ã«
         isMoving = false;
     }
 }

@@ -32,24 +32,28 @@ public class KeyPressAndHold : MonoBehaviour
     private bool isPressing = false;
     private float pressStartTime;
 
+    private DogController dogController;
+
     private void Start()
     {
         _bgmManager.Play(0);
+
+        dogController = new DogController();
+        dogController.Enable();
+
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(targetKey))
+        if (dogController.UI.Select.WasPressedThisFrame())
         {
             StartPress();
         }
+    
+        ContinuePress();
+        
 
-        if (Input.GetKey(targetKey))
-        {
-            ContinuePress();
-        }
-
-        if (Input.GetKeyUp(targetKey))
+        if (dogController.UI.Select.WasReleasedThisFrame())
         {
             EndPress();
         }
