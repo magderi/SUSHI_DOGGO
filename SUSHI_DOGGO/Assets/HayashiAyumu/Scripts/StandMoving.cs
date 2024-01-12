@@ -8,24 +8,48 @@ public class StandMoving : MonoBehaviour
     private DogStatus dogStatus;
     public Rigidbody standRB;
 
-    [SerializeField]
-    private DogMoving dogMoving;
-
     //  各行動を取っているかの判定フラグ
     public bool isJumping = false;
     private bool isCurving = false;
-    private bool isRightMoving = false;
-    private bool isLeftMoving = false;
-
     //  今いるレーンを判定するためのint値
-    //  0が一番左、5が一番右の6レーン
-    private int _laneNamber;
+    //  0が一番左、5が一番右の合計6レーン
+    public int _laneNamber;
 
+    //  試遊会直前追加分
+    private bool isMoving = false;
+    private bool isKeyUp = true;
+    public bool canRightMove = true;
+    public bool canLeftMove = true;
 
-    //  移動の制限に使うposition値入れ
-    private float _dogPosX;
-    private float _dogGoToPosX;
-    private float _fGoX = 1.1f;
+    [SerializeField]
+    private DogMoving dogMoving;
+
+    private DogController dogController;
+    [SerializeField]
+    private Transform _playerTransform;
+
+    private Vector3 _playerGoToPos;
+
+    private enum MoveType
+    {
+        None,
+        Left,
+        Right,
+    }
+
+    private Dictionary<MoveType, Vector3> _addVector = new Dictionary<MoveType, Vector3>()
+    {
+        //  Xのfloatが移動幅
+        { MoveType.Left, new Vector3(-1.1f, 0, 0) },
+        { MoveType.Right, new Vector3(1.1f, 0, 0) },
+    };
+
+    [SerializeField]
+    public int _connectGamepadNum;
+    public Gamepad _connectGamepad;
+
+    [SerializeField]
+    private SushiJump sushiJump;
 
     // Start is called before the first frame update
     void Start()
@@ -33,18 +57,29 @@ public class StandMoving : MonoBehaviour
         standRB = GetComponent<Rigidbody>();
         dogStatus = GetComponent<DogStatus>();
 
-        //  開始時の寿司犬の position.x を取得
-        _dogPosX = transform.position.x;
-        _dogGoToPosX = _dogPosX;
+        //  追加分
+        dogController = new DogController();
+        dogController.Enable();
 
-        //  仮に、左から3番目に置いてある想定
-        _laneNamber = 2;
+        //  コントローラー接続振り分け
+        _connectGamepad = Gamepad.all[_connectGamepadNum];
+
+        if(_connectGamepadNum == 0)
+        {
+            _laneNamber = 1;
+        }
+        else if(_connectGamepadNum == 1)
+        {
+            _laneNamber = 5;
+        }
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         PlayerMove();
+        PlayerJump();
+
         dogMoving.isJumping = isJumping;
 
         //  「カーブ中」なら、
@@ -52,82 +87,93 @@ public class StandMoving : MonoBehaviour
             CurveMoveLimit(dogStatus._maxMoveLimit);
     }
 
-    public void Jump(InputAction.CallbackContext context)
+    public void PlayerJump()
     {
-        if (context.phase == InputActionPhase.Performed && dogMoving.isJumping == false)
+        if(isJumping == false)
         {
-            //  「ジャンプ中」に設定
-            dogMoving.isJumping = true;
+            bool inputPress = _connectGamepad.buttonSouth.wasPressedThisFrame;
+            //bool inputRelease = _connectGamepad.buttonSouth.wasReleasedThisFrame;
+            if(inputPress)
+            {
+                //dogMoving.isJumping = true;
+                
+                if(_connectGamepadNum == 0)
+                    sushiJump.isSalmonJump = true;
+                if(_connectGamepadNum == 1)
+                    sushiJump.isMaguroJump = true;
+            }
+            //else if(inputRelease)
+            else
+            {
+                if (_connectGamepadNum == 0)
+                    sushiJump.isSalmonJump = false;
+                if (_connectGamepadNum == 1)
+                    sushiJump.isMaguroJump = false;
+            }
         }
     }
-
-    public void MoveRight(InputAction.CallbackContext context)
-    {
-        if (context.phase == InputActionPhase.Performed)
-        {
-            //  X座標を右に10だけ移動
-            _dogGoToPosX += _fGoX;
-            //  「右に移動中」に設定
-            isRightMoving = true;
-            //  レーンナンバーをインクリメント
-            _laneNamber++;
-        }
-    }
-
-    public void MoveLeft(InputAction.CallbackContext context)
-    {
-        if (context.phase == InputActionPhase.Performed)
-        {
-            //  X座標を左に10だけ移動
-            _dogGoToPosX -= _fGoX;
-            //  「左に移動中」に設定
-            isLeftMoving = true;
-            //  レーンナンバーをデクリメント
-            _laneNamber--;
-        }
-    }
-
-    
 
     /// <summary>
     /// 寿司犬の左右の移動処理
     /// </summary>
     private void PlayerMove()
     {
-        //  「左に移動中」なら、
-        if (isLeftMoving)
+        
+        //  「移動中」でなく、
+        if (!isMoving)
         {
-            //  設定した移動先に到達したら
-            if (_dogPosX <= _dogGoToPosX)
+            //  「入力中」でなければ
+            if (isKeyUp)
             {
-                //  「左に移動中」を解除して、
-                isLeftMoving = false;
-                //  velocity を 0 にして終わる
-                standRB.velocity = Vector3.left * 0;
-                return;
+                //  InputSystem の value を読み込む
+                //  逐一 inputVal を読み込まないと、一度移動して死ぬ。なぜ。
+                //var inputVal = dogController.Player.Move.ReadValue<Vector2>();
+                //inputVal.y = 0;
+                float inputX = 0;
+                if (_connectGamepad != null)
+                {
+                    inputX = _connectGamepad.leftStick.x.ReadValue();
+                }
+                //  横の入力があれば
+                if (inputX != 0)
+                {
+                    //  「入力中」に
+                    isKeyUp = false;
+                    //  12/15/作業の続きはここから！！！
+                    //  現在の position から、それぞれに応じた移動幅を加算
+                    _playerGoToPos = _playerTransform.position;
+                    
+
+                    //  右移動
+                    if (inputX > 0 && canRightMove)
+                    {
+                        _playerGoToPos += _addVector[MoveType.Right];
+                        _laneNamber++;
+                        _laneNamber = Mathf.Min(_laneNamber, 5);
+                    }
+                    //  左移動
+                    else if (inputX < 0 && canLeftMove)
+                    {
+                        _playerGoToPos += _addVector[MoveType.Left];
+                        _laneNamber--;
+                        _laneNamber = Mathf.Max(0, _laneNamber);
+                    }
+                    //if(canRightMove && canLeftMove)
+                    StartCoroutine(MoveCor());
+                }
             }
-            //  今の position の x を保存して、左に力を加える
-            _dogPosX = transform.position.x;
-            //  AddForce で物理挙動をさせるか、 velocity でアニメチックな動きにするか
-            //dogRB.AddForce(Vector3.left * dogStatus._movePower);
-            standRB.velocity = Vector3.left * dogStatus._movePower;
-        }
-        //  「右に移動中」なら、
-        if (isRightMoving)
-        {
-            //  設定した移動先に到達したら
-            if (_dogPosX >= _dogGoToPosX)
+            else
             {
-                //  「右に移動中」を解除して、
-                isRightMoving = false;
-                //  velocity を 0 にして終わる;
-                standRB.velocity = Vector3.right * 0;
-                return;
+                //  InputSystem の value を読み込む
+                //var inputVal = dogController.Player.Move.ReadValue<Vector2>();
+                float inputX = _connectGamepad.leftStick.x.ReadValue();
+                if (inputX == 0)
+                {
+                    isKeyUp = true;
+                    canLeftMove = true;
+                    canRightMove = true;
+                }
             }
-            //  今の position の x を保存して、右に力を加える
-            _dogPosX = transform.position.x;
-            //dogRB.AddForce(Vector3.right * dogStatus._movePower);
-            standRB.velocity = Vector3.right * dogStatus._movePower;
         }
     }
 
@@ -147,5 +193,26 @@ public class StandMoving : MonoBehaviour
                 standRB.velocity.y,
                 _currentMoveSpeed);
         }
+    }
+
+    private IEnumerator MoveCor()
+    {
+        //  「移動中」に
+        isMoving = true;
+        //  _moveTimer 秒経ったら終わる繰り返し処理
+        //  1fと書いてはいるが、1秒で終わるわけではない。
+        float actionTimer = 0f;
+        while (actionTimer < 1f)
+        {
+            actionTimer += Time.deltaTime / dogStatus._moveTimer;
+            actionTimer = Mathf.Min(actionTimer, 1f);
+            //  線型補間を使って道中の移動を自然に
+            var movingPos = _playerTransform.position;
+            movingPos.x = Mathf.Lerp(_playerTransform.position.x, _playerGoToPos.x, actionTimer);
+            _playerTransform.position = movingPos;
+            yield return null;
+        }
+        //  「移動中」を false に
+        isMoving = false;
     }
 }

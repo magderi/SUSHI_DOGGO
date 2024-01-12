@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
 using System;
+using UnityEngine.InputSystem;
 /// <summary>
 /// 寿司犬のジャンプに関する処理を持つ関数
 /// アニメーションのトリガーはDogMovingスクリプトで発火してます
@@ -37,6 +38,13 @@ public class SushiJump : MonoBehaviour
 
     [SerializeField]
     private SE_Manager _seManager;
+
+
+    //  StandMoving にて、コントローラーのジャンプをそれぞれ入力したか
+    //  名前めっちゃかぶってるので、後々絶対に変えるべき箇所。
+    public bool isSalmonJump = false;
+    public bool isMaguroJump = false;
+
     void Start()
     {
         _jumpSalmonParticle.Stop();
@@ -44,6 +52,7 @@ public class SushiJump : MonoBehaviour
         _jumpMaguroParticle.Stop();
 
         rb = GetComponent<Rigidbody>();
+
     }
     // サーモンのFX再生＆SEの再生
     public void SalmonDogJumpParticle()
@@ -71,7 +80,7 @@ public class SushiJump : MonoBehaviour
     async void Update()
     {
         // サーモンジャンプ
-        if (Input.GetKeyDown(KeyCode.LeftShift) && isSalmonJumping)
+        if (isSalmonJump && isSalmonJumping)
         {
 
             // DogMovingの関数を使用
@@ -86,16 +95,13 @@ public class SushiJump : MonoBehaviour
             
             _salmonJumpJudgement._jumpCoolTime = false;
 
-            await UniTask.Delay(TimeSpan.FromSeconds(1.5));
+            await UniTask.Delay(TimeSpan.FromSeconds(1.0));
 
             _salmonJumpJudgement._jumpCoolTime = true;
-
-
-            Debug.Log("test");
         }
 
         // マグロジャンプ
-        if (Input.GetKeyDown(KeyCode.RightShift) && isMaguroJumping)
+        if (isMaguroJump && isMaguroJumping)
         {
 
             // DogMovingの関数を使用
@@ -109,7 +115,7 @@ public class SushiJump : MonoBehaviour
             
             _maguroJumpJudgement._jumpCoolTime = false;
 
-            await UniTask.Delay(TimeSpan.FromSeconds(1.5));
+            await UniTask.Delay(TimeSpan.FromSeconds(1.0));
 
             _maguroJumpJudgement._jumpCoolTime = true;
 
