@@ -24,7 +24,7 @@ public class StandMoving : MonoBehaviour
     [SerializeField]
     private DogMoving dogMoving;
 
-    private DogController dogController;
+    private ISPlayerMove ISPlayerMove;
     [SerializeField]
     private Transform _playerTransform;
 
@@ -51,27 +51,40 @@ public class StandMoving : MonoBehaviour
     [SerializeField]
     private SushiJump sushiJump;
 
-    // Start is called before the first frame update
+    //  デバック時に使用する変数たち
+    private InputAction tunaJump;
+    private InputAction salmonJump;
+    bool tunaJumping = false;
+    bool salmonJumping = false;
+
     void Start()
     {
         standRB = GetComponent<Rigidbody>();
         dogStatus = GetComponent<DogStatus>();
 
-        //  追加分
-        dogController = new DogController();
-        dogController.Enable();
+        ISPlayerMove = new ISPlayerMove();
+        ISPlayerMove.Enable();
 
         //  コントローラー接続振り分け
         _connectGamepad = Gamepad.all[_connectGamepadNum];
 
+        //  マグロ
         if(_connectGamepadNum == 0)
         {
             _laneNamber = 1;
         }
+        //  サーモン
         else if(_connectGamepadNum == 1)
         {
             _laneNamber = 5;
         }
+
+        //  デバック用初期設定
+        tunaJump = ISPlayerMove.DebugTuna.Jump;
+        salmonJump = ISPlayerMove.DebugSalmon.Jump;
+
+
+        Debug.Log(_connectGamepad);
     }
 
     // Update is called once per frame
@@ -91,24 +104,49 @@ public class StandMoving : MonoBehaviour
     {
         if(isJumping == false)
         {
-            bool inputPress = _connectGamepad.buttonSouth.wasPressedThisFrame;
-            //bool inputRelease = _connectGamepad.buttonSouth.wasReleasedThisFrame;
-            if(inputPress)
+            //  コントローラー接続時のジャンプ
+            if (_connectGamepad != null)
             {
-                //dogMoving.isJumping = true;
-                
-                if(_connectGamepadNum == 0)
-                    sushiJump.isSalmonJump = true;
-                if(_connectGamepadNum == 1)
-                    sushiJump.isMaguroJump = true;
+                bool inputPress = _connectGamepad.buttonSouth.wasPressedThisFrame;
+                if(inputPress)
+                {
+                    //dogMoving.isJumping = true;
+                    
+                    if(_connectGamepadNum == 0)
+                        sushiJump.isSalmonJump = true;
+                    if(_connectGamepadNum == 1)
+                        sushiJump.isMaguroJump = true;
+                }
+                else
+                {
+                    if (_connectGamepadNum == 0)
+                        sushiJump.isSalmonJump = false;
+                    if (_connectGamepadNum == 1)
+                        sushiJump.isMaguroJump = false;
+                }
             }
-            //else if(inputRelease)
+            //  デバック用(キーボード操作)
             else
             {
-                if (_connectGamepadNum == 0)
-                    sushiJump.isSalmonJump = false;
-                if (_connectGamepadNum == 1)
+                tunaJumping = tunaJump.WasPressedThisFrame();
+                if (tunaJumping)
+                {
+                    sushiJump.isMaguroJump = true;
+                }
+                else
+                {
                     sushiJump.isMaguroJump = false;
+                }
+
+                salmonJumping = salmonJump.WasPressedThisFrame();
+                if (salmonJumping)
+                {
+                    sushiJump.isSalmonJump = true;
+                }
+                else
+                {
+                    sushiJump.isSalmonJump = false;
+                }
             }
         }
     }

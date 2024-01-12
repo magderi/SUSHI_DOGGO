@@ -32,17 +32,17 @@ public class ScoreKeyPressAndHold : MonoBehaviour
     private bool isPressing = false;
     private float pressStartTime;
 
-    private DogController dogController;
+    private ISPlayerMove ISPlayerMove;
 
     private void Start()
     {
-        dogController = new DogController();
-        dogController.Enable();
+        ISPlayerMove = new ISPlayerMove();
+        ISPlayerMove.Enable();
     }
 
     void Update()
     {
-        if (dogController.UI.Select.WasPressedThisFrame())
+        if (ISPlayerMove.UI.GameStart.WasPressedThisFrame())
         {
             StartPress();
         }
@@ -50,7 +50,7 @@ public class ScoreKeyPressAndHold : MonoBehaviour
         ContinuePress();
 
 
-        if (dogController.UI.Select.WasReleasedThisFrame())
+        if (ISPlayerMove.UI.GameStart.WasReleasedThisFrame())
         {
             EndPress();
         }

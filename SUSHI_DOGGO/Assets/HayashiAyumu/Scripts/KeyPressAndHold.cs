@@ -24,7 +24,6 @@ public class KeyPressAndHold : MonoBehaviour
     [SerializeField]
     private BGM_Manager _bgmManager;
 
-    public KeyCode targetKey = KeyCode.A;       // Ŀ��E���E
     public Image circleEffect;                  // Χ�ư���E�Ȧ��UI Image
     public float holdDuration = 3f;             // ��ס������ʱ�䣨ÁE�
     public string nextSceneName = "YourScene";  // ��һ������������
@@ -32,20 +31,20 @@ public class KeyPressAndHold : MonoBehaviour
     private bool isPressing = false;
     private float pressStartTime;
 
-    private DogController dogController;
+    private ISPlayerMove ISPlayerMove;
 
     private void Start()
     {
         _bgmManager.Play(0);
 
-        dogController = new DogController();
-        dogController.Enable();
+        ISPlayerMove = new ISPlayerMove();
+        ISPlayerMove.Enable();
 
     }
 
     void Update()
     {
-        if (dogController.UI.Select.WasPressedThisFrame())
+        if (ISPlayerMove.UI.GameStart.WasPressedThisFrame())
         {
             StartPress();
         }
@@ -53,7 +52,7 @@ public class KeyPressAndHold : MonoBehaviour
         ContinuePress();
         
 
-        if (dogController.UI.Select.WasReleasedThisFrame())
+        if (ISPlayerMove.UI.GameStart.WasReleasedThisFrame())
         {
             EndPress();
         }
