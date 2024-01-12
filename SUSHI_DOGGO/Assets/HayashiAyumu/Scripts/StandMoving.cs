@@ -52,9 +52,8 @@ public class StandMoving : MonoBehaviour
     private SushiJump sushiJump;
 
     //  デバック時に使用する変数たち
-    private InputAction tunaJump;
-    private InputAction salmonJump;
-    bool tunaJumping = false;
+    private InputAction tunaJump = null;
+    private InputAction salmonJump = null;
     bool salmonJumping = false;
 
     void Start()
@@ -128,7 +127,7 @@ public class StandMoving : MonoBehaviour
             //  デバック用(キーボード操作)
             else
             {
-                tunaJumping = tunaJump.WasPressedThisFrame();
+                bool tunaJumping = tunaJump.WasPressedThisFrame();
                 if (tunaJumping)
                 {
                     sushiJump.isMaguroJump = true;
