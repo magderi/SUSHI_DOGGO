@@ -91,8 +91,8 @@ public class StandMoving : MonoBehaviour
     {
         if(isJumping == false)
         {
+            //  コントローラー接続時のジャンプ
             bool inputPress = _connectGamepad.buttonSouth.wasPressedThisFrame;
-            //bool inputRelease = _connectGamepad.buttonSouth.wasReleasedThisFrame;
             if(inputPress)
             {
                 //dogMoving.isJumping = true;
@@ -102,7 +102,6 @@ public class StandMoving : MonoBehaviour
                 if(_connectGamepadNum == 1)
                     sushiJump.isMaguroJump = true;
             }
-            //else if(inputRelease)
             else
             {
                 if (_connectGamepadNum == 0)
