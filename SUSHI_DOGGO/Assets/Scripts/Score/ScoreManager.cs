@@ -42,6 +42,8 @@ public class ScoreManager : MonoBehaviour
     [SerializeField]
     private GameObject _buttonImage;
 
+  
+
     // Start is called before the first frame update
     void Start()
    {
@@ -59,7 +61,7 @@ public class ScoreManager : MonoBehaviour
 
         await UniTask.Delay(TimeSpan.FromSeconds(2));
 
-        ScoreCheck();
+        ScoreCheck();    
     }
 
     async private void ScoreCheck()

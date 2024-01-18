@@ -17,12 +17,14 @@ public class ScoreKeyPressAndHold : MonoBehaviour
   
 
     [SerializeField]
-    private GameObject _Uicanvs;
+    private GameObject _button;
 
     [SerializeField]
     private SE_Manager _seManager;
 
-  
+    [SerializeField]
+    private Canvas _canvas;
+
 
     public KeyCode targetKey = KeyCode.A;       // Ŀ��E���E
     public Image circleEffect;                  // Χ�ư���E�Ȧ��UI Image
@@ -83,16 +85,16 @@ public class ScoreKeyPressAndHold : MonoBehaviour
 
                 //_salmonAnim.SetTrigger("WakeUp");
 
-                _Uicanvs.SetActive(false);
+                _button.SetActive(false);
 
 
-                 
+                SoysauceDog();
 
                 //  _fadeManager.fadeout = true;
 
                 // StartCoroutine( _bgmManager.fadeVolue());
 
-                LoadNextScene();
+              //  LoadNextScene();
             }
         }
     }
@@ -110,5 +112,22 @@ public class ScoreKeyPressAndHold : MonoBehaviour
         await UniTask.Delay(TimeSpan.FromSeconds(0.5));
         // ������һ������
         SceneManager.LoadScene(nextSceneName);
+    }    
+
+    async public void SoysauceDog()
+    {
+        await UniTask.Delay(TimeSpan.FromSeconds(1));
+
+        // UI非表示
+        _canvas.enabled = false;
+
+        _seManager.Play(3);
+
+        await UniTask.Delay(TimeSpan.FromSeconds(3));
+
+        _seManager.Play(4);
+
+        
+    
     }
 }
