@@ -23,8 +23,28 @@ public class ScoreKeyPressAndHold : MonoBehaviour
     private SE_Manager _seManager;
 
     [SerializeField]
+    private SE_Manager2 _seManager2;
+
+    [SerializeField]
+    private ScoreManager _scoreManager;
+
+    [SerializeField]
     private Canvas _canvas;
 
+    [SerializeField]
+    private ParticleSystem _soyHi;
+
+    [SerializeField]
+    private ParticleSystem _soyMiddle;
+
+    [SerializeField]
+    private ParticleSystem _soyLow;
+
+    [SerializeField]
+    private Animator _maguroAnimator;
+
+    [SerializeField]
+    private Animator _salmonAnimator;
 
     public KeyCode targetKey = KeyCode.A;       // Ŀ��E���E
     public Image circleEffect;                  // Χ�ư���E�Ȧ��UI Image
@@ -116,7 +136,7 @@ public class ScoreKeyPressAndHold : MonoBehaviour
 
     async public void SoysauceDog()
     {
-        await UniTask.Delay(TimeSpan.FromSeconds(1));
+        await UniTask.Delay(TimeSpan.FromSeconds(0.5));
 
         // UI非表示
         _canvas.enabled = false;
@@ -127,6 +147,40 @@ public class ScoreKeyPressAndHold : MonoBehaviour
 
         _seManager.Play(4);
 
+        if (_scoreManager._boolsoyHi)
+        {
+            _seManager.Play(5);
+            _seManager2.Play(0);
+            _soyHi.Play();
+            await UniTask.Delay(TimeSpan.FromSeconds(0.5));
+            _maguroAnimator.SetTrigger("Joy");
+            _salmonAnimator.SetTrigger("Joy");
+            await UniTask.Delay(TimeSpan.FromSeconds(3));
+            _maguroAnimator.SetTrigger("Run");
+            _salmonAnimator.SetTrigger("Run");
+        }
+        else if (_scoreManager._boolsoyMiddle)
+        {
+            _seManager.Play(6);
+            _soyMiddle.Play();
+            await UniTask.Delay(TimeSpan.FromSeconds(0.5));
+            _maguroAnimator.SetTrigger("Joy");
+            _salmonAnimator.SetTrigger("Joy");
+            await UniTask.Delay(TimeSpan.FromSeconds(3));
+            _maguroAnimator.SetTrigger("Run");
+            _salmonAnimator.SetTrigger("Run");
+        }
+        else
+        {
+            _seManager.Play(7);
+            _soyLow.Play();
+            await UniTask.Delay(TimeSpan.FromSeconds(0.5));
+            _maguroAnimator.SetTrigger("Sad");
+            _salmonAnimator.SetTrigger("Sad");
+            await UniTask.Delay(TimeSpan.FromSeconds(3));
+            _maguroAnimator.SetTrigger("Run");
+            _salmonAnimator.SetTrigger("Run");
+        }
         
     
     }
