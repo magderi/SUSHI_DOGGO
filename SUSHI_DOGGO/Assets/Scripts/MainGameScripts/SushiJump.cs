@@ -118,10 +118,6 @@ public class SushiJump : MonoBehaviour
             await UniTask.Delay(TimeSpan.FromSeconds(1.0));
 
             _maguroJumpJudgement._jumpCoolTime = true;
-
-
-            Debug.Log("test");
         }
-    }   
-
+    }
 }
