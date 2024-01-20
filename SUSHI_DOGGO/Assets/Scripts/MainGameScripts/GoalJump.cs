@@ -20,6 +20,14 @@ public class GoalJump : MonoBehaviour
 
     public float speed = 2.0f; // 移動速度
 
+    [SerializeField]
+    private Animator _maguroanimator;
+
+    [SerializeField]
+    private Animator _salmonanimator;
+
+    public bool _goaljump = false;
+
     void Start()
     {
         // 初期位置の設定
@@ -34,23 +42,40 @@ public class GoalJump : MonoBehaviour
 
     void Update()
     {
-        // 現在の経過時間
-        float distCovered = (Time.time - startTime) * speed;
+        Jump();
+    }
 
-        // 進捗率（0から1の範囲）
-        float fracJourney = distCovered / journeyLength;
-
-        // 放物線の計算
-        Vector3 currentPos = Vector3.Lerp(startPos, target.position, fracJourney);
-        currentPos.y += Mathf.Sin(fracJourney * Mathf.PI) * height;
-
-        // オブジェクトの移動
-        transform.position = currentPos;
-
-        // 目標地点に到達したらスクリプトを無効にする
-        if (fracJourney >= 1.0f)
+    public void Jump()
+    {
+        if (_goaljump == true)
         {
-            enabled = false;
+            // 現在の経過時間
+            float distCovered = (Time.time - startTime) * speed;
+
+            // 進捗率（0から1の範囲）
+            float fracJourney = distCovered / journeyLength;
+
+            // 放物線の計算
+            Vector3 currentPos = Vector3.Lerp(startPos, target.position, fracJourney);
+            currentPos.y += Mathf.Sin(fracJourney * Mathf.PI) * height;
+
+            // オブジェクトの移動
+            transform.position = currentPos;
+
+            // 目標地点に到達したらスクリプトを無効にする
+            if (fracJourney >= 1.0f)
+            {
+                enabled = false;
+            }
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("GoalLine"))
+        {
+            _goaljump = true;
+            _salmonanimator.SetBool("GoalLine", true);
+            _maguroanimator.SetBool("GoalLine", true);
         }
     }
 }

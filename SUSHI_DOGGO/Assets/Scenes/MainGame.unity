@@ -66462,6 +66462,9 @@ MonoBehaviour:
   target: {fileID: 370289214}
   height: 15
   speed: 20
+  _maguroanimator: {fileID: 0}
+  _salmonanimator: {fileID: 0}
+  _goaljump: 0
 --- !u!1 &1907205460
 GameObject:
   m_ObjectHideFlags: 0
@@ -81852,6 +81855,7 @@ GameObject:
   - component: {fileID: 919132148016616788}
   - component: {fileID: 919132148016616787}
   - component: {fileID: 919132148016616791}
+  - component: {fileID: 919132148016616792}
   m_Layer: 0
   m_Name: Sushiinu_maguro
   m_TagString: Untagged
@@ -81956,6 +81960,26 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &919132148016616792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148016616786}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 371b4966368d5e8479b0bfadd597fc6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _goalManager: {fileID: 0}
+  _dogMoving: {fileID: 0}
+  target: {fileID: 370289214}
+  height: 15
+  speed: 100
+  _maguroanimator: {fileID: 919132148016616791}
+  _salmonanimator: {fileID: 8697126130682493699}
+  _goaljump: 1
 --- !u!4 &953528371300748268
 Transform:
   m_ObjectHideFlags: 0
@@ -120137,6 +120161,7 @@ GameObject:
   - component: {fileID: 8697126130682493693}
   - component: {fileID: 8697126130682493697}
   - component: {fileID: 8697126130682493699}
+  - component: {fileID: 8697126130682493700}
   m_Layer: 0
   m_Name: Sushiinu_salmon
   m_TagString: Untagged
@@ -120356,6 +120381,26 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &8697126130682493700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8356911306320158790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 371b4966368d5e8479b0bfadd597fc6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _goalManager: {fileID: 0}
+  _dogMoving: {fileID: 0}
+  target: {fileID: 370289214}
+  height: 15
+  speed: 15
+  _maguroanimator: {fileID: 919132148016616791}
+  _salmonanimator: {fileID: 8697126130682493699}
+  _goaljump: 0
 --- !u!33 &8735897390110792969
 MeshFilter:
   m_ObjectHideFlags: 0
