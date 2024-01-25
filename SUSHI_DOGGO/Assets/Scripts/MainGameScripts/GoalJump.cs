@@ -5,11 +5,15 @@ using UnityEngine;
 public class GoalJump : MonoBehaviour
 {
 
-    [SerializeField]
-    private BoxCollider _goalManager;
+
+    //    [SerializeField]
+    // private BoxCollider _goalManager;
+
+    // [SerializeField]
+    // private DogMoving _dogMoving;
 
     [SerializeField]
-    private DogMoving _dogMoving;
+    private GameObject _goalCamera;
 
     public Transform target;  // 目標地点のTransform
     public float height = 5f; // 放物線の高さ
@@ -26,7 +30,13 @@ public class GoalJump : MonoBehaviour
     [SerializeField]
     private Animator _salmonanimator;
 
-    public bool _goaljump = false;
+    [SerializeField]
+    private Animator _maguroStandanimator;
+
+    [SerializeField]
+    private Animator _salmonStandanimator;
+
+    private bool _goalEnd = false;
 
     void Start()
     {
@@ -42,40 +52,64 @@ public class GoalJump : MonoBehaviour
 
     void Update()
     {
-        Jump();
+        if(_goalEnd == false)
+        {
+            Jump();
+        }
+        else
+        {
+            GoalEnd();
+        }
+        
+    
+    }
+
+    public void GoalEnd()
+    {
+        _goalEnd = true;
+
+        _salmonanimator.SetBool("GoalJump", false);
+        _maguroanimator.SetBool("GoalJump", false);
     }
 
     public void Jump()
     {
-        if (_goaljump == true)
+        _salmonStandanimator.SetTrigger("StandUp");
+        _maguroStandanimator.SetTrigger("StandUp");
+
+        _goalCamera.SetActive(true);
+
+        _salmonanimator.SetBool("GoalJump", true);
+        _maguroanimator.SetBool("GoalJump", true);
+
+        // 現在の経過時間
+        float distCovered = (Time.time - startTime) * speed;
+
+        // 進捗率（0から1の範囲）
+        float fracJourney = distCovered / journeyLength;
+
+        // 放物線の計算
+        Vector3 currentPos = Vector3.Lerp(startPos, target.position, fracJourney);
+        currentPos.y += Mathf.Sin(fracJourney * Mathf.PI) * height;
+
+        // オブジェクトの移動
+        transform.position = currentPos;
+
+
+        // 目標地点に到達したらスクリプトを無効にする
+        if (fracJourney >= 1.0f)
         {
-            // 現在の経過時間
-            float distCovered = (Time.time - startTime) * speed;
-
-            // 進捗率（0から1の範囲）
-            float fracJourney = distCovered / journeyLength;
-
-            // 放物線の計算
-            Vector3 currentPos = Vector3.Lerp(startPos, target.position, fracJourney);
-            currentPos.y += Mathf.Sin(fracJourney * Mathf.PI) * height;
-
-            // オブジェクトの移動
-            transform.position = currentPos;
-
-            // 目標地点に到達したらスクリプトを無効にする
-            if (fracJourney >= 1.0f)
-            {
-                enabled = false;
-            }
+            GoalEnd();
+            enabled = false;
         }
+
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("GoalLine"))
         {
-            _goaljump = true;
-            _salmonanimator.SetBool("GoalLine", true);
-            _maguroanimator.SetBool("GoalLine", true);
+           
+       
         }
     }
 }

@@ -114,7 +114,7 @@ public class ScoreKeyPressAndHold : MonoBehaviour
 
                 // StartCoroutine( _bgmManager.fadeVolue());
 
-              //  LoadNextScene();
+              
             }
         }
     }
@@ -150,7 +150,7 @@ public class ScoreKeyPressAndHold : MonoBehaviour
         if (_scoreManager._boolsoyHi)
         {
             _seManager.Play(5);
-            _seManager2.Play(0);
+           // _seManager2.Play(0);
             _soyHi.Play();
             await UniTask.Delay(TimeSpan.FromSeconds(0.5));
             _maguroAnimator.SetTrigger("Joy");
@@ -158,6 +158,8 @@ public class ScoreKeyPressAndHold : MonoBehaviour
             await UniTask.Delay(TimeSpan.FromSeconds(3));
             _maguroAnimator.SetTrigger("Run");
             _salmonAnimator.SetTrigger("Run");
+            await UniTask.Delay(TimeSpan.FromSeconds(3));
+            LoadNextScene();
         }
         else if (_scoreManager._boolsoyMiddle)
         {
@@ -169,6 +171,8 @@ public class ScoreKeyPressAndHold : MonoBehaviour
             await UniTask.Delay(TimeSpan.FromSeconds(3));
             _maguroAnimator.SetTrigger("Run");
             _salmonAnimator.SetTrigger("Run");
+            await UniTask.Delay(TimeSpan.FromSeconds(3));
+            LoadNextScene();
         }
         else
         {
@@ -180,8 +184,10 @@ public class ScoreKeyPressAndHold : MonoBehaviour
             await UniTask.Delay(TimeSpan.FromSeconds(3));
             _maguroAnimator.SetTrigger("Run");
             _salmonAnimator.SetTrigger("Run");
+            await UniTask.Delay(TimeSpan.FromSeconds(3));
+            LoadNextScene();
         }
-        
-    
+
+
     }
 }
