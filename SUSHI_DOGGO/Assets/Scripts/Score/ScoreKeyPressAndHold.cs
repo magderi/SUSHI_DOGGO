@@ -8,13 +8,20 @@ using UnityEngine.UI;
 
 public class ScoreKeyPressAndHold : MonoBehaviour
 {
-   // [SerializeField]
+    // [SerializeField]
     //private Animator _salmonAnim;
 
     //[SerializeField]
-   // private Animator _maguroAnim;
+    // private Animator _maguroAnim;
 
-  
+    [SerializeField]
+    private GameObject _syouyu1;
+
+    [SerializeField]
+    private GameObject _syouyu2;
+
+    [SerializeField]
+    private GameObject _syouyu3;
 
     [SerializeField]
     private GameObject _button;
@@ -149,13 +156,19 @@ public class ScoreKeyPressAndHold : MonoBehaviour
 
         if (_scoreManager._boolsoyHi)
         {
+
             _seManager.Play(5);
            // _seManager2.Play(0);
             _soyHi.Play();
             await UniTask.Delay(TimeSpan.FromSeconds(0.5));
             _maguroAnimator.SetTrigger("Joy");
             _salmonAnimator.SetTrigger("Joy");
-            await UniTask.Delay(TimeSpan.FromSeconds(3));
+            _syouyu1.SetActive(false);
+            await UniTask.Delay(TimeSpan.FromSeconds(1));
+            _syouyu2.SetActive(false);
+            await UniTask.Delay(TimeSpan.FromSeconds(1));
+            _syouyu3.SetActive(false);
+            await UniTask.Delay(TimeSpan.FromSeconds(1));
             _maguroAnimator.SetTrigger("Run");
             _salmonAnimator.SetTrigger("Run");
             await UniTask.Delay(TimeSpan.FromSeconds(3));
@@ -163,12 +176,16 @@ public class ScoreKeyPressAndHold : MonoBehaviour
         }
         else if (_scoreManager._boolsoyMiddle)
         {
+           
             _seManager.Play(6);
             _soyMiddle.Play();
             await UniTask.Delay(TimeSpan.FromSeconds(0.5));
             _maguroAnimator.SetTrigger("Joy");
             _salmonAnimator.SetTrigger("Joy");
-            await UniTask.Delay(TimeSpan.FromSeconds(3));
+            _syouyu1.SetActive(false);
+            await UniTask.Delay(TimeSpan.FromSeconds(1));
+            _syouyu2.SetActive(false);
+            await UniTask.Delay(TimeSpan.FromSeconds(2));
             _maguroAnimator.SetTrigger("Run");
             _salmonAnimator.SetTrigger("Run");
             await UniTask.Delay(TimeSpan.FromSeconds(3));
@@ -176,12 +193,15 @@ public class ScoreKeyPressAndHold : MonoBehaviour
         }
         else
         {
+  
             _seManager.Play(7);
             _soyLow.Play();
             await UniTask.Delay(TimeSpan.FromSeconds(0.5));
+            _syouyu1.SetActive(false);
             _maguroAnimator.SetTrigger("Sad");
             _salmonAnimator.SetTrigger("Sad");
             await UniTask.Delay(TimeSpan.FromSeconds(3));
+          
             _maguroAnimator.SetTrigger("Run");
             _salmonAnimator.SetTrigger("Run");
             await UniTask.Delay(TimeSpan.FromSeconds(3));
