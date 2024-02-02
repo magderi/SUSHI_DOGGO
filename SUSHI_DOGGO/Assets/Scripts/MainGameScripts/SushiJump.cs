@@ -99,6 +99,10 @@ public class SushiJump : MonoBehaviour
 
             _salmonJumpJudgement._jumpCoolTime = true;
         }
+        else if (isSalmonJump ) 
+        {
+            _dogMoving.SalmonDogNGJumpAnim();
+        }
 
         // マグロジャンプ
         if (isMaguroJump && isMaguroJumping)
@@ -122,6 +126,11 @@ public class SushiJump : MonoBehaviour
 
             Debug.Log("test");
         }
+        else if (isMaguroJump)
+        {
+            _dogMoving.MaguroDogNGJumpAnim();
+        }
+
     }   
 
 }

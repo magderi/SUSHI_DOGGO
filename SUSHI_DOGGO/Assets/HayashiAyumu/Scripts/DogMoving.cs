@@ -82,7 +82,22 @@ public class DogMoving : MonoBehaviour
         _gameManager._scoreMaguroJudgement = false;
    }
 
+    // 寿司犬つんのめり関数
+    public void SalmonDogNGJumpAnim()
+    {
+        _sushiSalmonAnim.SetTrigger("JumpNG");
 
+       // _gameManager._scoreSalmonJudgement = false;
+    }
+
+
+    // 寿司犬つんのめり関数
+    public void MaguroDogNGJumpAnim()
+    {
+        _sushiMaguroAnim.SetTrigger("JumpNG");
+
+        //_gameManager._scoreMaguroJudgement = false;
+    }
 
     // Update is called once per frame
     void LateUpdate()
