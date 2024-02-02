@@ -5,23 +5,23 @@ using Cysharp.Threading.Tasks;
 using System;
 using UnityEngine.InputSystem;
 /// <summary>
-/// õiŒ¢‚ÌƒWƒƒƒ“ƒv‚ÉŠÖ‚·‚éˆ—‚ğ‚ÂŠÖ”
-/// ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌƒgƒŠƒK[‚ÍDogMovingƒXƒNƒŠƒvƒg‚Å”­‰Î‚µ‚Ä‚Ü‚·
+/// ï¿½ï¿½ï¿½iï¿½ï¿½ï¿½ÌƒWï¿½ï¿½ï¿½ï¿½ï¿½vï¿½ÉŠÖ‚ï¿½ï¿½éˆï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÂŠÖï¿½
+/// ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Ìƒgï¿½ï¿½ï¿½Kï¿½[ï¿½ï¿½DogMovingï¿½Xï¿½Nï¿½ï¿½ï¿½vï¿½gï¿½Å”ï¿½ï¿½Î‚ï¿½ï¿½Ä‚Ü‚ï¿½
 /// </summary>
 public class SushiJump : MonoBehaviour
 {
   //  public float jumpPower;
     private Rigidbody rb;
 
-    // “¯’…’n‚Ì§ì“r’†‚Ì–¼cA—V‰ï‚Å‚Íg‚Á‚Ä‚È‚¢
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½nï¿½Ìï¿½ï¿½ï¿½rï¿½ï¿½ï¿½Ì–ï¿½ï¿½cï¿½Aï¿½ï¿½ï¿½Vï¿½ï¿½Å‚Ígï¿½ï¿½ï¿½Ä‚È‚ï¿½
     public bool isSalmonJumping = false;
     public bool isMaguroJumping = false;
 
-    // ƒAƒjƒ[ƒVƒ‡ƒ“‚Í‚±‚±‚Å‚³‚¹‚é
+    // ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Í‚ï¿½ï¿½ï¿½ï¿½Å‚ï¿½ï¿½ï¿½ï¿½ï¿½
     [SerializeField]
     private DogMoving _dogMoving;
 
-    // “¯’…’n‚Ì§ì“r’†‚Ì–¼cA—V‰ï‚Å‚Íg‚Á‚Ä‚È‚¢
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½nï¿½Ìï¿½ï¿½ï¿½rï¿½ï¿½ï¿½Ì–ï¿½ï¿½cï¿½Aï¿½ï¿½ï¿½Vï¿½ï¿½Å‚Ígï¿½ï¿½ï¿½Ä‚È‚ï¿½
     [SerializeField]
     private SalmonJumpJudgement _salmonJumpJudgement;
     [SerializeField]
@@ -30,7 +30,7 @@ public class SushiJump : MonoBehaviour
     [SerializeField]
     private BoxCollider _boxCollider;
 
-    // ƒWƒƒƒ“ƒv¬Œ÷‚ÉFXÄ¶
+    // ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½FXï¿½Äï¿½
     [SerializeField]
     private ParticleSystem _jumpSalmonParticle;
     [SerializeField]
@@ -40,8 +40,8 @@ public class SushiJump : MonoBehaviour
     private SE_Manager _seManager;
 
 
-    //  StandMoving ‚É‚ÄAƒRƒ“ƒgƒ[ƒ‰[‚ÌƒWƒƒƒ“ƒv‚ğ‚»‚ê‚¼‚ê“ü—Í‚µ‚½‚©
-    //  –¼‘O‚ß‚Á‚¿‚á‚©‚Ô‚Á‚Ä‚é‚Ì‚ÅAŒãXâ‘Î‚É•Ï‚¦‚é‚×‚«‰ÓŠB
+    //  StandMoving ï¿½É‚ÄAï¿½Rï¿½ï¿½ï¿½gï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½[ï¿½ÌƒWï¿½ï¿½ï¿½ï¿½ï¿½vï¿½ï¿½ï¿½ï¿½ï¿½ê‚¼ï¿½ï¿½ï¿½ï¿½Í‚ï¿½ï¿½ï¿½ï¿½ï¿½
+    //  ï¿½ï¿½ï¿½Oï¿½ß‚ï¿½ï¿½ï¿½ï¿½á‚©ï¿½Ô‚ï¿½ï¿½Ä‚ï¿½Ì‚ÅAï¿½ï¿½Xï¿½ï¿½Î‚É•Ï‚ï¿½ï¿½ï¿½×‚ï¿½ï¿½Óï¿½ï¿½B
     public bool isSalmonJump = false;
     public bool isMaguroJump = false;
 
@@ -54,15 +54,15 @@ public class SushiJump : MonoBehaviour
         rb = GetComponent<Rigidbody>();
 
     }
-    // ƒT[ƒ‚ƒ“‚ÌFXÄ¶•SE‚ÌÄ¶
+    // ï¿½Tï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½FXï¿½Äï¿½ï¿½ï¿½SEï¿½ÌÄï¿½
     public void SalmonDogJumpParticle()
     {
         _jumpSalmonParticle.Play();
 
-        // FX‚ÌSE
+        // FXï¿½ï¿½SE
         _seManager.Play(2);
 
-        // Œ¢‚ÌSE
+        // ï¿½ï¿½ï¿½ï¿½SE
         _seManager.Play(4);
     }
 
@@ -70,26 +70,26 @@ public class SushiJump : MonoBehaviour
     {
         _jumpMaguroParticle.Play();
 
-        // FX‚ÌSE
+        // FXï¿½ï¿½SE
         _seManager.Play(2);
 
-        // Œ¢‚ÌSE
+        // ï¿½ï¿½ï¿½ï¿½SE
         _seManager.Play(3);
     }
 
     async void Update()
     {
-        // ƒT[ƒ‚ƒ“ƒWƒƒƒ“ƒv
+        // ï¿½Tï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½v
         if (isSalmonJump && isSalmonJumping)
         {
 
-            // DogMoving‚ÌŠÖ”‚ğg—p
+            // DogMovingï¿½ÌŠÖï¿½ï¿½ï¿½ï¿½gï¿½p
             _dogMoving.SalmonDogJumpMotion();
 
             // rb.velocity = Vector3.up * jumpPower;
             //await UniTask.Delay(TimeSpan.FromSeconds(1));
 
-            // ˆÈ‰ºƒWƒƒƒ“ƒv‚ÌƒN[ƒ‹ƒ^ƒCƒ€ˆ—
+            // ï¿½È‰ï¿½ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½vï¿½ÌƒNï¿½[ï¿½ï¿½ï¿½^ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             isSalmonJumping = false;
 
             
@@ -99,17 +99,21 @@ public class SushiJump : MonoBehaviour
 
             _salmonJumpJudgement._jumpCoolTime = true;
         }
+        else if (isSalmonJump ) 
+        {
+            _dogMoving.SalmonDogNGJumpAnim();
+        }
 
-        // ƒ}ƒOƒƒWƒƒƒ“ƒv
+        // ï¿½}ï¿½Oï¿½ï¿½ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½v
         if (isMaguroJump && isMaguroJumping)
         {
 
-            // DogMoving‚ÌŠÖ”‚ğg—p
+            // DogMovingï¿½ÌŠÖï¿½ï¿½ï¿½ï¿½gï¿½p
             _dogMoving.MaguroDogJumpMotion();
 
             // rb.velocity = Vector3.up * jumpPower;
             //await UniTask.Delay(TimeSpan.FromSeconds(1));
-            // ˆÈ‰ºƒWƒƒƒ“ƒv‚ÌƒN[ƒ‹ƒ^ƒCƒ€ˆ—
+            // ï¿½È‰ï¿½ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½vï¿½ÌƒNï¿½[ï¿½ï¿½ï¿½^ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             isMaguroJumping = false;
 
             
@@ -119,5 +123,11 @@ public class SushiJump : MonoBehaviour
 
             _maguroJumpJudgement._jumpCoolTime = true;
         }
-    }
+        else if (isMaguroJump)
+        {
+            _dogMoving.MaguroDogNGJumpAnim();
+        }
+
+    }   
+
 }
