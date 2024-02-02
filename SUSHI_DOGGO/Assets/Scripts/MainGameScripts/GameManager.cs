@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
     private DishScore _dishScore;
 
     //　スコア
-    public int _score;
+    public int score;
 
     // 寿司犬の体力
     private int _sushiSalmonHp = 100;
@@ -123,11 +123,9 @@ public class GameManager : MonoBehaviour
 
    public void ScorePlus()
    {
-        _score = currentMaguroHp + currentSalmonHp ;
+        score = currentMaguroHp + currentSalmonHp ;
 
-        _textScoreMeshProUGUI.text = _score.ToString();
-
-        Debug.Log("ScorePlus ");
+        _textScoreMeshProUGUI.text = score.ToString();
    }
 
     async private void JudgementScore()

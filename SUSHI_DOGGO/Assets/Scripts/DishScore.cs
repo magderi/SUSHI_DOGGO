@@ -16,7 +16,7 @@ public class DishScore : MonoBehaviour
 
     private void Update()
     {
-        GlobalVariables.score = gameManager._score;
+        GlobalVariables.score = gameManager.score;
 
         // プレイヤーの操作などでスコアが変わる場合、ここで処理する
         // 例: _scoreIntがスコアを表す場合
