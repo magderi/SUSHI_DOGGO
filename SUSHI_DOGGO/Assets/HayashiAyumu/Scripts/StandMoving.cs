@@ -51,11 +51,12 @@ public class StandMoving : MonoBehaviour
     [SerializeField]
     private SushiJump sushiJump;
 
-    //  デバック時に使用する変数たち
-    private InputAction tunaJump;
-    private InputAction salmonJump;
-    bool tunaJumping = false;
+    /*
+    //  デバック時に使用する変数たち(バグ発生中)
+    private InputAction tunaJump = null;
+    private InputAction salmonJump = null;
     bool salmonJumping = false;
+    */
 
     void Start()
     {
@@ -79,10 +80,12 @@ public class StandMoving : MonoBehaviour
             _laneNamber = 5;
         }
 
+        /*
         //  デバック用初期設定
+        //  ここでバグが発生していて、ISPlayerMoveそのものがnullになっている。
         tunaJump = ISPlayerMove.DebugTuna.Jump;
         salmonJump = ISPlayerMove.DebugSalmon.Jump;
-
+        */
 
         Debug.Log(_connectGamepad);
     }
@@ -125,10 +128,11 @@ public class StandMoving : MonoBehaviour
                         sushiJump.isMaguroJump = false;
                 }
             }
+            /*
             //  デバック用(キーボード操作)
             else
             {
-                tunaJumping = tunaJump.WasPressedThisFrame();
+                bool tunaJumping = tunaJump.WasPressedThisFrame();
                 if (tunaJumping)
                 {
                     sushiJump.isMaguroJump = true;
@@ -147,7 +151,7 @@ public class StandMoving : MonoBehaviour
                 {
                     sushiJump.isSalmonJump = false;
                 }
-            }
+            }*/
         }
     }
 
@@ -233,6 +237,10 @@ public class StandMoving : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 左右の滑らかな移動コルーチン
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator MoveCor()
     {
         //  「移動中」に

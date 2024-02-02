@@ -14,17 +14,6 @@ public class SalmonJumpJudgement : MonoBehaviour
     private GameObject _jumpOKText;
 
     public bool _jumpCoolTime = true;
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     //OnTriggerStay関数
     //接触したオブジェクトが引数otherとして渡される
@@ -35,14 +24,6 @@ public class SalmonJumpJudgement : MonoBehaviour
         {
             _sushiJump.isSalmonJumping = true;
             _jumpOKText.SetActive(true);
-
-           
-
-            Debug.Log("JumpTrue");
-
-
-      
-
         }
     }
 
@@ -55,7 +36,6 @@ public class SalmonJumpJudgement : MonoBehaviour
         {
             _sushiJump.isSalmonJumping = false;
             _jumpOKText.SetActive(false);
-            Debug.Log("JumpFalse");
         }
     }
 }

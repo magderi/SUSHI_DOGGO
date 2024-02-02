@@ -12,9 +12,6 @@ public class PlayerMoveLimit : MonoBehaviour
     private int _salmonNum;
     private int _tunaNum;
 
-    private bool dontMoveSalmon = false;
-    private bool dontMoveTuna = false;
-
     // Start is called before the first frame update
     void Awake()
     {
