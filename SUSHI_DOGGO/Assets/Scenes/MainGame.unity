@@ -4063,6 +4063,82 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 179010387}
   m_Mesh: {fileID: -5708298509411611124, guid: 40503280cbcd06c4b87e822f2a75a486, type: 3}
+--- !u!1 &181098699
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 181098700}
+  - component: {fileID: 181098702}
+  - component: {fileID: 181098701}
+  m_Layer: 0
+  m_Name: MoveUi_Maguro_Mini
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &181098700
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 181098699}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 0}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 498329583}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 104, y: 89}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &181098701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 181098699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: cae811d6681dc284e9183e02d741f03c, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &181098702
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 181098699}
+  m_CullTransparentMesh: 1
 --- !u!1 &181407186
 GameObject:
   m_ObjectHideFlags: 0
@@ -9553,7 +9629,7 @@ GameObject:
   - component: {fileID: 421564391}
   - component: {fileID: 421564390}
   m_Layer: 0
-  m_Name: 1PImage (1)
+  m_Name: 1PImageText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11452,7 +11528,7 @@ GameObject:
   - component: {fileID: 498329585}
   - component: {fileID: 498329584}
   m_Layer: 0
-  m_Name: MoveUi (2)
+  m_Name: MoveUi_Maguro
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11469,7 +11545,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 0}
   m_ConstrainProportionsScale: 1
-  m_Children: []
+  m_Children:
+  - {fileID: 181098700}
   m_Father: {fileID: 1068076731}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -13613,7 +13690,7 @@ GameObject:
   - component: {fileID: 606714014}
   - component: {fileID: 606714013}
   m_Layer: 0
-  m_Name: 2PImage (1)
+  m_Name: 2PImageText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31141,6 +31218,82 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -3485859104130883014, guid: 843191ebd492ce440b62855017eff6b4, type: 3}
+--- !u!1 &1035425185
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1035425186}
+  - component: {fileID: 1035425188}
+  - component: {fileID: 1035425187}
+  m_Layer: 0
+  m_Name: MoveUi_Salmon_Mini
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1035425186
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1035425185}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 0}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 1500409523}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 104, y: 89}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1035425187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1035425185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: cae811d6681dc284e9183e02d741f03c, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1035425188
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1035425185}
+  m_CullTransparentMesh: 1
 --- !u!1 &1038595593
 GameObject:
   m_ObjectHideFlags: 0
@@ -32811,11 +32964,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   standRB: {fileID: 1122788779}
   isJumping: 0
-  _laneNamber: 1
+  laneNamber: 0
   canRightMove: 1
   canLeftMove: 1
-  dogMoving: {fileID: 919132148016616789}
+  _dogMoving: {fileID: 919132148016616789}
   _playerTransform: {fileID: 1122788776}
+  _stickUIMini: {fileID: 181098700}
   _connectGamepadNum: 1
   sushiJump: {fileID: 919132148016616787}
 --- !u!114 &1122788781
@@ -46595,7 +46749,7 @@ GameObject:
   - component: {fileID: 1500409525}
   - component: {fileID: 1500409524}
   m_Layer: 0
-  m_Name: MoveUi (1)
+  m_Name: MoveUi_Salmon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46612,7 +46766,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 0}
   m_ConstrainProportionsScale: 1
-  m_Children: []
+  m_Children:
+  - {fileID: 1035425186}
   m_Father: {fileID: 1068076731}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -62397,7 +62552,7 @@ MonoBehaviour:
   sliderSalmonHp: {fileID: 339897781}
   sliderMaguroHp: {fileID: 97674563}
   _dishScore: {fileID: 1739562477}
-  _score: 0
+  score: 0
   _scoreSalmonJudgement: 0
   _scoreMaguroJudgement: 0
 --- !u!114 &1739562477
@@ -70282,7 +70437,7 @@ GameObject:
   - component: {fileID: 1880927673}
   - component: {fileID: 1880927672}
   m_Layer: 0
-  m_Name: MoveUi
+  m_Name: MoveUi_A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -88024,11 +88179,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   standRB: {fileID: 2224143881440203347}
   isJumping: 0
-  _laneNamber: 0
+  laneNamber: 0
   canRightMove: 1
   canLeftMove: 1
-  dogMoving: {fileID: 6815394311784559338}
+  _dogMoving: {fileID: 0}
   _playerTransform: {fileID: 0}
+  _stickUIMini: {fileID: 0}
   _connectGamepadNum: 0
   sushiJump: {fileID: 0}
 --- !u!114 &2224143881440203354
@@ -88269,11 +88425,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   standRB: {fileID: 2247759957744702106}
   isJumping: 0
-  _laneNamber: 0
+  laneNamber: 0
   canRightMove: 1
   canLeftMove: 1
-  dogMoving: {fileID: 8697126130682493694}
+  _dogMoving: {fileID: 8697126130682493694}
   _playerTransform: {fileID: 1475620922404112428}
+  _stickUIMini: {fileID: 1035425186}
   _connectGamepadNum: 0
   sushiJump: {fileID: 8697126130682493697}
 --- !u!54 &2247759957744702106

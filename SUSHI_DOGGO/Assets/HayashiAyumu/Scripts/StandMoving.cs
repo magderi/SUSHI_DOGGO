@@ -10,25 +10,30 @@ public class StandMoving : MonoBehaviour
 
     //  各行動を取っているかの判定フラグ
     public bool isJumping = false;
-    private bool isCurving = false;
+    private bool _isCurving = false;
     //  今いるレーンを判定するためのint値
     //  0が一番左、5が一番右の合計6レーン
-    public int _laneNamber;
+    public int laneNamber;
 
     //  試遊会直前追加分
-    private bool isMoving = false;
-    private bool isKeyUp = true;
+    private bool _isMoving = false;
+    private bool _isKeyUp = true;
     public bool canRightMove = true;
     public bool canLeftMove = true;
 
     [SerializeField]
-    private DogMoving dogMoving;
+    private DogMoving _dogMoving;
 
-    private ISPlayerMove ISPlayerMove;
+    private ISPlayerMove _ISPlayerMove;
     [SerializeField]
     private Transform _playerTransform;
-
     private Vector3 _playerGoToPos;
+
+
+    [SerializeField]
+    private Transform _stickUIMini;
+    private Vector2 _stickUIMiniPos;
+
 
     private enum MoveType
     {
@@ -58,13 +63,16 @@ public class StandMoving : MonoBehaviour
     bool salmonJumping = false;
     */
 
+    /// <summary>
+    /// Scene 開始処理
+    /// </summary>
     void Start()
     {
         standRB = GetComponent<Rigidbody>();
         dogStatus = GetComponent<DogStatus>();
 
-        ISPlayerMove = new ISPlayerMove();
-        ISPlayerMove.Enable();
+        _ISPlayerMove = new ISPlayerMove();
+        _ISPlayerMove.Enable();
 
         //  コントローラー接続振り分け
         _connectGamepad = Gamepad.all[_connectGamepadNum];
@@ -72,12 +80,12 @@ public class StandMoving : MonoBehaviour
         //  マグロ
         if(_connectGamepadNum == 0)
         {
-            _laneNamber = 1;
+            laneNamber = 1;
         }
         //  サーモン
         else if(_connectGamepadNum == 1)
         {
-            _laneNamber = 5;
+            laneNamber = 5;
         }
 
         /*
@@ -87,7 +95,7 @@ public class StandMoving : MonoBehaviour
         salmonJump = ISPlayerMove.DebugSalmon.Jump;
         */
 
-        Debug.Log(_connectGamepad);
+        _stickUIMiniPos = _stickUIMini.position;
     }
 
     // Update is called once per frame
@@ -96,10 +104,10 @@ public class StandMoving : MonoBehaviour
         PlayerMove();
         PlayerJump();
 
-        dogMoving.isJumping = isJumping;
+        _dogMoving.isJumping = isJumping;
 
         //  「カーブ中」なら、
-        if (isCurving)
+        if (_isCurving)
             CurveMoveLimit(dogStatus._maxMoveLimit);
     }
 
@@ -161,44 +169,53 @@ public class StandMoving : MonoBehaviour
     private void PlayerMove()
     {
         
-        //  「移動中」でなく、
-        if (!isMoving)
+        //  「移動中」でなく、「ジャンプ中」でなければ
+        if (!_isMoving && !isJumping)
         {
             //  「入力中」でなければ
-            if (isKeyUp)
+            if (_isKeyUp)
             {
-                //  InputSystem の value を読み込む
-                //  逐一 inputVal を読み込まないと、一度移動して死ぬ。なぜ。
-                //var inputVal = dogController.Player.Move.ReadValue<Vector2>();
-                //inputVal.y = 0;
                 float inputX = 0;
                 if (_connectGamepad != null)
                 {
+                    //  InputSystem の value を読み込む
                     inputX = _connectGamepad.leftStick.x.ReadValue();
                 }
                 //  横の入力があれば
                 if (inputX != 0)
                 {
                     //  「入力中」に
-                    isKeyUp = false;
-                    //  12/15/作業の続きはここから！！！
+                    _isKeyUp = false;
                     //  現在の position から、それぞれに応じた移動幅を加算
                     _playerGoToPos = _playerTransform.position;
                     
 
                     //  右移動
-                    if (inputX > 0 && canRightMove)
+                    if (inputX > 0)
                     {
-                        _playerGoToPos += _addVector[MoveType.Right];
-                        _laneNamber++;
-                        _laneNamber = Mathf.Min(_laneNamber, 5);
-                    }
+                        //  スティック入力のUI操作
+                        _stickUIMiniPos = new Vector2(20f, 0);
+                        _stickUIMini.transform.localPosition = _stickUIMiniPos;
+
+                        if (canRightMove)
+                        {
+                            _playerGoToPos += _addVector[MoveType.Right];
+                            laneNamber++;
+                            laneNamber = Mathf.Min(laneNamber, 5);
+                        }}
                     //  左移動
-                    else if (inputX < 0 && canLeftMove)
+                    else if (inputX < 0)
                     {
-                        _playerGoToPos += _addVector[MoveType.Left];
-                        _laneNamber--;
-                        _laneNamber = Mathf.Max(0, _laneNamber);
+                        //  スティック入力のUI操作
+                        _stickUIMiniPos = new Vector2(-20f, 0);
+                        _stickUIMini.transform.localPosition = _stickUIMiniPos;
+
+                        if (canLeftMove)
+                        {
+                            _playerGoToPos += _addVector[MoveType.Left];
+                            laneNamber--;
+                            laneNamber = Mathf.Max(0, laneNamber);
+                        }
                     }
                     //if(canRightMove && canLeftMove)
                     StartCoroutine(MoveCor());
@@ -211,9 +228,11 @@ public class StandMoving : MonoBehaviour
                 float inputX = _connectGamepad.leftStick.x.ReadValue();
                 if (inputX == 0)
                 {
-                    isKeyUp = true;
+                    _isKeyUp = true;
                     canLeftMove = true;
                     canRightMove = true;
+
+                    _stickUIMini.transform.localPosition = Vector3.zero;
                 }
             }
         }
@@ -244,7 +263,7 @@ public class StandMoving : MonoBehaviour
     private IEnumerator MoveCor()
     {
         //  「移動中」に
-        isMoving = true;
+        _isMoving = true;
         //  _moveTimer 秒経ったら終わる繰り返し処理
         //  1fと書いてはいるが、1秒で終わるわけではない。
         float actionTimer = 0f;
@@ -259,6 +278,6 @@ public class StandMoving : MonoBehaviour
             yield return null;
         }
         //  「移動中」を false に
-        isMoving = false;
+        _isMoving = false;
     }
 }
