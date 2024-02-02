@@ -19,6 +19,12 @@ public class GoalManager : MonoBehaviour
 
     [SerializeField]
     private FadeManager _fadeManager;
+
+    [SerializeField]
+    private Animator _maguroanimator;
+
+    [SerializeField]
+    private Animator _salmonanimator;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,7 +39,11 @@ public class GoalManager : MonoBehaviour
 
     async private void OnTriggerEnter(Collider other)
     {
-       _goalText.SetActive(true);
+
+        _salmonanimator.SetBool("GoalJump", false);
+        _maguroanimator.SetBool("GoalJump", false);
+
+        _goalText.SetActive(true);
 
         _seManager.Play(1);
 

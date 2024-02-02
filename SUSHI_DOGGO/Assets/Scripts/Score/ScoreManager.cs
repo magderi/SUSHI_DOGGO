@@ -42,6 +42,23 @@ public class ScoreManager : MonoBehaviour
     [SerializeField]
     private GameObject _buttonImage;
 
+    [SerializeField]
+    private GameObject _syouyu1;
+
+    [SerializeField]
+    private GameObject _syouyu2;
+
+    [SerializeField]
+    private GameObject _syouyu3;
+
+    public bool _boolsoyHi;
+
+    public bool _boolsoyMiddle;
+
+    public bool _boolsoyLow;
+
+  
+
     // Start is called before the first frame update
     void Start()
    {
@@ -59,7 +76,7 @@ public class ScoreManager : MonoBehaviour
 
         await UniTask.Delay(TimeSpan.FromSeconds(2));
 
-        ScoreCheck();
+        ScoreCheck();    
     }
 
     async private void ScoreCheck()
@@ -68,33 +85,45 @@ public class ScoreManager : MonoBehaviour
         {
             _seManager.Play(1);
             _sImage.SetActive(true);
-            await UniTask.Delay(TimeSpan.FromSeconds(2));            
+            await UniTask.Delay(TimeSpan.FromSeconds(2));
+            _syouyu1.SetActive(true);
+            _syouyu2.SetActive(true);
+            _syouyu3.SetActive(true);
             _highImage.SetActive(true);
             _buttonImage.SetActive(true);
+            _boolsoyHi = true;
         }
         else if (GlobalVariables.score >= 140)
-        {
+        {       
             _seManager.Play(1);
             _aImage.SetActive(true);
             await UniTask.Delay(TimeSpan.FromSeconds(2));
+            _syouyu1.SetActive(true);
+            _syouyu2.SetActive(true);
             _midleImage.SetActive(true);
             _buttonImage.SetActive(true);
+            _boolsoyMiddle = true;
         }
         else if (GlobalVariables.score >= 80)
         {
             _seManager.Play(1);
             _bImage.SetActive(true);
             await UniTask.Delay(TimeSpan.FromSeconds(2));
+            _syouyu1.SetActive(true);
+            _syouyu2.SetActive(true);
             _midleImage.SetActive(true);
             _buttonImage.SetActive(true);
+            _boolsoyMiddle = true;
         }
         else
-        {
+        {      
             _seManager.Play(1);
             _dImage.SetActive(true);            
             await UniTask.Delay(TimeSpan.FromSeconds(2));
+            _syouyu1.SetActive(true);
             _lowImage.SetActive(true);
             _buttonImage.SetActive(true);
+            _boolsoyLow = true;
         }
     }
 }

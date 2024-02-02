@@ -8,21 +8,50 @@ using UnityEngine.UI;
 
 public class ScoreKeyPressAndHold : MonoBehaviour
 {
-   // [SerializeField]
+    // [SerializeField]
     //private Animator _salmonAnim;
 
     //[SerializeField]
-   // private Animator _maguroAnim;
-
-  
+    // private Animator _maguroAnim;
 
     [SerializeField]
-    private GameObject _Uicanvs;
+    private GameObject _syouyu1;
+
+    [SerializeField]
+    private GameObject _syouyu2;
+
+    [SerializeField]
+    private GameObject _syouyu3;
+
+    [SerializeField]
+    private GameObject _button;
 
     [SerializeField]
     private SE_Manager _seManager;
 
-  
+    [SerializeField]
+    private SE_Manager2 _seManager2;
+
+    [SerializeField]
+    private ScoreManager _scoreManager;
+
+    [SerializeField]
+    private Canvas _canvas;
+
+    [SerializeField]
+    private ParticleSystem _soyHi;
+
+    [SerializeField]
+    private ParticleSystem _soyMiddle;
+
+    [SerializeField]
+    private ParticleSystem _soyLow;
+
+    [SerializeField]
+    private Animator _maguroAnimator;
+
+    [SerializeField]
+    private Animator _salmonAnimator;
 
     public KeyCode targetKey = KeyCode.A;       // Ŀ��E���E
     public Image circleEffect;                  // Χ�ư���E�Ȧ��UI Image
@@ -83,16 +112,16 @@ public class ScoreKeyPressAndHold : MonoBehaviour
 
                 //_salmonAnim.SetTrigger("WakeUp");
 
-                _Uicanvs.SetActive(false);
+                _button.SetActive(false);
 
 
-                 
+                SoysauceDog();
 
                 //  _fadeManager.fadeout = true;
 
                 // StartCoroutine( _bgmManager.fadeVolue());
 
-                LoadNextScene();
+              
             }
         }
     }
@@ -110,5 +139,75 @@ public class ScoreKeyPressAndHold : MonoBehaviour
         await UniTask.Delay(TimeSpan.FromSeconds(0.5));
         // ������һ������
         SceneManager.LoadScene(nextSceneName);
+    }    
+
+    async public void SoysauceDog()
+    {
+        await UniTask.Delay(TimeSpan.FromSeconds(0.5));
+
+        // UI非表示
+        _canvas.enabled = false;
+
+        _seManager.Play(3);
+
+        await UniTask.Delay(TimeSpan.FromSeconds(3));
+
+        _seManager.Play(4);
+
+        if (_scoreManager._boolsoyHi)
+        {
+
+            _seManager.Play(5);
+           // _seManager2.Play(0);
+            _soyHi.Play();
+            await UniTask.Delay(TimeSpan.FromSeconds(0.5));
+            _maguroAnimator.SetTrigger("Joy");
+            _salmonAnimator.SetTrigger("Joy");
+            _syouyu1.SetActive(false);
+            await UniTask.Delay(TimeSpan.FromSeconds(1));
+            _syouyu2.SetActive(false);
+            await UniTask.Delay(TimeSpan.FromSeconds(1));
+            _syouyu3.SetActive(false);
+            await UniTask.Delay(TimeSpan.FromSeconds(1));
+            _maguroAnimator.SetTrigger("Run");
+            _salmonAnimator.SetTrigger("Run");
+            await UniTask.Delay(TimeSpan.FromSeconds(3));
+            LoadNextScene();
+        }
+        else if (_scoreManager._boolsoyMiddle)
+        {
+           
+            _seManager.Play(6);
+            _soyMiddle.Play();
+            await UniTask.Delay(TimeSpan.FromSeconds(0.5));
+            _maguroAnimator.SetTrigger("Joy");
+            _salmonAnimator.SetTrigger("Joy");
+            _syouyu1.SetActive(false);
+            await UniTask.Delay(TimeSpan.FromSeconds(1));
+            _syouyu2.SetActive(false);
+            await UniTask.Delay(TimeSpan.FromSeconds(2));
+            _maguroAnimator.SetTrigger("Run");
+            _salmonAnimator.SetTrigger("Run");
+            await UniTask.Delay(TimeSpan.FromSeconds(3));
+            LoadNextScene();
+        }
+        else
+        {
+  
+            _seManager.Play(7);
+            _soyLow.Play();
+            await UniTask.Delay(TimeSpan.FromSeconds(0.5));
+            _syouyu1.SetActive(false);
+            _maguroAnimator.SetTrigger("Sad");
+            _salmonAnimator.SetTrigger("Sad");
+            await UniTask.Delay(TimeSpan.FromSeconds(3));
+          
+            _maguroAnimator.SetTrigger("Run");
+            _salmonAnimator.SetTrigger("Run");
+            await UniTask.Delay(TimeSpan.FromSeconds(3));
+            LoadNextScene();
+        }
+
+
     }
 }
