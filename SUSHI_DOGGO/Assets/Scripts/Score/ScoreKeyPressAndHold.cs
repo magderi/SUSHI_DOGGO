@@ -134,12 +134,19 @@ public class ScoreKeyPressAndHold : MonoBehaviour
         circleEffect.fillAmount = 0f;
     }
 
-    async public void LoadNextScene()
+    async public void LoadNextSceneShort()
     {
         await UniTask.Delay(TimeSpan.FromSeconds(0.5));
         // ������һ������
         SceneManager.LoadScene(nextSceneName);
-    }    
+    }
+
+    async public void LoadNextSceneLong()
+    {
+        await UniTask.Delay(TimeSpan.FromSeconds(8));
+        // ������һ������
+        SceneManager.LoadScene(nextSceneName);
+    }
 
     async public void SoysauceDog()
     {
@@ -172,7 +179,7 @@ public class ScoreKeyPressAndHold : MonoBehaviour
             _maguroAnimator.SetTrigger("Run");
             _salmonAnimator.SetTrigger("Run");
             await UniTask.Delay(TimeSpan.FromSeconds(3));
-            LoadNextScene();
+            LoadNextSceneLong();
         }
         else if (_scoreManager._boolsoyMiddle)
         {
@@ -189,7 +196,7 @@ public class ScoreKeyPressAndHold : MonoBehaviour
             _maguroAnimator.SetTrigger("Run");
             _salmonAnimator.SetTrigger("Run");
             await UniTask.Delay(TimeSpan.FromSeconds(3));
-            LoadNextScene();
+            LoadNextSceneLong();
         }
         else
         {
@@ -205,7 +212,7 @@ public class ScoreKeyPressAndHold : MonoBehaviour
             _maguroAnimator.SetTrigger("Run");
             _salmonAnimator.SetTrigger("Run");
             await UniTask.Delay(TimeSpan.FromSeconds(3));
-            LoadNextScene();
+            LoadNextSceneShort();
         }
 
 
