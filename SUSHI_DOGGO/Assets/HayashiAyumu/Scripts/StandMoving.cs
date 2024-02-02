@@ -40,8 +40,8 @@ public class StandMoving : MonoBehaviour
     private Dictionary<MoveType, Vector3> _addVector = new Dictionary<MoveType, Vector3>()
     {
         //  Xのfloatが移動幅
-        { MoveType.Left, new Vector3(-1.1f, 0, 0) },
-        { MoveType.Right, new Vector3(1.1f, 0, 0) },
+        { MoveType.Left, new Vector3(-1.17f, 0, 0) },
+        { MoveType.Right, new Vector3(1.17f, 0, 0) },
     };
 
     [SerializeField]
@@ -69,15 +69,15 @@ public class StandMoving : MonoBehaviour
         //  コントローラー接続振り分け
         _connectGamepad = Gamepad.all[_connectGamepadNum];
 
-        //  マグロ
+        //  サーモン
         if(_connectGamepadNum == 0)
         {
             _laneNamber = 1;
         }
-        //  サーモン
+        //  マグロ
         else if(_connectGamepadNum == 1)
         {
-            _laneNamber = 5;
+            _laneNamber = 4;
         }
 
         /*
