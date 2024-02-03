@@ -1,4 +1,4 @@
-﻿using Cysharp.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -53,10 +53,10 @@ public class ScoreKeyPressAndHold : MonoBehaviour
     [SerializeField]
     private Animator _salmonAnimator;
 
-    public KeyCode targetKey = KeyCode.A;       // Ŀ��E���E
-    public Image circleEffect;                  // Χ�ư���E�Ȧ��UI Image
-    public float holdDuration = 3f;             // ��ס������ʱ�䣨ÁE�
-    public string nextSceneName = "YourScene";  // ��һ������������
+    public KeyCode targetKey = KeyCode.A;       // ???E???E
+    public Image circleEffect;                  // ��?????E????UI Image
+    public float holdDuration = 3f;             // ?????????????E?
+    public string nextSceneName = "YourScene";  // ???????????????
 
     private bool isPressing = false;
     private float pressStartTime;
@@ -99,11 +99,11 @@ public class ScoreKeyPressAndHold : MonoBehaviour
 
             float pressDuration = Time.time - pressStartTime;
 
-            // ��E�ԲȦ��������
+            // ??E???????????
             float fillAmount = Mathf.Clamp01(pressDuration / holdDuration);
             circleEffect.fillAmount = fillAmount;
 
-            // �����סʱ�䳬��ָ������ʱ�䣬������һ������
+            // ??????????????????????????????????
             if (pressDuration >= holdDuration)
             {
                 _seManager.Play(2);
@@ -130,14 +130,14 @@ public class ScoreKeyPressAndHold : MonoBehaviour
     {
         isPressing = false;
 
-        // ����ԲȦ��������
+        // ??????????????
         circleEffect.fillAmount = 0f;
     }
 
     async public void LoadNextScene()
     {
         await UniTask.Delay(TimeSpan.FromSeconds(0.5));
-        // ������һ������
+        // ?????????????
         SceneManager.LoadScene(nextSceneName);
     }    
 
@@ -145,7 +145,7 @@ public class ScoreKeyPressAndHold : MonoBehaviour
     {
         await UniTask.Delay(TimeSpan.FromSeconds(0.5));
 
-        // UI非表示
+        // UI�Ǳ�ʾ
         _canvas.enabled = false;
 
         _seManager.Play(3);
