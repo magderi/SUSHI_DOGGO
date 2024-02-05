@@ -39,6 +39,9 @@ public class ScoreKeyPressAndHold : MonoBehaviour
     private Canvas _canvas;
 
     [SerializeField]
+    private GameObject _syouyuUI;
+
+    [SerializeField]
     private ParticleSystem _soyHi;
 
     [SerializeField]
@@ -136,14 +139,14 @@ public class ScoreKeyPressAndHold : MonoBehaviour
 
     async public void LoadNextSceneShort()
     {
-        await UniTask.Delay(TimeSpan.FromSeconds(0.5));
+        await UniTask.Delay(TimeSpan.FromSeconds(3));
         // ������һ������
         SceneManager.LoadScene(nextSceneName);
     }
 
     async public void LoadNextSceneLong()
     {
-        await UniTask.Delay(TimeSpan.FromSeconds(8));
+        await UniTask.Delay(TimeSpan.FromSeconds(4));
         // ������һ������
         SceneManager.LoadScene(nextSceneName);
     }
@@ -154,6 +157,9 @@ public class ScoreKeyPressAndHold : MonoBehaviour
 
         // UI非表示
         _canvas.enabled = false;
+
+        // 醤油UI表示
+        _syouyuUI.SetActive(true);
 
         _seManager.Play(3);
 
@@ -189,9 +195,9 @@ public class ScoreKeyPressAndHold : MonoBehaviour
             await UniTask.Delay(TimeSpan.FromSeconds(0.5));
             _maguroAnimator.SetTrigger("Joy");
             _salmonAnimator.SetTrigger("Joy");
-            _syouyu1.SetActive(false);
-            await UniTask.Delay(TimeSpan.FromSeconds(1));
             _syouyu2.SetActive(false);
+            await UniTask.Delay(TimeSpan.FromSeconds(1));
+            _syouyu3.SetActive(false);
             await UniTask.Delay(TimeSpan.FromSeconds(2));
             _maguroAnimator.SetTrigger("Run");
             _salmonAnimator.SetTrigger("Run");
@@ -204,7 +210,7 @@ public class ScoreKeyPressAndHold : MonoBehaviour
             _seManager.Play(7);
             _soyLow.Play();
             await UniTask.Delay(TimeSpan.FromSeconds(0.5));
-            _syouyu1.SetActive(false);
+            _syouyu3.SetActive(false);
             _maguroAnimator.SetTrigger("Sad");
             _salmonAnimator.SetTrigger("Sad");
             await UniTask.Delay(TimeSpan.FromSeconds(3));
