@@ -71,7 +71,7 @@ public class SushiScoreMove : MonoBehaviour
             float elapsedTime = Time.time - startTime;
 
             // ‰ñ“]‚Ìis“x‡‚¢‚ğŒvZ
-            float fractionOfJourney = Mathf.Clamp01(elapsedTime / 1f); // 1•b‚©‚¯‚Ä‰ñ“]‚·‚é
+            float fractionOfJourney = Mathf.Clamp01(elapsedTime * 1f); // 1•b‚©‚¯‚Ä‰ñ“]‚·‚é
 
             // ‰ñ“]‚ğ•âŠÔ
             transform.rotation = Quaternion.Slerp(startRotation, targetRotation, fractionOfJourney);

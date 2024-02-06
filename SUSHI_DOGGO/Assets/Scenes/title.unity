@@ -3869,7 +3869,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
-  destroyTime: 30
+  destroyTime: 50
 --- !u!114 &5773754240457689715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3883,7 +3883,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  destroyTime: 30
+  destroyTime: 50
 --- !u!114 &5773754241012928532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3897,7 +3897,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 6
-  destroyTime: 30
+  destroyTime: 50
 --- !u!4 &5986577794626469483
 Transform:
   m_ObjectHideFlags: 0

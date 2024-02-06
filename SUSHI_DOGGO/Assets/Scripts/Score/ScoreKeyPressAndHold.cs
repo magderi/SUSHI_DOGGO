@@ -139,14 +139,14 @@ public class ScoreKeyPressAndHold : MonoBehaviour
 
     async public void LoadNextSceneShort()
     {
-        await UniTask.Delay(TimeSpan.FromSeconds(3));
+        await UniTask.Delay(TimeSpan.FromSeconds(0.5));
         // ������һ������
         SceneManager.LoadScene(nextSceneName);
     }
 
     async public void LoadNextSceneLong()
     {
-        await UniTask.Delay(TimeSpan.FromSeconds(4));
+        await UniTask.Delay(TimeSpan.FromSeconds(3));
         // ������һ������
         SceneManager.LoadScene(nextSceneName);
     }
@@ -215,9 +215,9 @@ public class ScoreKeyPressAndHold : MonoBehaviour
             _salmonAnimator.SetTrigger("Sad");
             await UniTask.Delay(TimeSpan.FromSeconds(3));
           
-            _maguroAnimator.SetTrigger("Run");
-            _salmonAnimator.SetTrigger("Run");
-            await UniTask.Delay(TimeSpan.FromSeconds(3));
+          //  _maguroAnimator.SetTrigger("Run");
+         //   _salmonAnimator.SetTrigger("Run");
+          //  await UniTask.Delay(TimeSpan.FromSeconds(3));
             LoadNextSceneShort();
         }
 
