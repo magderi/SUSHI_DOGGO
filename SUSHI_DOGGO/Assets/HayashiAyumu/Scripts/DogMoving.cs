@@ -7,6 +7,9 @@ using UnityEngine.InputSystem;
 
 public class DogMoving : MonoBehaviour
 {
+    public SE_Manager _seManager;
+
+
     private DogStatus dogStatus;
     public Rigidbody dogRB;
     [SerializeField]
@@ -68,34 +71,44 @@ public class DogMoving : MonoBehaviour
     }
 
     // 寿司犬ダメージ関数
-   public void SalmonDogDamageAnim()
+   async public void SalmonDogDamageAnim()
    {
-        _sushiSalmonAnim.SetTrigger("SushiDamage");
-
+        _sushiSalmonAnim.SetBool("SushiDamage", true);
+        await UniTask.Delay(TimeSpan.FromSeconds(0.1));
+        _sushiSalmonAnim.SetBool("SushiDamage", false);
         _gameManager._scoreSalmonJudgement = false;
     }
     // 寿司犬ダメージ関数
-    public void MaguroDogDamageAnim()
+   async public void MaguroDogDamageAnim()
    {
-        _sushiMaguroAnim.SetTrigger("SushiDamage");
-
+        _sushiMaguroAnim.SetBool("SushiDamage", true);
+        await UniTask.Delay(TimeSpan.FromSeconds(0.1));
+        _sushiMaguroAnim.SetBool("SushiDamage", false);
         _gameManager._scoreMaguroJudgement = false;
    }
 
     // 寿司犬つんのめり関数
-    public void SalmonDogNGJumpAnim()
+    async public void SalmonDogNGJumpAnim()
     {
-        _sushiSalmonAnim.SetTrigger("JumpNG");
+        _sushiSalmonAnim.SetBool("JumpNG", true);
 
-       // _gameManager._scoreSalmonJudgement = false;
+        _seManager.Play(6);
+        await UniTask.Delay(TimeSpan.FromSeconds(0.5));
+        _sushiSalmonAnim.SetBool("JumpNG", false);
+    
+        // _gameManager._scoreSalmonJudgement = false;
     }
 
 
     // 寿司犬つんのめり関数
-    public void MaguroDogNGJumpAnim()
+    async public void MaguroDogNGJumpAnim()
     {
-        _sushiMaguroAnim.SetTrigger("JumpNG");
+        _sushiMaguroAnim.SetBool("JumpNG",true);
+       
+        _seManager.Play(6);
 
+        await UniTask.Delay(TimeSpan.FromSeconds(0.5));
+        _sushiMaguroAnim.SetBool("JumpNG", false);
         //_gameManager._scoreMaguroJudgement = false;
     }
 
