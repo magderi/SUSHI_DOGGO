@@ -173,7 +173,7 @@ public class ScoreKeyPressAndHold : MonoBehaviour
             _seManager.Play(5);
            
             _soyHi.Play();
-            await UniTask.Delay(TimeSpan.FromSeconds(0.5));
+            await UniTask.Delay(TimeSpan.FromSeconds(2));
             _seManager2.Play(1);
             _maguroAnimator.SetTrigger("Joy");
             _salmonAnimator.SetTrigger("Joy");
@@ -193,7 +193,7 @@ public class ScoreKeyPressAndHold : MonoBehaviour
            
             _seManager.Play(6);
             _soyMiddle.Play();
-            await UniTask.Delay(TimeSpan.FromSeconds(0.5));
+            await UniTask.Delay(TimeSpan.FromSeconds(2));
             _seManager2.Play(1);
             _maguroAnimator.SetTrigger("Joy");
             _salmonAnimator.SetTrigger("Joy");
