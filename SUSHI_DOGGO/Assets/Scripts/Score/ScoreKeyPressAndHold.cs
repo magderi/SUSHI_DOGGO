@@ -207,8 +207,9 @@ public class ScoreKeyPressAndHold : MonoBehaviour
         }
         else
         {
+            await UniTask.Delay(TimeSpan.FromSeconds(0.6));
             _soyLow.Play();          
-            await UniTask.Delay(TimeSpan.FromSeconds(1.2));
+            await UniTask.Delay(TimeSpan.FromSeconds(0.6));
             _seManager.Play(7);
             await UniTask.Delay(TimeSpan.FromSeconds(0.5));
             _seManager2.Play(2);
