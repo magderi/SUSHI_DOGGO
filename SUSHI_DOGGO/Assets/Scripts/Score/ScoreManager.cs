@@ -86,6 +86,7 @@ public class ScoreManager : MonoBehaviour
             _seManager.Play(1);
             _sImage.SetActive(true);
             await UniTask.Delay(TimeSpan.FromSeconds(2));
+            _seManager.Play(1);
             _syouyu1.SetActive(true);
             _syouyu2.SetActive(true);
             _syouyu3.SetActive(true);
@@ -98,6 +99,7 @@ public class ScoreManager : MonoBehaviour
             _seManager.Play(1);
             _aImage.SetActive(true);
             await UniTask.Delay(TimeSpan.FromSeconds(2));
+            _seManager.Play(1);
             _syouyu2.SetActive(true);
             _syouyu3.SetActive(true);
             _midleImage.SetActive(true);
@@ -109,6 +111,7 @@ public class ScoreManager : MonoBehaviour
             _seManager.Play(1);
             _bImage.SetActive(true);
             await UniTask.Delay(TimeSpan.FromSeconds(2));
+            _seManager.Play(1);
             _syouyu2.SetActive(true);
             _syouyu3.SetActive(true);
             _midleImage.SetActive(true);
@@ -120,6 +123,7 @@ public class ScoreManager : MonoBehaviour
             _seManager.Play(1);
             _dImage.SetActive(true);            
             await UniTask.Delay(TimeSpan.FromSeconds(2));
+            _seManager.Play(1);
             _syouyu3.SetActive(true);
             _lowImage.SetActive(true);
             _buttonImage.SetActive(true);
