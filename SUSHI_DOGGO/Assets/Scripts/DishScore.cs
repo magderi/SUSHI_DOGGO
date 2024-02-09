@@ -11,7 +11,7 @@ public class DishScore : MonoBehaviour
 
     public static class GlobalVariables
     {
-        public static int score=180;
+        public static int score=100;
     }
 
     private void Update()
