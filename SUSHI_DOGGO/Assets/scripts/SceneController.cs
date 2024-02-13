@@ -20,7 +20,7 @@ public class SceneController : MonoBehaviour
         scoreText.gameObject.SetActive(false);
         targetScore = Random.Range(0, 201);
 
-        // ÑÓ³Ù1ÃëºóÏÔÊ¾Í¼Æ¬0
+        // ÑÓ³Ù1ÃEóÏÔÊ¾Í¼Æ¬0
         Invoke("ShowImage0", 1f);
     }
 
@@ -30,7 +30,7 @@ public class SceneController : MonoBehaviour
         imagesToShow[0].gameObject.SetActive(true);
         imagesToShow[7].gameObject.SetActive(true);
 
-        // ÑÓ³Ù1ÃëºóÏÔÊ¾·ÖÊıÎÄ±¾
+        // ÑÓ³Ù1ÃEóÏÔÊ¾·ÖÊıÎÄ±¾
         Invoke("ShowScore", 1f);
     }
 
@@ -57,10 +57,10 @@ public class SceneController : MonoBehaviour
             yield return null;
         }
 
-        // È·±£×îÖÕ·ÖÊıÊÇ¾«È·µÄÄ¿±ê·ÖÊı
+        // È·±£×ûòÕ·ÖÊıÊÇ¾«È·µÄÄ¿±EÖÊı
         scoreText.text = targetScore.ToString();
 
-        // ÑÓ³Ù1Ãëºó¸ù¾İ·ÖÊı·¶Î§Ñ¡ÔñÒªÏÔÊ¾µÄÍ¼Æ¬
+        // ÑÓ³Ù1ÃEó¸ù¾İ·ÖÊı·¶Î§Ñ¡ÔñÒªÏÔÊ¾µÄÍ¼Æ¬
         Invoke("ShowImagesByScore", 1f);
     }
 
@@ -92,7 +92,7 @@ public class SceneController : MonoBehaviour
     }
     void PlayBGM()
     {
-        // ¼ì²éÊÇ·ñÓĞAudioSourceºÍÒôÆµÎÄ¼ş
+        // ¼EéÊÇ·ñÓĞAudioSourceºÍÒôÆµÎÄ¼ş
         if (bgmAudioSource != null && bgmAudioSource.clip != null)
         {
             // ²¥·ÅBGM
@@ -100,7 +100,7 @@ public class SceneController : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("ÇëÔÚInspectorÃæ°åÖĞ·ÖÅäAudioSourceºÍÒôÆµÎÄ¼ş£¡");
+            Debug.LogWarning("ÇEÚInspectorÃæ°åÖĞ·ÖÅäAudioSourceºÍÒôÆµÎÄ¼ş£¡");
         }
         Invoke("ShowImagesByScore1", 1f);
     }

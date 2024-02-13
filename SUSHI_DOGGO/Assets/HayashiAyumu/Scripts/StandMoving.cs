@@ -10,12 +10,11 @@ public class StandMoving : MonoBehaviour
 
     //  各行動を取っているかの判定フラグ
     public bool isJumping = false;
-    private bool _isCurving = false;
+
     //  今いるレーンを判定するためのint値
     //  0が一番左、5が一番右の合計6レーン
     public int laneNamber;
 
-    //  試遊会直前追加分
     private bool _isMoving = false;
     private bool _isKeyUp = true;
     public bool canRightMove = true;
@@ -56,12 +55,6 @@ public class StandMoving : MonoBehaviour
     [SerializeField]
     private SushiJump sushiJump;
 
-    /*
-    //  デバック時に使用する変数たち(バグ発生中)
-    private InputAction tunaJump = null;
-    private InputAction salmonJump = null;
-    bool salmonJumping = false;
-    */
 
     /// <summary>
     /// Scene 開始処理
@@ -105,10 +98,11 @@ public class StandMoving : MonoBehaviour
         PlayerJump();
 
         _dogMoving.isJumping = isJumping;
-
+        /*
         //  「カーブ中」なら、
         if (_isCurving)
             CurveMoveLimit(dogStatus._maxMoveLimit);
+        */
     }
 
     public void PlayerJump()
@@ -118,6 +112,7 @@ public class StandMoving : MonoBehaviour
             //  コントローラー接続時のジャンプ
             if (_connectGamepad != null)
             {
+                //  キーボードの下にあるボタン(XBOXならAボタン)を押したかの判定
                 bool inputPress = _connectGamepad.buttonSouth.wasPressedThisFrame;
                 if(inputPress)
                 {
@@ -136,30 +131,6 @@ public class StandMoving : MonoBehaviour
                         sushiJump.isMaguroJump = false;
                 }
             }
-            /*
-            //  デバック用(キーボード操作)
-            else
-            {
-                bool tunaJumping = tunaJump.WasPressedThisFrame();
-                if (tunaJumping)
-                {
-                    sushiJump.isMaguroJump = true;
-                }
-                else
-                {
-                    sushiJump.isMaguroJump = false;
-                }
-
-                salmonJumping = salmonJump.WasPressedThisFrame();
-                if (salmonJumping)
-                {
-                    sushiJump.isSalmonJump = true;
-                }
-                else
-                {
-                    sushiJump.isSalmonJump = false;
-                }
-            }*/
         }
     }
 
@@ -238,6 +209,7 @@ public class StandMoving : MonoBehaviour
         }
     }
 
+    /*
     /// <summary>
     /// カーブ時の処理(未完成)
     /// </summary>
@@ -254,7 +226,7 @@ public class StandMoving : MonoBehaviour
                 standRB.velocity.y,
                 _currentMoveSpeed);
         }
-    }
+    }*/
 
     /// <summary>
     /// 左右の滑らかな移動コルーチン
