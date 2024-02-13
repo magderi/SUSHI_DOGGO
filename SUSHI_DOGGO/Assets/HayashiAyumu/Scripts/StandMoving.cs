@@ -10,25 +10,29 @@ public class StandMoving : MonoBehaviour
 
     //  各行動を取っているかの判定フラグ
     public bool isJumping = false;
-    private bool isCurving = false;
+
     //  今いるレーンを判定するためのint値
     //  0が一番左、5が一番右の合計6レーン
-    public int _laneNamber;
+    public int laneNamber;
 
-    //  試遊会直前追加分
-    private bool isMoving = false;
-    private bool isKeyUp = true;
+    private bool _isMoving = false;
+    private bool _isKeyUp = true;
     public bool canRightMove = true;
     public bool canLeftMove = true;
 
     [SerializeField]
-    private DogMoving dogMoving;
+    private DogMoving _dogMoving;
 
-    private ISPlayerMove ISPlayerMove;
+    private ISPlayerMove _ISPlayerMove;
     [SerializeField]
     private Transform _playerTransform;
-
     private Vector3 _playerGoToPos;
+
+
+    [SerializeField]
+    private Transform _stickUIMini;
+    private Vector2 _stickUIMiniPos;
+
 
     private enum MoveType
     {
@@ -51,20 +55,14 @@ public class StandMoving : MonoBehaviour
     [SerializeField]
     private SushiJump sushiJump;
 
-    /*
-    //  デバック時に使用する変数たち(バグ発生中)
-    private InputAction tunaJump = null;
-    private InputAction salmonJump = null;
-    bool salmonJumping = false;
-    */
 
     void Start()
     {
         standRB = GetComponent<Rigidbody>();
         dogStatus = GetComponent<DogStatus>();
 
-        ISPlayerMove = new ISPlayerMove();
-        ISPlayerMove.Enable();
+        _ISPlayerMove = new ISPlayerMove();
+        _ISPlayerMove.Enable();
 
         //  コントローラー接続振り分け
         _connectGamepad = Gamepad.all[_connectGamepadNum];
@@ -72,35 +70,29 @@ public class StandMoving : MonoBehaviour
         //  サーモン
         if(_connectGamepadNum == 0)
         {
-            _laneNamber = 1;
+            laneNamber = 1;
         }
         //  マグロ
         else if(_connectGamepadNum == 1)
         {
-            _laneNamber = 4;
+            laneNamber = 4;
         }
 
-        /*
-        //  デバック用初期設定
-        //  ここでバグが発生していて、ISPlayerMoveそのものがnullになっている。
-        tunaJump = ISPlayerMove.DebugTuna.Jump;
-        salmonJump = ISPlayerMove.DebugSalmon.Jump;
-        */
-
-        Debug.Log(_connectGamepad);
+        _stickUIMiniPos = _stickUIMini.position;
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         PlayerMove();
         PlayerJump();
 
-        dogMoving.isJumping = isJumping;
-
+        _dogMoving.isJumping = isJumping;
+        /*
         //  「カーブ中」なら、
-        if (isCurving)
+        if (_isCurving)
             CurveMoveLimit(dogStatus._maxMoveLimit);
+        */
     }
 
     public void PlayerJump()
@@ -110,6 +102,7 @@ public class StandMoving : MonoBehaviour
             //  コントローラー接続時のジャンプ
             if (_connectGamepad != null)
             {
+                //  コントローラーの下に配置されているボタン(XBOXならAボタン)を押したかの判定用
                 bool inputPress = _connectGamepad.buttonSouth.wasPressedThisFrame;
                 if(inputPress)
                 {
@@ -128,30 +121,6 @@ public class StandMoving : MonoBehaviour
                         sushiJump.isMaguroJump = false;
                 }
             }
-            /*
-            //  デバック用(キーボード操作)
-            else
-            {
-                bool tunaJumping = tunaJump.WasPressedThisFrame();
-                if (tunaJumping)
-                {
-                    sushiJump.isMaguroJump = true;
-                }
-                else
-                {
-                    sushiJump.isMaguroJump = false;
-                }
-
-                salmonJumping = salmonJump.WasPressedThisFrame();
-                if (salmonJumping)
-                {
-                    sushiJump.isSalmonJump = true;
-                }
-                else
-                {
-                    sushiJump.isSalmonJump = false;
-                }
-            }*/
         }
     }
 
@@ -161,44 +130,53 @@ public class StandMoving : MonoBehaviour
     private void PlayerMove()
     {
         
-        //  「移動中」でなく、
-        if (!isMoving)
+        //  「移動中」でなく、なおかつ「ジャンプ中」でなければ
+        if (!_isMoving && !isJumping)
         {
-            //  「入力中」でなければ
-            if (isKeyUp)
+            //  「キー入力中」でなければ
+            if (_isKeyUp)
             {
-                //  InputSystem の value を読み込む
-                //  逐一 inputVal を読み込まないと、一度移動して死ぬ。なぜ。
-                //var inputVal = dogController.Player.Move.ReadValue<Vector2>();
-                //inputVal.y = 0;
                 float inputX = 0;
                 if (_connectGamepad != null)
                 {
+                    //  InputSystem の value を読み込む
                     inputX = _connectGamepad.leftStick.x.ReadValue();
                 }
                 //  横の入力があれば
                 if (inputX != 0)
                 {
-                    //  「入力中」に
-                    isKeyUp = false;
-                    //  12/15/作業の続きはここから！！！
+                    //  「入力中」にする
+                    _isKeyUp = false;
                     //  現在の position から、それぞれに応じた移動幅を加算
                     _playerGoToPos = _playerTransform.position;
                     
 
-                    //  右移動
-                    if (inputX > 0 && canRightMove)
+                    //  ?ｿｽE?ｿｽﾚ難ｿｽ
+                    if (inputX > 0)
                     {
-                        _playerGoToPos += _addVector[MoveType.Right];
-                        _laneNamber++;
-                        _laneNamber = Mathf.Min(_laneNamber, 5);
-                    }
-                    //  左移動
-                    else if (inputX < 0 && canLeftMove)
+                        //  ?ｿｽX?ｿｽe?ｿｽB?ｿｽb?ｿｽN?ｿｽ?ｿｽ?ｿｽﾍゑｿｽUI?ｿｽ?ｿｽ?ｿｽ?ｿｽ
+                        _stickUIMiniPos = new Vector2(20f, 0);
+                        _stickUIMini.transform.localPosition = _stickUIMiniPos;
+
+                        if (canRightMove)
+                        {
+                            _playerGoToPos += _addVector[MoveType.Right];
+                            laneNamber++;
+                            laneNamber = Mathf.Min(laneNamber, 5);
+                        }}
+                    //  ?ｿｽ?ｿｽ?ｿｽﾚ難ｿｽ
+                    else if (inputX < 0)
                     {
-                        _playerGoToPos += _addVector[MoveType.Left];
-                        _laneNamber--;
-                        _laneNamber = Mathf.Max(0, _laneNamber);
+                        //  ?ｿｽX?ｿｽe?ｿｽB?ｿｽb?ｿｽN?ｿｽ?ｿｽ?ｿｽﾍゑｿｽUI?ｿｽ?ｿｽ?ｿｽ?ｿｽ
+                        _stickUIMiniPos = new Vector2(-20f, 0);
+                        _stickUIMini.transform.localPosition = _stickUIMiniPos;
+
+                        if (canLeftMove)
+                        {
+                            _playerGoToPos += _addVector[MoveType.Left];
+                            laneNamber--;
+                            laneNamber = Mathf.Max(0, laneNamber);
+                        }
                     }
                     //if(canRightMove && canLeftMove)
                     StartCoroutine(MoveCor());
@@ -206,26 +184,29 @@ public class StandMoving : MonoBehaviour
             }
             else
             {
-                //  InputSystem の value を読み込む
+                //  InputSystem ?ｿｽ?ｿｽ value ?ｿｽ?ｿｽﾇみ搾ｿｽ?ｿｽ?ｿｽ
                 //var inputVal = dogController.Player.Move.ReadValue<Vector2>();
                 float inputX = _connectGamepad.leftStick.x.ReadValue();
                 if (inputX == 0)
                 {
-                    isKeyUp = true;
+                    _isKeyUp = true;
                     canLeftMove = true;
                     canRightMove = true;
+
+                    _stickUIMini.transform.localPosition = Vector3.zero;
                 }
             }
         }
     }
 
+    /*
     /// <summary>
-    /// カーブ時の処理(未完成)
+    /// ?ｿｽJ?ｿｽ[?ｿｽu?ｿｽ?ｿｽ?ｿｽﾌ擾ｿｽ?ｿｽ?ｿｽ(?ｿｽ?ｿｽ?ｿｽ?ｿｽ?ｿｽ?ｿｽ)
     /// </summary>
     /// <param name="MaxMoveLimit"></param>
     private void CurveMoveLimit(float MaxMoveLimit)
     {
-        //  移動速度に制限をつけて滑らかに動かそうとしている...はず？
+        //  ?ｿｽﾚ難ｿｽ?ｿｽ?ｿｽ?ｿｽx?ｿｽﾉ撰ｿｽ?ｿｽ?ｿｽ?ｿｽ?ｿｽ?ｿｽﾂゑｿｽ?ｿｽﾄ奇ｿｽ?ｿｽ轤ｩ?ｿｽﾉ難ｿｽ?ｿｽ?ｿｽ?ｿｽ?ｿｽ?ｿｽ?ｿｽ?ｿｽﾆゑｿｽ?ｿｽﾄゑｿｽ?ｿｽ?ｿｽ...?ｿｽﾍゑｿｽ?ｿｽH
         float _currentMoveSpeed = standRB.velocity.z;
         if (_currentMoveSpeed > MaxMoveLimit)
         {
@@ -235,30 +216,30 @@ public class StandMoving : MonoBehaviour
                 standRB.velocity.y,
                 _currentMoveSpeed);
         }
-    }
+    }*/
 
     /// <summary>
-    /// 左右の滑らかな移動コルーチン
+    /// ?ｿｽ?ｿｽ?ｿｽE?ｿｽﾌ奇ｿｽ?ｿｽ轤ｩ?ｿｽﾈ移難ｿｽ?ｿｽR?ｿｽ?ｿｽ?ｿｽ[?ｿｽ`?ｿｽ?ｿｽ
     /// </summary>
     /// <returns></returns>
     private IEnumerator MoveCor()
     {
-        //  「移動中」に
-        isMoving = true;
-        //  _moveTimer 秒経ったら終わる繰り返し処理
-        //  1fと書いてはいるが、1秒で終わるわけではない。
+        //  ?ｿｽu?ｿｽﾚ難ｿｽ?ｿｽ?ｿｽ?ｿｽv?ｿｽ?ｿｽ
+        _isMoving = true;
+        //  _moveTimer ?ｿｽb?ｿｽo?ｿｽ?ｿｽ?ｿｽ?ｿｽ?ｿｽ?ｿｽI?ｿｽ?ｿｽ?ｿｽJ?ｿｽ?ｿｽﾔゑｿｽ?ｿｽ?ｿｽ?ｿｽ?ｿｽ
+        //  1f?ｿｽﾆ擾ｿｽ?ｿｽ?ｿｽ?ｿｽﾄはゑｿｽ?ｿｽ驍ｪ?ｿｽA1?ｿｽb?ｿｽﾅ終?ｿｽ?ｿｽ?ｿｽ墲ｯ?ｿｽﾅはなゑｿｽ?ｿｽB
         float actionTimer = 0f;
         while (actionTimer < 1f)
         {
             actionTimer += Time.deltaTime / dogStatus._moveTimer;
             actionTimer = Mathf.Min(actionTimer, 1f);
-            //  線型補間を使って道中の移動を自然に
+            //  ?ｿｽ?ｿｽ?ｿｽ^?ｿｽ?ｿｽﾔゑｿｽ?ｿｽg?ｿｽ?ｿｽ?ｿｽﾄ難ｿｽ?ｿｽ?ｿｽ?ｿｽﾌ移難ｿｽ?ｿｽ?ｿｽ?ｿｽ?ｿｽ?ｿｽR?ｿｽ?ｿｽ
             var movingPos = _playerTransform.position;
             movingPos.x = Mathf.Lerp(_playerTransform.position.x, _playerGoToPos.x, actionTimer);
             _playerTransform.position = movingPos;
             yield return null;
         }
-        //  「移動中」を false に
-        isMoving = false;
+        //  ?ｿｽu?ｿｽﾚ難ｿｽ?ｿｽ?ｿｽ?ｿｽv?ｿｽ?ｿｽ false ?ｿｽ?ｿｽ
+        _isMoving = false;
     }
 }

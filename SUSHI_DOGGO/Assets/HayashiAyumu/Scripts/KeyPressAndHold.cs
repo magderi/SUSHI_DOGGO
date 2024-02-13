@@ -48,9 +48,9 @@ public class KeyPressAndHold : MonoBehaviour
         {
             StartPress();
         }
-    
+
         ContinuePress();
-        
+
 
         if (ISPlayerMove.UI.GameStart.WasReleasedThisFrame())
         {
@@ -82,7 +82,7 @@ public class KeyPressAndHold : MonoBehaviour
 
             // �����סʱ�䳬��ָ������ʱ�䣬������һ������
             if (pressDuration >= holdDuration)
-            {              
+            {
 
                 _maguroAnim.SetTrigger("WakeUp");
 
@@ -90,13 +90,13 @@ public class KeyPressAndHold : MonoBehaviour
 
                 _Uicanvs.SetActive(false);
 
-                
-               // await UniTask.Delay(TimeSpan.FromSeconds(8));
 
-              //  _fadeManager.fadeout = true;
+                // await UniTask.Delay(TimeSpan.FromSeconds(8));
 
-               // StartCoroutine( _bgmManager.fadeVolue());
-         
+                //  _fadeManager.fadeout = true;
+
+                // StartCoroutine( _bgmManager.fadeVolue());
+
                 //LoadNextScene();
             }
         }

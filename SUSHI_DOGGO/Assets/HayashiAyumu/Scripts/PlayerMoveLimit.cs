@@ -15,8 +15,8 @@ public class PlayerMoveLimit : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        _salmonNum = salmonMoving._laneNamber;
-        _tunaNum = tunaMoving._laneNamber;
+        _salmonNum = salmonMoving.laneNamber;
+        _tunaNum = tunaMoving.laneNamber;
     }
 
     // Update is called once per frame
@@ -27,8 +27,8 @@ public class PlayerMoveLimit : MonoBehaviour
 
     private void MoveLimit()
     {
-        _salmonNum = salmonMoving._laneNamber;
-        _tunaNum = tunaMoving._laneNamber;
+        _salmonNum = salmonMoving.laneNamber;
+        _tunaNum = tunaMoving.laneNamber;
 
         //  Œİ‚¢‚ğ‰z‚µ‚Ä‚ÌˆÚ“®–h~
         if (_salmonNum >= _tunaNum - 1)
