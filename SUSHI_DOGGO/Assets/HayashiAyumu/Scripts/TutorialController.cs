@@ -27,6 +27,8 @@ public class TutorialController : MonoBehaviour
         if(isActive == false)
             this.gameObject.SetActive(true);
         tutorialImage.sprite = Tutorial1;
+
+        tutorialImage.color = Color.white;
     }
 
     // Update is called once per frame
