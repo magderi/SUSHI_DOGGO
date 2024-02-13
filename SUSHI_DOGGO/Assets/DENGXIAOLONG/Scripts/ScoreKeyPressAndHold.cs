@@ -39,6 +39,9 @@ public class ScoreKeyPressAndHold : MonoBehaviour
     private Canvas _canvas;
 
     [SerializeField]
+    private GameObject _syouyuUI;
+
+    [SerializeField]
     private ParticleSystem _soyHi;
 
     [SerializeField]
@@ -54,7 +57,7 @@ public class ScoreKeyPressAndHold : MonoBehaviour
     private Animator _salmonAnimator;
 
     public KeyCode targetKey = KeyCode.A;       // ???E???E
-    public Image circleEffect;                  // ��?????E????UI Image
+    public Image circleEffect;                  // ��?????E????UI Image
     public float holdDuration = 3f;             // ?????????????E?
     public string nextSceneName = "YourScene";  // ???????????????
 
@@ -134,19 +137,29 @@ public class ScoreKeyPressAndHold : MonoBehaviour
         circleEffect.fillAmount = 0f;
     }
 
-    async public void LoadNextScene()
+    async public void LoadNextSceneShort()
     {
         await UniTask.Delay(TimeSpan.FromSeconds(0.5));
         // ?????????????
         SceneManager.LoadScene(nextSceneName);
-    }    
+    }
+
+    async public void LoadNextSceneLong()
+    {
+        await UniTask.Delay(TimeSpan.FromSeconds(3));
+        // ������һ������
+        SceneManager.LoadScene(nextSceneName);
+    }
 
     async public void SoysauceDog()
     {
         await UniTask.Delay(TimeSpan.FromSeconds(0.5));
 
-        // UI�Ǳ�ʾ
+        // UI�Ǳ�ʾ
         _canvas.enabled = false;
+
+        // 醤油UI表示
+        _syouyuUI.SetActive(true);
 
         _seManager.Play(3);
 
@@ -156,11 +169,11 @@ public class ScoreKeyPressAndHold : MonoBehaviour
 
         if (_scoreManager._boolsoyHi)
         {
-
+            _soyHi.Play();          
+            await UniTask.Delay(TimeSpan.FromSeconds(1.2));
             _seManager.Play(5);
-           // _seManager2.Play(0);
-            _soyHi.Play();
-            await UniTask.Delay(TimeSpan.FromSeconds(0.5));
+            await UniTask.Delay(TimeSpan.FromSeconds(1));
+            _seManager2.Play(1);
             _maguroAnimator.SetTrigger("Joy");
             _salmonAnimator.SetTrigger("Joy");
             _syouyu1.SetActive(false);
@@ -172,40 +185,43 @@ public class ScoreKeyPressAndHold : MonoBehaviour
             _maguroAnimator.SetTrigger("Run");
             _salmonAnimator.SetTrigger("Run");
             await UniTask.Delay(TimeSpan.FromSeconds(3));
-            LoadNextScene();
+            LoadNextSceneLong();
         }
         else if (_scoreManager._boolsoyMiddle)
         {
-           
+            _soyMiddle.Play();         
+            await UniTask.Delay(TimeSpan.FromSeconds(1.2));
             _seManager.Play(6);
-            _soyMiddle.Play();
-            await UniTask.Delay(TimeSpan.FromSeconds(0.5));
+            await UniTask.Delay(TimeSpan.FromSeconds(1));
+            _seManager2.Play(1);
             _maguroAnimator.SetTrigger("Joy");
             _salmonAnimator.SetTrigger("Joy");
-            _syouyu1.SetActive(false);
-            await UniTask.Delay(TimeSpan.FromSeconds(1));
             _syouyu2.SetActive(false);
+            await UniTask.Delay(TimeSpan.FromSeconds(1));
+            _syouyu3.SetActive(false);
             await UniTask.Delay(TimeSpan.FromSeconds(2));
             _maguroAnimator.SetTrigger("Run");
             _salmonAnimator.SetTrigger("Run");
             await UniTask.Delay(TimeSpan.FromSeconds(3));
-            LoadNextScene();
+            LoadNextSceneLong();
         }
         else
         {
-  
+            await UniTask.Delay(TimeSpan.FromSeconds(0.6));
+            _soyLow.Play();          
+            await UniTask.Delay(TimeSpan.FromSeconds(0.6));
             _seManager.Play(7);
-            _soyLow.Play();
             await UniTask.Delay(TimeSpan.FromSeconds(0.5));
-            _syouyu1.SetActive(false);
+            _seManager2.Play(2);
+            _syouyu3.SetActive(false);
             _maguroAnimator.SetTrigger("Sad");
             _salmonAnimator.SetTrigger("Sad");
             await UniTask.Delay(TimeSpan.FromSeconds(3));
           
-            _maguroAnimator.SetTrigger("Run");
-            _salmonAnimator.SetTrigger("Run");
-            await UniTask.Delay(TimeSpan.FromSeconds(3));
-            LoadNextScene();
+          //  _maguroAnimator.SetTrigger("Run");
+         //   _salmonAnimator.SetTrigger("Run");
+          //  await UniTask.Delay(TimeSpan.FromSeconds(3));
+            LoadNextSceneShort();
         }
 
 

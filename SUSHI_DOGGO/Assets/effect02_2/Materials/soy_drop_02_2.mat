@@ -120,6 +120,30 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _MetallicMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicMap2DArray:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicMap3D:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap2DArray:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap3D:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -148,7 +172,31 @@ Material:
         m_Texture: {fileID: 2800000, guid: ef92854642b5fa34893f75bea91751c5, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SmoothnessMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SmoothnessMap2DArray:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SmoothnessMap3D:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SpecularMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SpecularMap2DArray:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SpecularMap3D:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -219,10 +267,10 @@ Material:
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DissolveSharpness: 0.5
-    - _DistortionBlend: 0.5
+    - _DistortionBlend: 0.44
     - _DistortionEnabled: 0
-    - _DistortionStrength: 1
-    - _DistortionStrengthScaled: 0.1
+    - _DistortionStrength: 4.01
+    - _DistortionStrengthScaled: 0.40100002
     - _DstBlend: 10
     - _EmissionAreaType: 0
     - _EmissionColorType: 0
@@ -249,16 +297,20 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _InverseLuminanceTransparency: 0
-    - _InverseRimTransparency: 0
+    - _InverseRimTransparency: 1
     - _InverseTintRim: 0
     - _KeepEdgeTransparency: 1
+    - _LitReceiveShadows: 0
+    - _LitWorkflowMode: 1
     - _LuminanceTransparencyEnabled: 0
     - _LuminanceTransparencyProgress: 0.5
     - _LuminanceTransparencyProgressCoord: 0
     - _LuminanceTransparencySharpness: 0.5
     - _LuminanceTransparencySharpnessCoord: 0
-    - _Metallic: 0
+    - _Metallic: 1
+    - _MetallicMapChannelsX: 0
     - _Mode: 0
+    - _NormalMapBumpScale: -5.2
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _ParallaxMapChannel: 0
@@ -275,18 +327,20 @@ Material:
     - _ReceiveShadows: 1
     - _RenderType: 2
     - _RimTransparencyEnabled: 0
-    - _RimTransparencyProgress: 0.5
+    - _RimTransparencyProgress: 0.408
     - _RimTransparencyProgressCoord: 0
-    - _RimTransparencySharpness: 0.5
+    - _RimTransparencySharpness: 0
     - _RimTransparencySharpnessCoord: 0
     - _SampleGI: 0
-    - _Smoothness: 0.5
+    - _Smoothness: 1
+    - _SmoothnessMapChannelsX: 3
     - _SmoothnessTextureChannel: 0
     - _SoftParticlesEnabled: 0
     - _SoftParticlesFarFadeDistance: 1
     - _SoftParticlesIntensity: 1
     - _SoftParticlesNearFadeDistance: 0
     - _SpecularHighlights: 1
+    - _SpecularMapChannelsX: 0
     - _SrcBlend: 5
     - _Surface: 1
     - _TintAreaMode: 0
@@ -321,5 +375,6 @@ Material:
     - _EmissionColor: {r: 0.5471698, g: 0, b: 0, a: 1}
     - _SoftParticleFadeParams: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
+    - _SpecularColor: {r: 0.6509434, g: 0.6509434, b: 0.6509434, a: 1}
     - _TintColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
