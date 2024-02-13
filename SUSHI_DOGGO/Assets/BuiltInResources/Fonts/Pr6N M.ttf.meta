@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 1e372ee9a44d2de4fb7388510b0a179d
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - FOT-UDMarugo_Large Pr6N
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 02f96f96311d9bb4a8b68c5266a7836e, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
