@@ -12,6 +12,12 @@ public class TutorialController : MonoBehaviour
     [SerializeField]
     private Sprite Tutorial2;
 
+    [SerializeField]
+    private GameObject Salmon;
+    [SerializeField]
+    private GameObject Maguro;
+
+
     private Image tutorialImage;
 
     // Start is called before the first frame update
@@ -29,6 +35,9 @@ public class TutorialController : MonoBehaviour
         tutorialImage.sprite = Tutorial1;
 
         tutorialImage.color = Color.white;
+
+        Salmon.SetActive(false);
+        Maguro.SetActive(false);
     }
 
     // Update is called once per frame
@@ -48,12 +57,20 @@ public class TutorialController : MonoBehaviour
             else if (tutorialImage.sprite == Tutorial2)
             {
                 this.gameObject.SetActive(false);
+
+                Salmon.SetActive(true);
+                Maguro.SetActive(true);
+
                 Time.timeScale = 1f;
             }
         }
         else if (ISPlayerMove.UI.Skip.WasPressedThisFrame())
         {
             this.gameObject.SetActive(false);
+
+            Salmon.SetActive(true);
+            Maguro.SetActive(true);
+
             Time.timeScale = 1f;
         }
     }
