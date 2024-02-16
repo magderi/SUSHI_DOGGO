@@ -8,11 +8,11 @@ public class StandMoving : MonoBehaviour
     private DogStatus dogStatus;
     public Rigidbody standRB;
 
-    //  ï¿½eï¿½sï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½é‚©ï¿½Ì”ï¿½ï¿½ï¿½tï¿½ï¿½ï¿½O
+    //  Šes“®‚ğæ‚Á‚Ä‚¢‚é‚©‚Ì”»’èƒtƒ‰ƒO
     public bool isJumping = false;
 
-    //  ï¿½ï¿½ï¿½ï¿½ï¿½éƒŒï¿½[ï¿½ï¿½ï¿½ğ”»’è‚·ï¿½é‚½ï¿½ß‚ï¿½intï¿½l
-    //  0ï¿½ï¿½ï¿½ï¿½Ôï¿½ï¿½A5ï¿½ï¿½ï¿½ï¿½Ô‰Eï¿½Ìï¿½ï¿½v6ï¿½ï¿½ï¿½[ï¿½ï¿½
+    //  ¡‚¢‚éƒŒ[ƒ“‚ğ”»’è‚·‚é‚½‚ß‚Ìint’l
+    //  0‚ªˆê”Ô¶A5‚ªˆê”Ô‰E‚Ì‡Œv6ƒŒ[ƒ“
     public int laneNamber;
 
     private bool _isMoving = false;
@@ -43,7 +43,7 @@ public class StandMoving : MonoBehaviour
 
     private Dictionary<MoveType, Vector3> _addVector = new Dictionary<MoveType, Vector3>()
     {
-        //  Xï¿½ï¿½floatï¿½ï¿½ï¿½Ú“ï¿½ï¿½ï¿½
+        //  X‚Ìfloat‚ªˆÚ“®•
         { MoveType.Left, new Vector3(-1.17f, 0, 0) },
         { MoveType.Right, new Vector3(1.17f, 0, 0) },
     };
@@ -56,9 +56,6 @@ public class StandMoving : MonoBehaviour
     private SushiJump sushiJump;
 
 
-    /// <summary>
-    /// Scene ï¿½Jï¿½nï¿½ï¿½ï¿½ï¿½
-    /// </summary>
     void Start()
     {
         standRB = GetComponent<Rigidbody>();
@@ -67,31 +64,24 @@ public class StandMoving : MonoBehaviour
         _ISPlayerMove = new ISPlayerMove();
         _ISPlayerMove.Enable();
 
-        //  ï¿½Rï¿½ï¿½ï¿½gï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½[ï¿½Ú‘ï¿½ï¿½Uï¿½è•ªï¿½ï¿½
+        //  ƒRƒ“ƒgƒ[ƒ‰[Ú‘±U‚è•ª‚¯
         _connectGamepad = Gamepad.all[_connectGamepadNum];
 
-        //  ï¿½Tï¿½[ï¿½ï¿½ï¿½ï¿½
+        //  ƒT[ƒ‚ƒ“
         if(_connectGamepadNum == 0)
         {
             laneNamber = 1;
         }
-        //  ï¿½}ï¿½Oï¿½ï¿½
+        //  ƒ}ƒOƒ
         else if(_connectGamepadNum == 1)
         {
-            _laneNamber = 4;
+            laneNamber = 4;
         }
-
-        /*
-        //  ï¿½fï¿½oï¿½bï¿½Nï¿½pï¿½ï¿½ï¿½ï¿½ï¿½İ’ï¿½
-        //  ï¿½ï¿½ï¿½ï¿½ï¿½Åƒoï¿½Oï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ÄAISPlayerMoveï¿½ï¿½ï¿½Ì‚ï¿½ï¿½Ì‚ï¿½nullï¿½É‚È‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½B
-        tunaJump = ISPlayerMove.DebugTuna.Jump;
-        salmonJump = ISPlayerMove.DebugSalmon.Jump;
-        */
 
         _stickUIMiniPos = _stickUIMini.position;
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         PlayerMove();
@@ -99,7 +89,7 @@ public class StandMoving : MonoBehaviour
 
         _dogMoving.isJumping = isJumping;
         /*
-        //  ï¿½uï¿½Jï¿½[ï¿½uï¿½ï¿½ï¿½vï¿½È‚ï¿½A
+        //  uƒJ[ƒu’†v‚È‚çA
         if (_isCurving)
             CurveMoveLimit(dogStatus._maxMoveLimit);
         */
@@ -109,10 +99,10 @@ public class StandMoving : MonoBehaviour
     {
         if(isJumping == false)
         {
-            //  ï¿½Rï¿½ï¿½ï¿½gï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½[ï¿½Ú‘ï¿½ï¿½ï¿½ï¿½ÌƒWï¿½ï¿½ï¿½ï¿½ï¿½v
+            //  ƒRƒ“ƒgƒ[ƒ‰[Ú‘±‚ÌƒWƒƒƒ“ƒv
             if (_connectGamepad != null)
             {
-                //  ï¿½Lï¿½[ï¿½{ï¿½[ï¿½hï¿½Ì‰ï¿½ï¿½É‚ï¿½ï¿½ï¿½{ï¿½^ï¿½ï¿½(XBOXï¿½È‚ï¿½Aï¿½{ï¿½^ï¿½ï¿½)ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì”ï¿½ï¿½ï¿½
+                //  ƒRƒ“ƒgƒ[ƒ‰[‚Ì‰º‚É”z’u‚³‚ê‚Ä‚¢‚éƒ{ƒ^ƒ“(XBOX‚È‚çAƒ{ƒ^ƒ“)‚ğ‰Ÿ‚µ‚½‚©‚Ì”»’è—p
                 bool inputPress = _connectGamepad.buttonSouth.wasPressedThisFrame;
                 if(inputPress)
                 {
@@ -135,36 +125,36 @@ public class StandMoving : MonoBehaviour
     }
 
     /// <summary>
-    /// ï¿½ï¿½ï¿½iï¿½ï¿½ï¿½Ìï¿½ï¿½Eï¿½ÌˆÚ“ï¿½ï¿½ï¿½ï¿½ï¿½
+    /// õiŒ¢‚Ì¶‰E‚ÌˆÚ“®ˆ—
     /// </summary>
     private void PlayerMove()
     {
         
-        //  ï¿½uï¿½Ú“ï¿½ï¿½ï¿½ï¿½vï¿½Å‚È‚ï¿½ï¿½Aï¿½uï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½vï¿½ï¿½ï¿½vï¿½Å‚È‚ï¿½ï¿½ï¿½ï¿½
+        //  uˆÚ“®’†v‚Å‚È‚­A‚È‚¨‚©‚ÂuƒWƒƒƒ“ƒv’†v‚Å‚È‚¯‚ê‚Î
         if (!_isMoving && !isJumping)
         {
-            //  ï¿½uï¿½ï¿½ï¿½Í’ï¿½ï¿½vï¿½Å‚È‚ï¿½ï¿½ï¿½ï¿½
+            //  uƒL[“ü—Í’†v‚Å‚È‚¯‚ê‚Î
             if (_isKeyUp)
             {
                 float inputX = 0;
                 if (_connectGamepad != null)
                 {
-                    //  InputSystem ï¿½ï¿½ value ï¿½ï¿½Ç‚İï¿½ï¿½ï¿½
+                    //  InputSystem ‚Ì value ‚ğ“Ç‚İ‚Ş
                     inputX = _connectGamepad.leftStick.x.ReadValue();
                 }
-                //  ï¿½ï¿½ï¿½Ì“ï¿½ï¿½Í‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+                //  ‰¡‚Ì“ü—Í‚ª‚ ‚ê‚Î
                 if (inputX != 0)
                 {
-                    //  ï¿½uï¿½ï¿½ï¿½Í’ï¿½ï¿½vï¿½ï¿½
+                    //  u“ü—Í’†v‚É‚·‚é
                     _isKeyUp = false;
-                    //  ï¿½ï¿½ï¿½İ‚ï¿½ position ï¿½ï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½ê‚¼ï¿½ï¿½É‰ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Z
+                    //  Œ»İ‚Ì position ‚©‚çA‚»‚ê‚¼‚ê‚É‰‚¶‚½ˆÚ“®•‚ğ‰ÁZ
                     _playerGoToPos = _playerTransform.position;
                     
 
-                    //  ï¿½Eï¿½Ú“ï¿½
+                    //  ?¿½E?¿½Ú“ï¿½
                     if (inputX > 0)
                     {
-                        //  ï¿½Xï¿½eï¿½Bï¿½bï¿½Nï¿½ï¿½ï¿½Í‚ï¿½UIï¿½ï¿½ï¿½ï¿½
+                        //  ?¿½X?¿½e?¿½B?¿½b?¿½N?¿½?¿½?¿½Í‚ï¿½UI?¿½?¿½?¿½?¿½
                         _stickUIMiniPos = new Vector2(20f, 0);
                         _stickUIMini.transform.localPosition = _stickUIMiniPos;
 
@@ -174,10 +164,10 @@ public class StandMoving : MonoBehaviour
                             laneNamber++;
                             laneNamber = Mathf.Min(laneNamber, 5);
                         }}
-                    //  ï¿½ï¿½ï¿½Ú“ï¿½
+                    //  ?¿½?¿½?¿½Ú“ï¿½
                     else if (inputX < 0)
                     {
-                        //  ï¿½Xï¿½eï¿½Bï¿½bï¿½Nï¿½ï¿½ï¿½Í‚ï¿½UIï¿½ï¿½ï¿½ï¿½
+                        //  ?¿½X?¿½e?¿½B?¿½b?¿½N?¿½?¿½?¿½Í‚ï¿½UI?¿½?¿½?¿½?¿½
                         _stickUIMiniPos = new Vector2(-20f, 0);
                         _stickUIMini.transform.localPosition = _stickUIMiniPos;
 
@@ -194,7 +184,7 @@ public class StandMoving : MonoBehaviour
             }
             else
             {
-                //  InputSystem ï¿½ï¿½ value ï¿½ï¿½Ç‚İï¿½ï¿½ï¿½
+                //  InputSystem ?¿½?¿½ value ?¿½?¿½Ç‚İï¿½?¿½?¿½
                 //var inputVal = dogController.Player.Move.ReadValue<Vector2>();
                 float inputX = _connectGamepad.leftStick.x.ReadValue();
                 if (inputX == 0)
@@ -211,12 +201,12 @@ public class StandMoving : MonoBehaviour
 
     /*
     /// <summary>
-    /// ï¿½Jï¿½[ï¿½uï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
+    /// ?¿½J?¿½[?¿½u?¿½?¿½?¿½Ìï¿½?¿½?¿½(?¿½?¿½?¿½?¿½?¿½?¿½)
     /// </summary>
     /// <param name="MaxMoveLimit"></param>
     private void CurveMoveLimit(float MaxMoveLimit)
     {
-        //  ï¿½Ú“ï¿½ï¿½ï¿½ï¿½xï¿½Éï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â‚ï¿½ï¿½ÄŠï¿½ï¿½ç‚©ï¿½É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½...ï¿½Í‚ï¿½ï¿½H
+        //  ?¿½Ú“ï¿½?¿½?¿½?¿½x?¿½Éï¿½?¿½?¿½?¿½?¿½?¿½Â‚ï¿½?¿½ÄŠï¿½?¿½ç‚©?¿½É“ï¿½?¿½?¿½?¿½?¿½?¿½?¿½?¿½Æ‚ï¿½?¿½Ä‚ï¿½?¿½?¿½...?¿½Í‚ï¿½?¿½H
         float _currentMoveSpeed = standRB.velocity.z;
         if (_currentMoveSpeed > MaxMoveLimit)
         {
@@ -229,27 +219,27 @@ public class StandMoving : MonoBehaviour
     }*/
 
     /// <summary>
-    /// ï¿½ï¿½ï¿½Eï¿½ÌŠï¿½ï¿½ç‚©ï¿½ÈˆÚ“ï¿½ï¿½Rï¿½ï¿½ï¿½[ï¿½`ï¿½ï¿½
+    /// ?¿½?¿½?¿½E?¿½ÌŠï¿½?¿½ç‚©?¿½ÈˆÚ“ï¿½?¿½R?¿½?¿½?¿½[?¿½`?¿½?¿½
     /// </summary>
     /// <returns></returns>
     private IEnumerator MoveCor()
     {
-        //  ï¿½uï¿½Ú“ï¿½ï¿½ï¿½ï¿½vï¿½ï¿½
+        //  ?¿½u?¿½Ú“ï¿½?¿½?¿½?¿½v?¿½?¿½
         _isMoving = true;
-        //  _moveTimer ï¿½bï¿½oï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½Jï¿½ï¿½Ô‚ï¿½ï¿½ï¿½ï¿½ï¿½
-        //  1fï¿½Æï¿½ï¿½ï¿½ï¿½Ä‚Í‚ï¿½ï¿½é‚ªï¿½A1ï¿½bï¿½ÅIï¿½ï¿½ï¿½í‚¯ï¿½Å‚Í‚È‚ï¿½ï¿½B
+        //  _moveTimer ?¿½b?¿½o?¿½?¿½?¿½?¿½?¿½?¿½I?¿½?¿½?¿½J?¿½?¿½Ô‚ï¿½?¿½?¿½?¿½?¿½
+        //  1f?¿½Æï¿½?¿½?¿½?¿½Ä‚Í‚ï¿½?¿½é‚ª?¿½A1?¿½b?¿½ÅI?¿½?¿½?¿½ú¯?¿½Å‚Í‚È‚ï¿½?¿½B
         float actionTimer = 0f;
         while (actionTimer < 1f)
         {
             actionTimer += Time.deltaTime / dogStatus._moveTimer;
             actionTimer = Mathf.Min(actionTimer, 1f);
-            //  ï¿½ï¿½ï¿½^ï¿½ï¿½Ô‚ï¿½ï¿½gï¿½ï¿½ï¿½Ä“ï¿½ï¿½ï¿½ï¿½ÌˆÚ“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Rï¿½ï¿½
+            //  ?¿½?¿½?¿½^?¿½?¿½Ô‚ï¿½?¿½g?¿½?¿½?¿½Ä“ï¿½?¿½?¿½?¿½ÌˆÚ“ï¿½?¿½?¿½?¿½?¿½?¿½R?¿½?¿½
             var movingPos = _playerTransform.position;
             movingPos.x = Mathf.Lerp(_playerTransform.position.x, _playerGoToPos.x, actionTimer);
             _playerTransform.position = movingPos;
             yield return null;
         }
-        //  ï¿½uï¿½Ú“ï¿½ï¿½ï¿½ï¿½vï¿½ï¿½ false ï¿½ï¿½
+        //  ?¿½u?¿½Ú“ï¿½?¿½?¿½?¿½v?¿½?¿½ false ?¿½?¿½
         _isMoving = false;
     }
 }
