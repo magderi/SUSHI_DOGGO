@@ -8,6 +8,7 @@ public class TutorialController : MonoBehaviour
 {
     //  InputSystem取得
     private ISPlayerMove ISPlayerMove;
+    private TutorialController tutorialController;
 
     //  チュートリアルのキャンバス関連
     [SerializeField]
@@ -70,6 +71,8 @@ public class TutorialController : MonoBehaviour
 
         //  開始一秒は操作が効かないように
         StartCoroutine(WaitNextCor());
+
+        tutorialController = this.GetComponent<TutorialController>();
     }
 
     // Update is called once per frame
@@ -155,5 +158,7 @@ public class TutorialController : MonoBehaviour
         Time.timeScale = 1f;
         //  テキストのオブジェクトを無効化
         StartTextGameObject.SetActive(false);
+
+        tutorialController.enabled = false;
     }
 }
