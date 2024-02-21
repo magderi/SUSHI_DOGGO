@@ -8,26 +8,36 @@ public class TutorialController : MonoBehaviour
 {
     //  InputSystem取得
     private ISPlayerMove ISPlayerMove;
+    private TutorialController tutorialController;
 
+    //  チュートリアルのキャンバス関連
+    [SerializeField]
+    private GameObject tutorialCanvas;      //  チュートリアルのキャンバス
     [SerializeField]
     private Sprite Tutorial1;               //  チュートリアル1のSprite
     [SerializeField]
     private Sprite Tutorial2;               //  チュートリアル2のSprite
     [SerializeField]
-    private TMP_Text StartCountdownText;    //  カウントダウンのテキスト
-    [SerializeField]
     private Image tutorialImage;            //  Spriteを入れるImage
 
+
+    //  ゲーム開始直前のカウントダウンテキスト関連
     [SerializeField]
-    private GameObject StartTextGameObject;
+    private TMP_Text StartCountdownText;    //  カウントダウンのテキスト
     [SerializeField]
-    private GameObject tutorialCanvas;
+    private GameObject StartTextGameObject; //  カウントダウンテキストのゲームオブジェクト
+    
+
+    //  寿司犬たちの格納場所
     [SerializeField]
     private GameObject salmon;
     [SerializeField]
     private GameObject maguro;
+
+    //  寿司犬の移動スクリプト
     private StandMoving maguroStandMoving;
     private StandMoving salmonStandMoving;
+
 
     //  チュートリアルを進められるかどうか
     private bool canTutorialNext = true;
@@ -37,20 +47,22 @@ public class TutorialController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //  InputSystemを有効化
         ISPlayerMove = new ISPlayerMove();
         ISPlayerMove.Enable();
-
+        //  ゲームを時間停止
         Time.timeScale = 0f;
 
+
+        //  チュートリアルを表示
         bool isActive = tutorialCanvas.activeSelf;
-        if(isActive == false)
+        if(!isActive)
             tutorialCanvas.SetActive(true);
         tutorialImage.sprite = Tutorial1;
-
         tutorialImage.color = Color.white;
 
-        //salmon.SetActive(false);
-        //maguro.SetActive(false);
+
+        //  寿司犬たちの操作を無効化
         salmonStandMoving = salmon.GetComponent<StandMoving>();
         maguroStandMoving = maguro.GetComponent<StandMoving>();
         salmonStandMoving.enabled = false;
@@ -59,6 +71,8 @@ public class TutorialController : MonoBehaviour
 
         //  開始一秒は操作が効かないように
         StartCoroutine(WaitNextCor());
+
+        tutorialController = this.GetComponent<TutorialController>();
     }
 
     // Update is called once per frame
@@ -67,24 +81,32 @@ public class TutorialController : MonoBehaviour
         TutorialNext();
     }
 
+    /// <summary>
+    /// チュートリアル中の操作受付処理
+    /// </summary>
     private void TutorialNext()
     {
         //  主にコルーチンを使っていれば操作を受け付けない
         if (!canTutorialNext)   return;
 
+        //  進めるボタンを押したとき
         if (ISPlayerMove.UI.GameStart.WasPressedThisFrame())
         {
+            //  チュートリアルが一枚目の時
             if (tutorialImage.sprite == Tutorial1)
             {
+                //  チュートリアルを次の絵へ
                 tutorialImage.sprite = Tutorial2;
                 //  次の処理まで一秒待機
                 StartCoroutine(WaitNextCor());
             }
+            //  チュートリアルが二枚目の時
             else if (tutorialImage.sprite == Tutorial2)
             {
                 StartCoroutine(WaitStartCor());
             }
         }
+        //  スキップボタンを押したとき
         else if (ISPlayerMove.UI.Skip.WasPressedThisFrame())
         {
             StartCoroutine(WaitStartCor());
@@ -92,7 +114,7 @@ public class TutorialController : MonoBehaviour
     }
 
     /// <summary>
-    /// 一秒待つだけのコルーチン
+    /// 一秒後に操作可能にするコルーチン
     /// </summary>
     /// <returns></returns>
     IEnumerator WaitNextCor()
@@ -137,5 +159,6 @@ public class TutorialController : MonoBehaviour
         //  テキストのオブジェクトを無効化
         StartTextGameObject.SetActive(false);
 
+        tutorialController.enabled = false;
     }
 }
