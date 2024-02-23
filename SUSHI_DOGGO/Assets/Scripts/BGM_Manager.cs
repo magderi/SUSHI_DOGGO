@@ -4,25 +4,31 @@ using UnityEngine;
 
 public class BGM_Manager : MonoBehaviour
 {
+
+
+    /// <summary>
+    /// BGMを管理するスクリプトです
+    /// </summary>
+
+
     /// <summary>
     /// 参照と取得
     /// </summary>
     public static BGM_Manager Instance { get => _instance; }
 
-    static BGM_Manager _instance;
+    static BGM_Manager      _instance;
 
-    public AudioClip[] Audio_Clip_BGM;
+    public AudioClip[]      Audio_Clip_BGM;
 
-    public float[] Audio_Clip_BGM_Vol;
+    public float[]          Audio_Clip_BGM_Vol;
 
-    public AudioSource Audio_Source_BGM;
+    public AudioSource      Audio_Source_BGM;
 
     private void Start()
     {
         _instance = this;
         //ここで流す処理
         //Play(0);
-
     }
     public void Play(int clip)
     {
@@ -34,11 +40,7 @@ public class BGM_Manager : MonoBehaviour
 
     public void Stop()
     {
-
         StartCoroutine(fadeVolue());
-
-
-
     }
     public IEnumerator fadeVolue()
     {
@@ -54,12 +56,10 @@ public class BGM_Manager : MonoBehaviour
     }
     private void Update()
     {
-
         //音を止める処理（必要なら）
         if (Input.GetKeyUp(KeyCode.X))
         {
             Stop();
         }
-
     }
 }

@@ -6,14 +6,16 @@ using UnityEngine.Events;
 public class SushiCloudHit : MonoBehaviour
 {
 
+    /// <summary>
+    /// 寿司犬が雲に当たった際のスクリプトです
+    /// </summary>
+
+    // 以下参照
     [SerializeField]
-    private SE_Manager _se_Manager;
+    private SE_Manager  _se_Manager;
 
     [SerializeField]
-    private DogMoving _dogMoving;
-
-    //OnTriggerEnter関数
-    //接触したオブジェクトが引数otherとして渡される
+    private DogMoving   _dogMoving;
 
     [SerializeField]
     private GameManager _gameManager;
@@ -22,15 +24,12 @@ public class SushiCloudHit : MonoBehaviour
     //接触したオブジェクトが引数otherとして渡される
     void OnTriggerEnter(Collider other)
     {
-
-
-
         // sushiのダメージ処理
         if (other.CompareTag("Sushiinu_salmon"))
         {
             _gameManager.SushiSalmonDamage();
 
-            Debug.Log("コライダー1に当たりました");
+            Debug.Log("コライダーに当たりました");
 
             _dogMoving.SalmonDogDamageAnim();
 
@@ -39,7 +38,6 @@ public class SushiCloudHit : MonoBehaviour
 
             //オブジェクトの色を赤に変更する
             // GetComponent<Renderer>().material.color = Color.red;
-
         }
 
         // sushiのダメージ処理
@@ -47,7 +45,7 @@ public class SushiCloudHit : MonoBehaviour
         {
             _gameManager.SushiMaguroDamage();
 
-            Debug.Log("コライダー1に当たりました");
+            Debug.Log("コライダーに当たりました");
 
             _dogMoving.MaguroDogDamageAnim();
 

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class CloudGenerate : MonoBehaviour
 {
+    /// <summary>
+    /// テキストファイルから雲を生成するスクリプトです（今作では未使用）
+    /// </summary>
     [SerializeField]
     private TextAsset textFile;
 

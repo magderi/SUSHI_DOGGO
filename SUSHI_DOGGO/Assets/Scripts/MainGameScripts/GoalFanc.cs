@@ -4,26 +4,22 @@ using UnityEngine;
 
 public class GoalFanc : MonoBehaviour
 {
+    /// <summary>
+    /// ゴール手前になったら起動するスクリプトです
+    /// </summary>
+
+
+    // 以下それぞれ参照
     [SerializeField]
-    private GoalJump _goalJump;
+    private GoalJump    _goalJump;
 
     [SerializeField]
-    private SushiJump _shushiJump;
+    private SushiJump   _shushiJump;
 
     [SerializeField]
     private StandMoving _standMoving;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    // ゴールラインに接触時に起動
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("GoalLine"))

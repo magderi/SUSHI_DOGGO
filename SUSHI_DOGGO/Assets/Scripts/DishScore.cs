@@ -6,22 +6,22 @@ using UnityEngine.SocialPlatforms.Impl;
 
 public class DishScore : MonoBehaviour
 {
+    /// <summary>
+    /// メインゲームのDishの値を管理するスクリプトです
+    /// </summary>
+
     [SerializeField]
     private GameManager gameManager;
 
     public static class GlobalVariables
     {
+        // ここのスコアの値を変更するとリザルトシーンでのデバックが出来ます。（例 score = 100　等）
         public static int score;
     }
 
     private void Update()
     {
         GlobalVariables.score = gameManager.score;
-
-        // プレイヤーの操作などでスコアが変わる場合、ここで処理する
-        // 例: _scoreIntがスコアを表す場合
-        //score ;
     }
-
 }
 

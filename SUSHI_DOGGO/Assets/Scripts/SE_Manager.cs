@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class SE_Manager : MonoBehaviour
 {
+
+    /// <summary>
+    /// SEを管理するスクリプトです
+    /// </summary>
+
     /// <summary>
     /// 参照と取得
     /// </summary>
     public static SE_Manager Instance { get => _instance; }
 
-    static SE_Manager _instance;
+    static SE_Manager       _instance;
 
-    public AudioClip[] Audio_Clip_SE;
+    public AudioClip[]      Audio_Clip_SE;
 
-    public AudioSource Audio_Source_SE;
+    public AudioSource      Audio_Source_SE;
 
 
     private void Start()

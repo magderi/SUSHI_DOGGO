@@ -2,9 +2,15 @@ using UnityEngine;
 
 public class ObjectGenerator : MonoBehaviour
 {
-    public GameObject objectToGenerate; // 生成するオブジェクト
-    public float generationInterval = 3f; // 生成間隔
-    public float objectLifetime = 10f; // オブジェクトの寿命
+    /// <summary>
+    /// タイトルシーンの雲を生成するスクリプトです
+    /// </summary>
+
+
+    // 以下参照
+    public GameObject   objectToGenerate;           // 生成するオブジェクト
+    public float        generationInterval = 3f;    // 生成間隔
+    public float        objectLifetime     = 10f;   // オブジェクトの寿命
 
     private float timer = 0f;
 
@@ -32,13 +38,13 @@ public class ObjectGenerator : MonoBehaviour
         // オブジェクトを生成
         GameObject newObject = Instantiate(objectToGenerate, transform.position, Quaternion.identity);
 
-        // 生成されたオブジェクトをこのスクリプトがアタッチされているゲームオブジェクトの子にする（任意）
+        // 生成されたオブジェクトをこのスクリプトがアタッチされているゲームオブジェクトの子にする
         newObject.transform.parent = transform;
     }
 
     void DestroyGeneratedObject()
     {
-        // 子オブジェクト（生成されたオブジェクト）を破壊
+        // 子オブジェクトを破壊
         foreach (Transform child in transform)
         {
             Destroy(child.gameObject);

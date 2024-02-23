@@ -4,19 +4,18 @@ using UnityEngine;
 
 public class GoalCameraJump : MonoBehaviour
 {
+    /// <summary>
+    /// ゴールジャンプの寿司犬を追いかけるカメラのスクリプトです
+    /// </summary>
 
+    public Transform    target;      // 目標地点のTransform
+    public float        height = 5f; // 放物線の高さ
 
-    public Transform target;  // 目標地点のTransform
-    public float height = 5f; // 放物線の高さ
+    private float       startTime;
+    private float       journeyLength;
+    private Vector3     startPos;
 
-    private float startTime;
-    private float journeyLength;
-    private Vector3 startPos;
-
-    public float speed = 2.0f; // 移動速度
-
-
-
+    public float        speed = 2.0f; // 移動速度
 
     void Start()
     {
@@ -37,10 +36,6 @@ public class GoalCameraJump : MonoBehaviour
 
     public void Jump()
     {
-
-
-   
-
         // 現在の経過時間
         float distCovered = (Time.time - startTime) * speed;
 
@@ -59,6 +54,5 @@ public class GoalCameraJump : MonoBehaviour
         {
             enabled = false;
         }
-
     }
 }

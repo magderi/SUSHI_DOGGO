@@ -3,16 +3,23 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
-using UnityEngine.UI;  // 追加しましょう
+using UnityEngine.UI;
 using System;
 
 
 public class GameManager : MonoBehaviour
 {
 
+    /// <summary>
+    /// メインゲームの様々な変数を管理しているスクリプトです
+    /// </summary>
+
+
+    // スコアテキスト
     [SerializeField]
     private TextMeshProUGUI _textSalmonMeshProUGUI;
 
+    // スコアテキスト
     [SerializeField]
     private TextMeshProUGUI _textMaguroMeshProUGUI;
 
@@ -25,11 +32,13 @@ public class GameManager : MonoBehaviour
     int currentSalmonHp;
 
     int currentMaguroHp;
+
     // Sliderを入れる
     public Slider sliderSalmonHp;
 
     public Slider sliderMaguroHp;
 
+    // DishScoreを参照
     [SerializeField]
     private DishScore _dishScore;
 
@@ -41,8 +50,10 @@ public class GameManager : MonoBehaviour
 
     private int _sushiMaguroHp = 100;
 
+    // 一回だけ呼び出し
     private bool _callOne = false;
 
+    //　寿司犬のジャンプ判定
     [SerializeField]
     public bool _scoreSalmonJudgement = false;
 
@@ -79,17 +90,15 @@ public class GameManager : MonoBehaviour
         currentSalmonHp = currentSalmonHp - 5;
         Debug.Log("After currentHp : " + currentSalmonHp);
 
-        //最大HPにおける現在のHPをSliderに反映。
-        //int同士の割り算は小数点以下は0になるので、
-        //(float)をつけてfloatの変数として振舞わせる。
         sliderSalmonHp.value = currentSalmonHp;
         Debug.Log("slider.value : " + sliderSalmonHp.value);
         _sushiSalmonHp -= 5;
         _textSalmonMeshProUGUI.text = _sushiSalmonHp.ToString();
 
         if (_callOne)
-        {           
-
+        {   
+            //一回だけ使うものを入れる
+            
             _callOne = false;
         }
 
@@ -104,9 +113,6 @@ public class GameManager : MonoBehaviour
         currentMaguroHp = currentMaguroHp - 5;
         Debug.Log("After currentHp : " + currentMaguroHp);
 
-        //最大HPにおける現在のHPをSliderに反映。
-        //int同士の割り算は小数点以下は0になるので、
-        //(float)をつけてfloatの変数として振舞わせる。
         sliderMaguroHp.value = currentMaguroHp;
         Debug.Log("slider.value : " + sliderMaguroHp.value);
         _sushiMaguroHp -= 5;
@@ -114,6 +120,7 @@ public class GameManager : MonoBehaviour
 
         if (_callOne)
         {
+            //一回だけ使うものを入れる
 
             _callOne = false;
         }
@@ -121,6 +128,9 @@ public class GameManager : MonoBehaviour
         await UniTask.Delay(TimeSpan.FromSeconds(3));
     }
 
+    /// <summary>
+    /// スコアを加算する
+    /// </summary>
    public void ScorePlus()
    {
         score = currentMaguroHp + currentSalmonHp ;

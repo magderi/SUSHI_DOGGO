@@ -5,38 +5,44 @@ using UnityEngine;
 public class GoalJump : MonoBehaviour
 {
 
+    /// <summary>
+    /// 寿司犬達がジャンプして目標地点に移動するスクリプトです
+    /// </summary>
+
 
     //    [SerializeField]
     // private BoxCollider _goalManager;
 
     // [SerializeField]
     // private DogMoving _dogMoving;
-
+    // ゴールカメラ起動用
     [SerializeField]
     private GameObject _goalCamera;
 
-    public Transform target;  // 目標地点のTransform
-    public float height = 5f; // 放物線の高さ
+    public Transform    target;     　 // 目標地点のTransform
+    public float        height = 5f; 　// 放物線の高さ
 
-    private float startTime;
-    private float journeyLength;
-    private Vector3 startPos;
+    private float       startTime;
+    private float       journeyLength;
+    private Vector3     startPos;
 
-    public float speed = 2.0f; // 移動速度
+    public float        speed = 2.0f;  // 移動速度
+
+    // アニメータ参照
+    [SerializeField]
+    private Animator  _maguroanimator;
 
     [SerializeField]
-    private Animator _maguroanimator;
+    private Animator  _salmonanimator;
 
     [SerializeField]
-    private Animator _salmonanimator;
+    private Animator  _maguroStandanimator;
 
     [SerializeField]
-    private Animator _maguroStandanimator;
+    private Animator  _salmonStandanimator;
 
-    [SerializeField]
-    private Animator _salmonStandanimator;
-
-    private bool _goalEnd = false;
+    // 到着したかのBool
+    private bool      _goalEnd = false;
 
     void Start()
     {
@@ -60,10 +66,8 @@ public class GoalJump : MonoBehaviour
         {
             GoalEnd();
         }
-        
-    
     }
-
+    // 目標地点に到着したら
     public void GoalEnd()
     {
         _goalEnd = true;
@@ -72,6 +76,7 @@ public class GoalJump : MonoBehaviour
         _maguroanimator.SetBool("GoalJump", false);
     }
 
+    // ジャンプさせる
     public void Jump()
     {
         _salmonStandanimator.SetTrigger("StandUp");
@@ -101,15 +106,6 @@ public class GoalJump : MonoBehaviour
         {
             GoalEnd();
             enabled = false;
-        }
-
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("GoalLine"))
-        {
-           
-       
         }
     }
 }

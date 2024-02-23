@@ -6,14 +6,18 @@ using System;
 
 public class SalmonJumpJudgement : MonoBehaviour
 {
+    /// <summary>
+    /// サーモンのジャンプを管理するスクリプトです
+    /// </summary>
+
+    // 以下参照
+    [SerializeField]
+    private SushiJump   _sushiJump;
 
     [SerializeField]
-    private SushiJump _sushiJump;
+    private GameObject  _jumpOKText;
 
-    [SerializeField]
-    private GameObject _jumpOKText;
-
-    public bool _jumpCoolTime = true;
+    public bool         _jumpCoolTime = true;
 
     //OnTriggerStay関数
     //接触したオブジェクトが引数otherとして渡される

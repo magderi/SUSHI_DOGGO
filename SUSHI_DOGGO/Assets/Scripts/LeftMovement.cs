@@ -2,8 +2,14 @@ using UnityEngine;
 
 public class LeftMovement : MonoBehaviour
 {
-    public float speed = 5f; // 移動速度
-    public float destroyTime = 10f; // 破壊までの時間（秒）
+    /// <summary>
+    /// タイトルシーンの雲を移動させるスクリプトです
+    /// </summary>
+
+
+    // 以下参照
+    public float    speed       = 5f;   // 移動速度
+    public float    destroyTime = 10f;  // 破壊までの時間（秒）
 
     void Update()
     {

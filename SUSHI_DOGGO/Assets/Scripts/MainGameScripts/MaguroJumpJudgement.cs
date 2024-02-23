@@ -4,42 +4,32 @@ using UnityEngine;
 
 public class MaguroJumpJudgement : MonoBehaviour
 {
+
+    /// <summary>
+    /// マグロのジャンプを管理するスクリプトです
+    /// </summary>
+
+    // 以下参照
     [SerializeField]
-    private SushiJump _sushiJump;
+    private SushiJump   _sushiJump;
 
     [SerializeField]
-    private GameObject _jumpOKMaguroText;
+    private GameObject  _jumpOKMaguroText;
 
-    public bool _jumpCoolTime = true;
-    // Start is called before the first frame update
-    void Start()
-    {
+    public bool         _jumpCoolTime = true;
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     //OnTriggerStay関数
     //接触したオブジェクトが引数otherとして渡される
     void OnTriggerStay(Collider other)
     {
-        //接触しているオブジェクトのタグが"Player"のとき
+        //接触しているオブジェクトのタグが"Cloud"のとき
         if (other.CompareTag("Cloud") && _jumpCoolTime)
         {
             _sushiJump.isMaguroJumping = true;
             _jumpOKMaguroText.SetActive(true);
 
-
-
             Debug.Log("JumpTrue");
-
-
-
-
         }
     }
 
@@ -47,7 +37,7 @@ public class MaguroJumpJudgement : MonoBehaviour
     //離れたオブジェクトが引数otherとして渡される
     void OnTriggerExit(Collider other)
     {
-        //離れたオブジェクトのタグが"Player"のとき
+        //離れたオブジェクトのタグが"Cloud"のとき
         if (other.CompareTag("Cloud"))
         {
             _sushiJump.isMaguroJumping = false;
