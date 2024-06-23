@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GoalCollider : MonoBehaviour
 {
+    //  ゴールのコライダーに当たった時の処理
     private void OnCollisionEnter(Collision collision)
     {
         Debug.Log("goal!!");

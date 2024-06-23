@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 using Cysharp.Threading.Tasks;
 using System;
 
+//  シーン切り替えボタンを長押しした際のスクリプト
 public class KeyPressAndHold : MonoBehaviour
 {
     [SerializeField]
@@ -24,9 +25,9 @@ public class KeyPressAndHold : MonoBehaviour
     [SerializeField]
     private BGM_Manager _bgmManager;
 
-    public Image circleEffect;                  // Χ�ư���E�Ȧ��UI Image
-    public float holdDuration = 3f;             // ��ס������ʱ�䣨ÁE�
-    public string nextSceneName = "YourScene";  // ��һ������������
+    public Image circleEffect;                  //  進むための輪っか状の画像
+    public float holdDuration = 3f;             //  シーン遷移するのに必要な時間
+    public string nextSceneName = "";  // 次のシーン名を入れる箱
 
     private bool isPressing = false;
     private float pressStartTime;
@@ -76,11 +77,11 @@ public class KeyPressAndHold : MonoBehaviour
 
             float pressDuration = Time.time - pressStartTime;
 
-            // ��E�ԲȦ��������
+            // ボタンを押した時間に伴って輪っかを満たしていく
             float fillAmount = Mathf.Clamp01(pressDuration / holdDuration);
             circleEffect.fillAmount = fillAmount;
 
-            // �����סʱ�䳬��ָ������ʱ�䣬������һ������
+            //  ボタンを押した時間が必要な時間を超えたら
             if (pressDuration >= holdDuration)
             {
 
@@ -102,17 +103,18 @@ public class KeyPressAndHold : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 長押しをやめたときの関数
+    /// </summary>
     void EndPress()
     {
         isPressing = false;
-
-        // ����ԲȦ��������
         circleEffect.fillAmount = 0f;
     }
 
+    //  次のシーンに移行するときに使う関数
     public void LoadNextScene()
     {
-        // ������һ������
         SceneManager.LoadScene(nextSceneName);
     }
 }

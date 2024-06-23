@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//  å¯¿å¸çŠ¬ãŒæœ¬æ¥ã„ã‘ãªã„å ´æ‰€ã«è¡Œã‹ã›ãªã„ã‚ˆã†ã«ã™ã‚‹ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
 public class PlayerMoveLimit : MonoBehaviour
 {
     [SerializeField]
@@ -12,14 +13,12 @@ public class PlayerMoveLimit : MonoBehaviour
     private int _salmonNum;
     private int _tunaNum;
 
-    // Start is called before the first frame update
     void Awake()
     {
         _salmonNum = salmonMoving.laneNamber;
         _tunaNum = tunaMoving.laneNamber;
     }
 
-    // Update is called once per frame
     void Update()
     {
         MoveLimit();
@@ -30,7 +29,7 @@ public class PlayerMoveLimit : MonoBehaviour
         _salmonNum = salmonMoving.laneNamber;
         _tunaNum = tunaMoving.laneNamber;
 
-        //  Œİ‚¢‚ğ‰z‚µ‚Ä‚ÌˆÚ“®–h~
+        //  å¯¿å¸çŠ¬åŒå£«ãŒãŠäº’ã„ã‚’è¶Šã•ãªã„ã‚ˆã†ã«ã™ã‚‹
         if (_salmonNum >= _tunaNum - 1)
         {
             salmonMoving.canRightMove = false;
@@ -42,12 +41,11 @@ public class PlayerMoveLimit : MonoBehaviour
             tunaMoving.canLeftMove = true;
         }
 
-        //  ƒT[ƒ‚ƒ“—p•Ç“Ë‚«”²‚¯–h~
+        //  å¯¿å¸çŠ¬ãŒå£ã‚’è¶Šãˆã¦ã„ã‹ãªã„ã‚ˆã†ã«ã™ã‚‹
         if (_salmonNum <= 0)
             salmonMoving.canLeftMove = false;
         if (_salmonNum >= 5)
             salmonMoving.canRightMove = false;
-        //  ƒ}ƒOƒ—p•Ç“Ë‚«”²‚¯–h~
         if (_tunaNum <= 0)
             tunaMoving.canLeftMove = false;
         if (_tunaNum >= 5)

@@ -4,57 +4,52 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+//  ãƒãƒ¥ãƒ¼ãƒˆãƒªã‚¢ãƒ«ã‚’è¡¨ç¤ºã™ã‚‹ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
+//  å±•ç¤ºä¼š1æ—¥ç›®ã¨2æ—¥ç›®ã®é–“ã«ä½œã£ãŸã®ã§ç²—ãŒã‚ã‚‹ã‹ã‚‚ã€‚
 public class TutorialController : MonoBehaviour
 {
-    //  InputSystemæ“¾
     private ISPlayerMove ISPlayerMove;
     private TutorialController tutorialController;
 
-    //  ƒ`ƒ…[ƒgƒŠƒAƒ‹‚ÌƒLƒƒƒ“ƒoƒXŠÖ˜A
+    //  ãƒãƒ¥ãƒ¼ãƒˆãƒªã‚¢ãƒ«ç”»åƒãŸã¡ã‚’å…¥ã‚Œã‚‹ç®±
     [SerializeField]
-    private GameObject tutorialCanvas;      //  ƒ`ƒ…[ƒgƒŠƒAƒ‹‚ÌƒLƒƒƒ“ƒoƒX
+    private GameObject tutorialCanvas;
+    private Sprite Tutorial1;
     [SerializeField]
-    private Sprite Tutorial1;               //  ƒ`ƒ…[ƒgƒŠƒAƒ‹1‚ÌSprite
+    private Sprite Tutorial2;
     [SerializeField]
-    private Sprite Tutorial2;               //  ƒ`ƒ…[ƒgƒŠƒAƒ‹2‚ÌSprite
-    [SerializeField]
-    private Image tutorialImage;            //  Sprite‚ğ“ü‚ê‚éImage
+    private Image tutorialImage;
 
 
-    //  ƒQ[ƒ€ŠJn’¼‘O‚ÌƒJƒEƒ“ƒgƒ_ƒEƒ“ƒeƒLƒXƒgŠÖ˜A
+    //  ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³ã‚’ãƒ†ã‚­ã‚¹ãƒˆã§è¡¨ç¤ºã™ã‚‹ãŸã‚ã®ç®±
     [SerializeField]
-    private TMP_Text StartCountdownText;    //  ƒJƒEƒ“ƒgƒ_ƒEƒ“‚ÌƒeƒLƒXƒg
+    private TMP_Text StartCountdownText;
     [SerializeField]
-    private GameObject StartTextGameObject; //  ƒJƒEƒ“ƒgƒ_ƒEƒ“ƒeƒLƒXƒg‚ÌƒQ[ƒ€ƒIƒuƒWƒFƒNƒg
+    private GameObject StartTextGameObject;
     
 
-    //  õiŒ¢‚½‚¿‚ÌŠi”[êŠ
     [SerializeField]
     private GameObject salmon;
     [SerializeField]
     private GameObject maguro;
 
-    //  õiŒ¢‚ÌˆÚ“®ƒXƒNƒŠƒvƒg
     private StandMoving maguroStandMoving;
     private StandMoving salmonStandMoving;
 
 
-    //  ƒ`ƒ…[ƒgƒŠƒAƒ‹‚ği‚ß‚ç‚ê‚é‚©‚Ç‚¤‚©
     private bool canTutorialNext = true;
-    //  ƒJƒEƒ“ƒgƒ_ƒEƒ“ŠÔ
     private int countdownSeconds = 3;
 
-    // Start is called before the first frame update
     void Start()
     {
-        //  InputSystem‚ğ—LŒø‰»
+        //  InputSystemã‚’æœ‰åŠ¹åŒ–
         ISPlayerMove = new ISPlayerMove();
         ISPlayerMove.Enable();
-        //  ƒQ[ƒ€‚ğŠÔ’â~
+        //  ä¸€æ—¦ç§»å‹•ç­‰ã®æ“ä½œã‚’ä¸å¯èƒ½ã«
         Time.timeScale = 0f;
 
 
-        //  ƒ`ƒ…[ƒgƒŠƒAƒ‹‚ğ•\¦
+        //  ãƒãƒ¥ãƒ¼ãƒˆãƒªã‚¢ãƒ«ç”»åƒã‚’è¡¨ç¤ºã•ã›ã‚‹
         bool isActive = tutorialCanvas.activeSelf;
         if(!isActive)
             tutorialCanvas.SetActive(true);
@@ -62,51 +57,46 @@ public class TutorialController : MonoBehaviour
         tutorialImage.color = Color.white;
 
 
-        //  õiŒ¢‚½‚¿‚Ì‘€ì‚ğ–³Œø‰»
+        //  å¯¿å¸çŠ¬ãŸã¡ã®æ“ä½œã‚’ç„¡åŠ¹ã«
         salmonStandMoving = salmon.GetComponent<StandMoving>();
         maguroStandMoving = maguro.GetComponent<StandMoving>();
         salmonStandMoving.enabled = false;
         maguroStandMoving.enabled = false;
 
-
-        //  ŠJnˆê•b‚Í‘€ì‚ªŒø‚©‚È‚¢‚æ‚¤‚É
+        //  é–‹å§‹ç›´å¾Œã«ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ã¦è¦‹é€ƒã•ãªã„ã‚ˆã†ã«
         StartCoroutine(WaitNextCor());
 
         tutorialController = this.GetComponent<TutorialController>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         TutorialNext();
     }
 
     /// <summary>
-    /// ƒ`ƒ…[ƒgƒŠƒAƒ‹’†‚Ì‘€ìó•tˆ—
+    /// ãƒãƒ¥ãƒ¼ãƒˆãƒªã‚¢ãƒ«ã®ç”»åƒã‚’æ¬¡ã®ç”»åƒã«åˆ‡ã‚Šæ›¿ãˆã‚‹é–¢æ•°
     /// </summary>
     private void TutorialNext()
     {
-        //  å‚ÉƒRƒ‹[ƒ`ƒ“‚ğg‚Á‚Ä‚¢‚ê‚Î‘€ì‚ğó‚¯•t‚¯‚È‚¢
         if (!canTutorialNext)   return;
 
-        //  i‚ß‚éƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚½‚Æ‚«
+        //  Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸéš›ã®å‡¦ç†
         if (ISPlayerMove.UI.GameStart.WasPressedThisFrame())
         {
-            //  ƒ`ƒ…[ƒgƒŠƒAƒ‹‚ªˆê–‡–Ú‚Ì
+            //  è¡¨ç¤ºã•ã‚Œã¦ã„ã‚‹ç”»åƒã«å¿œã˜ã¦å‡¦ç†ã‚’å¤‰ãˆã‚‹
             if (tutorialImage.sprite == Tutorial1)
             {
-                //  ƒ`ƒ…[ƒgƒŠƒAƒ‹‚ğŸ‚ÌŠG‚Ö
+                //  æ¬¡ã®ç”»åƒã‚’è¡¨ç¤º
                 tutorialImage.sprite = Tutorial2;
-                //  Ÿ‚Ìˆ—‚Ü‚Åˆê•b‘Ò‹@
                 StartCoroutine(WaitNextCor());
             }
-            //  ƒ`ƒ…[ƒgƒŠƒAƒ‹‚ª“ñ–‡–Ú‚Ì
             else if (tutorialImage.sprite == Tutorial2)
             {
                 StartCoroutine(WaitStartCor());
             }
         }
-        //  ƒXƒLƒbƒvƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚½‚Æ‚«
+        //  ã‚¹ã‚­ãƒƒãƒ—ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸã‚‰
         else if (ISPlayerMove.UI.Skip.WasPressedThisFrame())
         {
             StartCoroutine(WaitStartCor());
@@ -114,30 +104,29 @@ public class TutorialController : MonoBehaviour
     }
 
     /// <summary>
-    /// ˆê•bŒã‚É‘€ì‰Â”\‚É‚·‚éƒRƒ‹[ƒ`ƒ“
+    /// ä¸€ç§’é–“ã¯é€£æ‰“ã—ã¦ã‚‚æ¬¡ã®ã‚·ãƒ¼ãƒ³ã«è¡Œã‹ãªã„ã‚ˆã†ã«ã™ã‚‹ã‚³ãƒ«ãƒ¼ãƒãƒ³
     /// </summary>
     /// <returns></returns>
     IEnumerator WaitNextCor()
     {
         canTutorialNext = false;
-        //  TimeScale‚É‰e‹¿‚³‚ê‚È‚¢‚P•b‘Ò‹@
         yield return new WaitForSecondsRealtime(1.0f);
         canTutorialNext = true;
     }
 
     /// <summary>
-    /// ƒXƒ^[ƒg‚ÌŠJnƒJƒEƒ“ƒgƒ_ƒEƒ“
+    /// ã‚¹ã‚¿ãƒ¼ãƒˆã™ã‚‹ã¾ã§ã®ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³ã‚’ã™ã‚‹ã‚³ãƒ«ãƒ¼ãƒãƒ³
     /// </summary>
     /// <returns></returns>
     IEnumerator WaitStartCor()
     {
-        //  TutorialCanvas‚ğ–³Œø‰»
+        //  TutorialCanvasã‚’éè¡¨ç¤ºã«
         tutorialCanvas.SetActive(false);
 
-        //  ƒJƒEƒ“ƒgƒ_ƒEƒ“‚ªI‚í‚é‚Ü‚ÅŒJ‚è•Ô‚µ
+        //  ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³ã®æ–‡å­—ã‚’ç¹°ã‚Šè¿”ã—æ›´æ–°
         for (int i = countdownSeconds; i >= 0; i--)
         {
-            //  ƒJƒEƒ“ƒgƒ_ƒEƒ“‚ğText‚Æ‚µ‚Ä•\¦
+            //  é–‹å§‹æ™‚é–“ã«ãªã£ãŸã‚‰
             if (i == 0)
             {
                 StartCountdownText.SetText("GO");
@@ -147,18 +136,16 @@ public class TutorialController : MonoBehaviour
                 string str = i.ToString();
                 StartCountdownText.SetText(str);
             }
-            //  1•b‚²‚Æ‚ÉŒJ‚è•Ô‚·‚æ‚¤‚É
+            //  1ç§’ã”ã¨ã«è¡¨ç¤ºã‚’æ›´æ–°
             yield return new WaitForSecondsRealtime(1.0f);
         }
 
-        //  õiŒ¢‚½‚¿‚Ì‘€ì‚ğ—LŒø‰»
+        //  å¯¿å¸çŠ¬ãŸã¡ã®æ“ä½œã‚’æœ‰åŠ¹ã«
         salmonStandMoving.enabled = true;
         maguroStandMoving.enabled = true;
-        //  ƒQ[ƒ€‚ÌŠÔ‚ği‚ß‚é
         Time.timeScale = 1f;
-        //  ƒeƒLƒXƒg‚ÌƒIƒuƒWƒFƒNƒg‚ğ–³Œø‰»
+        //  ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³ã¨ãƒãƒ¥ãƒ¼ãƒˆãƒªã‚¢ãƒ«ã®æ“ä½œã‚’éè¡¨ç¤ºã«
         StartTextGameObject.SetActive(false);
-
         tutorialController.enabled = false;
     }
 }

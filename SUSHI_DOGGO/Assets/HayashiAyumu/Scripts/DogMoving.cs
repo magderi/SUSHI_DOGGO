@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+//  主に寿司犬自身が動く際に使用されるスクリプト
 public class DogMoving : MonoBehaviour
 {
     public SE_Manager _seManager;
@@ -52,8 +53,6 @@ public class DogMoving : MonoBehaviour
     float standZ;
 
 
-
-    // Start is called before the first frame update
     void Start()
     {       
 
@@ -115,14 +114,7 @@ public class DogMoving : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-
-     
-
         JumpCoolTime();
-          
-        //  「カーブ中」なら、
-        if(isCurving)
-            CurveMoveLimit(dogStatus._maxMoveLimit);
     }
 
     /// <summary>
@@ -163,23 +155,8 @@ public class DogMoving : MonoBehaviour
         // アニメーションのトリガーを起動
         _sushiSalmonAnim.SetTrigger("SushiJump");
 
-        // 同時ジャンプ処理の名残
-       //_gameManager._scoreSalmonJudgement = true;
-       //_gameManager._scoreMaguroJudgement = true;
-        Debug.Log("iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
-
-
         // 三秒待機させて連続ジャンプ回避
         await UniTask.Delay(TimeSpan.FromSeconds(3));
-
-  
-
-        //JudgementScore();
-
-       // await UniTask.Delay(TimeSpan.FromSeconds(1));
-
-       // _gameManager._scoreSalmonJudgement = false;
-        
     }
 
     async public void MaguroDogJumpMotion()
@@ -187,46 +164,7 @@ public class DogMoving : MonoBehaviour
         // アニメーションのトリガーを起動
         _sushiMaguroAnim.SetTrigger("SushiJump");
 
-        // 同時ジャンプ処理の名残
-      //  _gameManager._scoreSalmonJudgement = true;
-       // _gameManager._scoreMaguroJudgement = true;
-
-      
-        Debug.Log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa;");
-        
         // 三秒待機させて連続ジャンプ回避
         await UniTask.Delay(TimeSpan.FromSeconds(3));
-
-        //_gameManager._scoreSalmonJudgement = false;
-
-        //_gameManager._scoreMaguroJudgement = false;
-
-        //JudgementScore();
-
-        //await UniTask.Delay(TimeSpan.FromSeconds(1));
-
-        //_gameManager._scoreMaguroJudgement = false;
-        
     }
-
-    /// <summary>
-    /// カーブ時の処理(未完成)
-    /// </summary>
-    /// <param name="MaxMoveLimit"></param>
-    private void CurveMoveLimit(float MaxMoveLimit)
-    {
-        //  移動速度に制限をつけて滑らかに動かそうとしている...はず？
-        float _currentMoveSpeed = dogRB.velocity.z;
-        if(_currentMoveSpeed > MaxMoveLimit)
-        {
-            _currentMoveSpeed /= MaxMoveLimit;
-            dogRB.velocity = new Vector3(
-                dogRB.velocity.x,
-                dogRB.velocity.y, 
-                _currentMoveSpeed);
-        }
-    }
-
-  
-
 }
