@@ -2,18 +2,18 @@ using UnityEngine;
 
 public class LeftMovement : MonoBehaviour
 {
-    public float speed = 5f; // ˆÚ“®‘¬“x
-    public float destroyTime = 10f; // ”j‰ó‚Ü‚Å‚ÌŠÔi•bj
+    public float speed = 5f; // ç§»å‹•é€Ÿåº¦
+    public float destroyTime = 10f; // ç ´å£Šã¾ã§ã®æ™‚é–“ï¼ˆç§’ï¼‰
 
     void Update()
     {
-        // ¶‚ÉˆÚ“®‚·‚éƒxƒNƒgƒ‹‚ğì¬
+        // å·¦ã«ç§»å‹•ã™ã‚‹ãƒ™ã‚¯ãƒˆãƒ«ã‚’ä½œæˆ
         Vector3 moveDirection = Vector3.left;
 
-        // ƒtƒŒ[ƒ€‚²‚Æ‚ÉƒIƒuƒWƒFƒNƒg‚ğˆÚ“®‚³‚¹‚é
+        // ãƒ•ãƒ¬ãƒ¼ãƒ ã”ã¨ã«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç§»å‹•ã•ã›ã‚‹
         transform.Translate(moveDirection * speed * Time.deltaTime);
 
-        // destroyTime•bŒã‚É©•ª‚ğ”j‰ó
+        // destroyTimeç§’å¾Œã«è‡ªåˆ†ã‚’ç ´å£Š
         destroyTime -= Time.deltaTime;
         if (destroyTime <= 0f)
         {

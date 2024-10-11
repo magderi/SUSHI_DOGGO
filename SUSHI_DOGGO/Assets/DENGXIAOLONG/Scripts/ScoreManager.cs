@@ -8,7 +8,7 @@ using static DishScore;
 
 public class ScoreManager : MonoBehaviour
 {
-    // ƒXƒRƒAƒeƒLƒXƒg
+    // ã‚¹ã‚³ã‚¢ãƒ†ã‚­ã‚¹ãƒˆ
     [SerializeField]
     private TextMeshProUGUI _textScoreMeshProUGUI;
 
@@ -16,7 +16,7 @@ public class ScoreManager : MonoBehaviour
     [SerializeField]
     private SE_Manager _seManager;
 
-    // ‚±‚±‚ğ‰æ‘œ‚Ì”z—ñ‚É‚µ‚½‚¢
+    // ã“ã“ã‚’ç”»åƒã®é…åˆ—ã«ã—ãŸã„
 
     [SerializeField]
     private GameObject _sImage;

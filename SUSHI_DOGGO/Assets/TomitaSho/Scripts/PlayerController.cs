@@ -6,10 +6,10 @@ public class PlayerController : MonoBehaviour
 {
     void Start()
     {
-        //Rigidbody‚ğæ“¾
+        //Rigidbodyã‚’å–å¾—
         var rb = GetComponent<Rigidbody>();
 
-        //ˆÚ“®‚à‰ñ“]‚à‚µ‚È‚¢‚æ‚¤‚É‚·‚é
+        //ç§»å‹•ã‚‚å›è»¢ã‚‚ã—ãªã„ã‚ˆã†ã«ã™ã‚‹
         rb.constraints = RigidbodyConstraints.FreezeAll;
     }
 

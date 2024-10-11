@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
-using UnityEngine.UI;  // ’Ç‰Á‚µ‚Ü‚µ‚å‚¤
+using UnityEngine.UI;  // è¿½åŠ ã—ã¾ã—ã‚‡ã†
 using System;
 
 
@@ -16,16 +16,16 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI _textMaguroMeshProUGUI;
 
-    // ƒXƒRƒAƒeƒLƒXƒg
+    // ã‚¹ã‚³ã‚¢ãƒ†ã‚­ã‚¹ãƒˆ
     [SerializeField]
     private TextMeshProUGUI _textScoreMeshProUGUI;
 
 
-    // Œ»İ‚ÌHP
+    // ç¾åœ¨ã®HP
     int currentSalmonHp;
 
     int currentMaguroHp;
-    // Slider‚ğ“ü‚ê‚é
+    // Sliderã‚’å…¥ã‚Œã‚‹
     public Slider sliderSalmonHp;
 
     public Slider sliderMaguroHp;
@@ -33,10 +33,10 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private DishScore _dishScore;
 
-    //@ƒXƒRƒA
+    //ã€€ã‚¹ã‚³ã‚¢
     public int score;
 
-    // õiŒ¢‚Ì‘Ì—Í
+    // å¯¿å¸çŠ¬ã®ä½“åŠ›
     private int _sushiSalmonHp = 100;
 
     private int _sushiMaguroHp = 100;
@@ -55,12 +55,12 @@ public class GameManager : MonoBehaviour
         _textSalmonMeshProUGUI.text = _sushiSalmonHp.ToString();
 
         _textMaguroMeshProUGUI.text = _sushiMaguroHp.ToString();
-        //Slider‚ğ–ƒ^ƒ“‚É‚·‚éB
+        //Sliderã‚’æº€ã‚¿ãƒ³ã«ã™ã‚‹ã€‚
         sliderSalmonHp.value = 100;
 
         sliderMaguroHp.value = 100;
 
-        //Œ»İ‚ÌHP‚ğÅ‘åHP‚Æ“¯‚¶‚ÉB
+        //ç¾åœ¨ã®HPã‚’æœ€å¤§HPã¨åŒã˜ã«ã€‚
         currentSalmonHp = _sushiSalmonHp;
         Debug.Log("Start currentHp : " + currentSalmonHp);
 
@@ -75,13 +75,13 @@ public class GameManager : MonoBehaviour
     async public void SushiSalmonDamage()
     {
         _scoreSalmonJudgement = true;
-        //Œ»İ‚ÌHP‚©‚çƒ_ƒ[ƒW‚ğˆø‚­
+        //ç¾åœ¨ã®HPã‹ã‚‰ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’å¼•ã
         currentSalmonHp = currentSalmonHp - 5;
         Debug.Log("After currentHp : " + currentSalmonHp);
 
-        //Å‘åHP‚É‚¨‚¯‚éŒ»İ‚ÌHP‚ğSlider‚É”½‰fB
-        //int“¯m‚ÌŠ„‚èZ‚Í¬”“_ˆÈ‰º‚Í0‚É‚È‚é‚Ì‚ÅA
-        //(float)‚ğ‚Â‚¯‚Äfloat‚Ì•Ï”‚Æ‚µ‚ÄU•‘‚í‚¹‚éB
+        //æœ€å¤§HPã«ãŠã‘ã‚‹ç¾åœ¨ã®HPã‚’Sliderã«åæ˜ ã€‚
+        //intåŒå£«ã®å‰²ã‚Šç®—ã¯å°æ•°ç‚¹ä»¥ä¸‹ã¯0ã«ãªã‚‹ã®ã§ã€
+        //(float)ã‚’ã¤ã‘ã¦floatã®å¤‰æ•°ã¨ã—ã¦æŒ¯èˆã‚ã›ã‚‹ã€‚
         sliderSalmonHp.value = currentSalmonHp;
         Debug.Log("slider.value : " + sliderSalmonHp.value);
         _sushiSalmonHp -= 5;
@@ -100,13 +100,13 @@ public class GameManager : MonoBehaviour
     async public void SushiMaguroDamage()
     {
         _scoreMaguroJudgement = true;
-        //Œ»İ‚ÌHP‚©‚çƒ_ƒ[ƒW‚ğˆø‚­
+        //ç¾åœ¨ã®HPã‹ã‚‰ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’å¼•ã
         currentMaguroHp = currentMaguroHp - 5;
         Debug.Log("After currentHp : " + currentMaguroHp);
 
-        //Å‘åHP‚É‚¨‚¯‚éŒ»İ‚ÌHP‚ğSlider‚É”½‰fB
-        //int“¯m‚ÌŠ„‚èZ‚Í¬”“_ˆÈ‰º‚Í0‚É‚È‚é‚Ì‚ÅA
-        //(float)‚ğ‚Â‚¯‚Äfloat‚Ì•Ï”‚Æ‚µ‚ÄU•‘‚í‚¹‚éB
+        //æœ€å¤§HPã«ãŠã‘ã‚‹ç¾åœ¨ã®HPã‚’Sliderã«åæ˜ ã€‚
+        //intåŒå£«ã®å‰²ã‚Šç®—ã¯å°æ•°ç‚¹ä»¥ä¸‹ã¯0ã«ãªã‚‹ã®ã§ã€
+        //(float)ã‚’ã¤ã‘ã¦floatã®å¤‰æ•°ã¨ã—ã¦æŒ¯èˆã‚ã›ã‚‹ã€‚
         sliderMaguroHp.value = currentMaguroHp;
         Debug.Log("slider.value : " + sliderMaguroHp.value);
         _sushiMaguroHp -= 5;

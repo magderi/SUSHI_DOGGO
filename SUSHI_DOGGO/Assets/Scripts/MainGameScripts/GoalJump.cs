@@ -15,14 +15,14 @@ public class GoalJump : MonoBehaviour
     [SerializeField]
     private GameObject _goalCamera;
 
-    public Transform target;  // –Ú•W’n“_‚ÌTransform
-    public float height = 5f; // •ú•¨ü‚Ì‚‚³
+    public Transform target;  // ç›®æ¨™åœ°ç‚¹ã®Transform
+    public float height = 5f; // æ”¾ç‰©ç·šã®é«˜ã•
 
     private float startTime;
     private float journeyLength;
     private Vector3 startPos;
 
-    public float speed = 2.0f; // ˆÚ“®‘¬“x
+    public float speed = 2.0f; // ç§»å‹•é€Ÿåº¦
 
     [SerializeField]
     private Animator _maguroanimator;
@@ -40,13 +40,13 @@ public class GoalJump : MonoBehaviour
 
     void Start()
     {
-        // ‰ŠúˆÊ’u‚ÌÝ’è
+        // åˆæœŸä½ç½®ã®è¨­å®š
         startPos = transform.position;
 
-        // ˆÚ“®‚ÌŠJŽnŽžŠÔ
+        // ç§»å‹•ã®é–‹å§‹æ™‚é–“
         startTime = Time.time;
 
-        // ‰ŠúˆÊ’u‚©‚ç–Ú•W’n“_‚Ü‚Å‚Ì‹——£
+        // åˆæœŸä½ç½®ã‹ã‚‰ç›®æ¨™åœ°ç‚¹ã¾ã§ã®è·é›¢
         journeyLength = Vector3.Distance(startPos, target.position);
     }
 
@@ -82,21 +82,21 @@ public class GoalJump : MonoBehaviour
         _salmonanimator.SetBool("GoalJump", true);
         _maguroanimator.SetBool("GoalJump", true);
 
-        // Œ»Ý‚ÌŒo‰ßŽžŠÔ
+        // ç¾åœ¨ã®çµŒéŽæ™‚é–“
         float distCovered = (Time.time - startTime) * speed;
 
-        // i’»—¦i0‚©‚ç1‚Ì”ÍˆÍj
+        // é€²æ—çŽ‡ï¼ˆ0ã‹ã‚‰1ã®ç¯„å›²ï¼‰
         float fracJourney = distCovered / journeyLength;
 
-        // •ú•¨ü‚ÌŒvŽZ
+        // æ”¾ç‰©ç·šã®è¨ˆç®—
         Vector3 currentPos = Vector3.Lerp(startPos, target.position, fracJourney);
         currentPos.y += Mathf.Sin(fracJourney * Mathf.PI) * height;
 
-        // ƒIƒuƒWƒFƒNƒg‚ÌˆÚ“®
+        // ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ç§»å‹•
         transform.position = currentPos;
 
 
-        // –Ú•W’n“_‚É“ž’B‚µ‚½‚çƒXƒNƒŠƒvƒg‚ð–³Œø‚É‚·‚é
+        // ç›®æ¨™åœ°ç‚¹ã«åˆ°é”ã—ãŸã‚‰ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’ç„¡åŠ¹ã«ã™ã‚‹
         if (fracJourney >= 1.0f)
         {
             GoalEnd();

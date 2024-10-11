@@ -8,14 +8,14 @@ public class FadeManager : MonoBehaviour
 {
 
 
-    public GameObject Panelfade;   //ƒtƒF[ƒhƒpƒlƒ‹‚Ìæ“¾
+    public GameObject Panelfade;   //ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ‘ãƒãƒ«ã®å–å¾—
 
-    Image fadealpha;               //ƒtƒF[ƒhƒpƒlƒ‹‚ÌƒCƒ[ƒWæ“¾•Ï”
+    Image fadealpha;               //ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ‘ãƒãƒ«ã®ã‚¤ãƒ¡ãƒ¼ã‚¸å–å¾—å¤‰æ•°
 
-    private float alpha;           //ƒpƒlƒ‹‚Ìalpha’læ“¾•Ï”
+    private float alpha;           //ãƒ‘ãƒãƒ«ã®alphaå€¤å–å¾—å¤‰æ•°
 
-    public bool fadeout;          //ƒtƒF[ƒhƒAƒEƒg‚Ìƒtƒ‰ƒO•Ï”
-    public bool fadein;      @@ //ƒtƒF[ƒhƒCƒ“‚Ìƒtƒ‰ƒO•Ï”
+    public bool fadeout;           //ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã®ãƒ•ãƒ©ã‚°å¤‰æ•°
+    public bool fadein;            //ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã®ãƒ•ãƒ©ã‚°å¤‰æ•°
 
 
 
@@ -23,9 +23,9 @@ public class FadeManager : MonoBehaviour
     void Start()
     {
 
-        fadealpha = Panelfade.GetComponent<Image>(); //ƒpƒlƒ‹‚ÌƒCƒ[ƒWæ“¾
-        alpha = fadealpha.color.a;                 //ƒpƒlƒ‹‚Ìalpha’l‚ğæ“¾
-        fadein = true;                           //ƒV[ƒ““Ç‚İ‚İ‚ÉƒtƒF[ƒhƒCƒ“‚³‚¹‚é
+        fadealpha = Panelfade.GetComponent<Image>(); //ãƒ‘ãƒãƒ«ã®ã‚¤ãƒ¡ãƒ¼ã‚¸å–å¾—
+        alpha = fadealpha.color.a;                 //ãƒ‘ãƒãƒ«ã®alphaå€¤ã‚’å–å¾—
+        fadein = true;                           //ã‚·ãƒ¼ãƒ³èª­ã¿è¾¼ã¿æ™‚ã«ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã•ã›ã‚‹
     }
 
     // Update is called once per frame

@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        transform.Rotate(0f, 0f, 0f);  // Z²‚ğ10‹‰ñ“]
+        transform.Rotate(0f, 0f, 0f);  // Zè»¸ã‚’10Â°å›è»¢
     }
 }

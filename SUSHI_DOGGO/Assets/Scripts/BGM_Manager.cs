@@ -5,7 +5,7 @@ using UnityEngine;
 public class BGM_Manager : MonoBehaviour
 {
     /// <summary>
-    /// QÆ‚Ææ“¾
+    /// å‚ç…§ã¨å–å¾—
     /// </summary>
     public static BGM_Manager Instance { get => _instance; }
 
@@ -20,7 +20,7 @@ public class BGM_Manager : MonoBehaviour
     private void Start()
     {
         _instance = this;
-        //‚±‚±‚Å—¬‚·ˆ—
+        //ã“ã“ã§æµã™å‡¦ç†
         //Play(0);
 
     }
@@ -55,7 +55,7 @@ public class BGM_Manager : MonoBehaviour
     private void Update()
     {
 
-        //‰¹‚ğ~‚ß‚éˆ—i•K—v‚È‚çj
+        //éŸ³ã‚’æ­¢ã‚ã‚‹å‡¦ç†ï¼ˆå¿…è¦ãªã‚‰ï¼‰
         if (Input.GetKeyUp(KeyCode.X))
         {
             Stop();

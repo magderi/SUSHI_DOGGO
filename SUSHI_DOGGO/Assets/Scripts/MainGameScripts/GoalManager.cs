@@ -31,12 +31,6 @@ public class GoalManager : MonoBehaviour
         _bgmManager.Play(0);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     async private void OnTriggerEnter(Collider other)
     {
 

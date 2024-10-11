@@ -12,7 +12,7 @@ public class CinemachineVerticalLoopPath : CinemachineSmoothPath
 
     public override Quaternion EvaluateOrientation(float pos)
     {
-        // ‚Ü‚¸‚Í–{—ˆ‚ÌEvaluateOrientation‚Æ“¯‚¶‚æ‚¤‚Éˆ—‚µ‚Ä‚¢‚­
+        // ã¾ãšã¯æœ¬æ¥ã®EvaluateOrientationã¨åŒã˜ã‚ˆã†ã«å‡¦ç†ã—ã¦ã„ã
         var pathRotation = this.transform.rotation;
         if (this.m_Waypoints.Length <= 0)
         {
@@ -24,29 +24,29 @@ public class CinemachineVerticalLoopPath : CinemachineSmoothPath
             return pathRotation;
         }
 
-        // ‚»‚µ‚Ä–{—ˆ‚ÌEvaluateOrientation‚Æ“¯—l‚ÉLookRotation‚É‚æ‚é‰ñ“]‚ğ‹‚ß‚é
+        // ãã—ã¦æœ¬æ¥ã®EvaluateOrientationã¨åŒæ§˜ã«LookRotationã«ã‚ˆã‚‹å›è»¢ã‚’æ±‚ã‚ã‚‹
         var worldUp = pathRotation * Vector3.up;
         var baseLookRotation = Quaternion.LookRotation(worldForward, worldUp);
 
-        // ‚±‚±‚ÅA–{—ˆ‚ÌEvaluateOrientation‚ğÀs‚µ‚Ä‰ñ“]‚ğ“¾‚Ä‚¨‚«...
+        // ã“ã“ã§ã€æœ¬æ¥ã®EvaluateOrientationã‚’å®Ÿè¡Œã—ã¦å›è»¢ã‚’å¾—ã¦ãŠã...
         var baseRotation = base.EvaluateOrientation(pos);
 
-        // ‚»‚±‚©‚çƒ[ƒ‹¬•ª‚ğ’Šo‚·‚é
+        // ãã“ã‹ã‚‰ãƒ­ãƒ¼ãƒ«æˆåˆ†ã‚’æŠ½å‡ºã™ã‚‹
         var rollRotation = Quaternion.Inverse(baseLookRotation) * baseRotation;
 
-        // Ÿ‚ÉAŒ»İ‚ÌƒZƒOƒƒ“ƒg‚Ì—¼’[‚ÌƒCƒ“ƒfƒbƒNƒX‚ğ“¾‚Ä...
+        // æ¬¡ã«ã€ç¾åœ¨ã®ã‚»ã‚°ãƒ¡ãƒ³ãƒˆã®ä¸¡ç«¯ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å¾—ã¦...
         var t = this.GetBoundingIndices(pos, out var indexA, out var indexB) % 1.0f;
 
-        // ŠeƒEƒFƒCƒ|ƒCƒ“ƒg‚Å‚Ìp¨‚ğXV‚µ‚½‚Ì‚¿AƒZƒOƒƒ“ƒg—¼’[‚Ì‰ñ“]‚ğ¬‡‚µ...
+        // å„ã‚¦ã‚§ã‚¤ãƒã‚¤ãƒ³ãƒˆã§ã®å§¿å‹¢ã‚’æ›´æ–°ã—ãŸã®ã¡ã€ã‚»ã‚°ãƒ¡ãƒ³ãƒˆä¸¡ç«¯ã®å›è»¢ã‚’æ··åˆã—...
         this.UpdateWaypointRotations();
         var rotation = pathRotation * Quaternion.Slerp(this.waypointRotations[indexA], this.waypointRotations[indexB], t);
 
-        // ‚»‚Ì‰ñ“]‚ªw‚·ã•ûŒü‚ğ‚ğg‚Á‚ÄLookRotation‚É‚æ‚é‰ñ“]‚ğ‹‚ßA
-        // ‚»‚ê‚ğƒ[ƒ‹¬•ª‚Æ‘g‚İ‡‚í‚¹‚Ä•Ô‚·
+        // ãã®å›è»¢ãŒæŒ‡ã™ä¸Šæ–¹å‘ã‚’ã‚’ä½¿ã£ã¦LookRotationã«ã‚ˆã‚‹å›è»¢ã‚’æ±‚ã‚ã€
+        // ãã‚Œã‚’ãƒ­ãƒ¼ãƒ«æˆåˆ†ã¨çµ„ã¿åˆã‚ã›ã¦è¿”ã™
         return Quaternion.LookRotation(worldForward, rotation * Vector3.up) * rollRotation;
     }
 
-    // ŠeƒEƒFƒCƒ|ƒCƒ“ƒg‚É‚¨‚¯‚é‰ñ“]‚ğ‹‚ß‚é‚½‚ß‚Ìƒƒ\ƒbƒh‚ğ—pˆÓ‚·‚é
+    // å„ã‚¦ã‚§ã‚¤ãƒã‚¤ãƒ³ãƒˆã«ãŠã‘ã‚‹å›è»¢ã‚’æ±‚ã‚ã‚‹ãŸã‚ã®ãƒ¡ã‚½ãƒƒãƒ‰ã‚’ç”¨æ„ã™ã‚‹
     private void UpdateWaypointRotations()
     {
         var waypointCount = this.m_Waypoints.Length;
@@ -85,16 +85,16 @@ public class CinemachineVerticalLoopPath : CinemachineSmoothPath
             return;
         }
 
-        // Å‰‚ÌƒEƒFƒCƒ|ƒCƒ“ƒg‚Í–{—ˆ‚ÌCinemachineSmoothPath‚Æ“¯—l‚É
-        // Vector3.up‚ğã•ûŒü‚Æ‚µ‚½‰ñ“]‚ğÌ—p‚µ...
+        // æœ€åˆã®ã‚¦ã‚§ã‚¤ãƒã‚¤ãƒ³ãƒˆã¯æœ¬æ¥ã®CinemachineSmoothPathã¨åŒæ§˜ã«
+        // Vector3.upã‚’ä¸Šæ–¹å‘ã¨ã—ãŸå›è»¢ã‚’æ¡ç”¨ã—...
         var inversePathRotation = Quaternion.Inverse(this.transform.rotation);
         var previousTangent = inversePathRotation * this.EvaluateTangent(0);
         this.waypointPositions[0] = this.m_Waypoints[0].position;
         this.waypointRotations[0] = Quaternion.LookRotation(previousTangent, Vector3.up);
         for (var i = 1; i < waypointCount; i++)
         {
-            // ˆÈ~‚ÌƒEƒFƒCƒ|ƒCƒ“ƒg‚Íˆê‚Â‘O‚ÌƒEƒFƒCƒ|ƒCƒ“ƒg‚Ì‰ñ“]‚É‘Î‚µ‚Ä
-            // ‘O•ûŒü‚Ì•Ï‰»‚©‚ç‹‚ß‚½·•ª‰ñ“]‚ğ‡¬‚µ‚½‰ñ“]‚ğÌ—p‚·‚é
+            // ä»¥é™ã®ã‚¦ã‚§ã‚¤ãƒã‚¤ãƒ³ãƒˆã¯ä¸€ã¤å‰ã®ã‚¦ã‚§ã‚¤ãƒã‚¤ãƒ³ãƒˆã®å›è»¢ã«å¯¾ã—ã¦
+            // å‰æ–¹å‘ã®å¤‰åŒ–ã‹ã‚‰æ±‚ã‚ãŸå·®åˆ†å›è»¢ã‚’åˆæˆã—ãŸå›è»¢ã‚’æ¡ç”¨ã™ã‚‹
             var tangent = inversePathRotation * this.EvaluateTangent(i);
             this.waypointPositions[i] = this.m_Waypoints[i].position;
             this.waypointRotations[i] = Quaternion.FromToRotation(previousTangent, tangent) * this.waypointRotations[i - 1];
@@ -102,7 +102,7 @@ public class CinemachineVerticalLoopPath : CinemachineSmoothPath
         }
     }
 
-    // CinemachineSmoothPath‚ÌGetBoundingIndices‚ğ‚»‚Ì‚Ü‚Ü‚Á‚Ä‚­‚é
+    // CinemachineSmoothPathã®GetBoundingIndicesã‚’ãã®ã¾ã¾æŒã£ã¦ãã‚‹
     private float GetBoundingIndices(float pos, out int indexA, out int indexB)
     {
         pos = this.StandardizePos(pos);

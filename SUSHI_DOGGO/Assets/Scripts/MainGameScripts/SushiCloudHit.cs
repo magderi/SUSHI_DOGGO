@@ -12,49 +12,49 @@ public class SushiCloudHit : MonoBehaviour
     [SerializeField]
     private DogMoving _dogMoving;
 
-    //OnTriggerEnterŠÖ”
-    //ÚG‚µ‚½ƒIƒuƒWƒFƒNƒg‚ªˆø”other‚Æ‚µ‚Ä“n‚³‚ê‚é
+    //OnTriggerEnteré–¢æ•°
+    //æ¥è§¦ã—ãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒå¼•æ•°otherã¨ã—ã¦æ¸¡ã•ã‚Œã‚‹
 
     [SerializeField]
     private GameManager _gameManager;
 
-    //OnTriggerEnterŠÖ”
-    //ÚG‚µ‚½ƒIƒuƒWƒFƒNƒg‚ªˆø”other‚Æ‚µ‚Ä“n‚³‚ê‚é
+    //OnTriggerEnteré–¢æ•°
+    //æ¥è§¦ã—ãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒå¼•æ•°otherã¨ã—ã¦æ¸¡ã•ã‚Œã‚‹
     void OnTriggerEnter(Collider other)
     {
 
 
 
-        // sushi‚Ìƒ_ƒ[ƒWˆ—
+        // sushiã®ãƒ€ãƒ¡ãƒ¼ã‚¸å‡¦ç†
         if (other.CompareTag("Sushiinu_salmon"))
         {
             _gameManager.SushiSalmonDamage();
 
-            Debug.Log("ƒRƒ‰ƒCƒ_[1‚É“–‚½‚è‚Ü‚µ‚½");
+            Debug.Log("ã‚³ãƒ©ã‚¤ãƒ€ãƒ¼1ã«å½“ãŸã‚Šã¾ã—ãŸ");
 
             _dogMoving.SalmonDogDamageAnim();
 
-            // —¬‚·”z—ñ‚ğw’è‚µ‚ÄÄ¶‚·‚é
+            // æµã™é…åˆ—ã‚’æŒ‡å®šã—ã¦å†ç”Ÿã™ã‚‹
             _se_Manager.Play(0);
 
-            //ƒIƒuƒWƒFƒNƒg‚ÌF‚ğÔ‚É•ÏX‚·‚é
+            //ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®è‰²ã‚’èµ¤ã«å¤‰æ›´ã™ã‚‹
             // GetComponent<Renderer>().material.color = Color.red;
 
         }
 
-        // sushi‚Ìƒ_ƒ[ƒWˆ—
+        // sushiã®ãƒ€ãƒ¡ãƒ¼ã‚¸å‡¦ç†
         if (other.CompareTag("Sushiinu_Maguro"))
         {
             _gameManager.SushiMaguroDamage();
 
-            Debug.Log("ƒRƒ‰ƒCƒ_[1‚É“–‚½‚è‚Ü‚µ‚½");
+            Debug.Log("ã‚³ãƒ©ã‚¤ãƒ€ãƒ¼1ã«å½“ãŸã‚Šã¾ã—ãŸ");
 
             _dogMoving.MaguroDogDamageAnim();
 
-            // —¬‚·”z—ñ‚ğw’è‚µ‚ÄÄ¶‚·‚é
+            // æµã™é…åˆ—ã‚’æŒ‡å®šã—ã¦å†ç”Ÿã™ã‚‹
             _se_Manager.Play(0);
 
-            //ƒIƒuƒWƒFƒNƒg‚ÌF‚ğÔ‚É•ÏX‚·‚é
+            //ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®è‰²ã‚’èµ¤ã«å¤‰æ›´ã™ã‚‹
             // GetComponent<Renderer>().material.color = Color.red;
 
         }

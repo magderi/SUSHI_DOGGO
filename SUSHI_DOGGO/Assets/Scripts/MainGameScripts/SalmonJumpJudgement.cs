@@ -15,8 +15,8 @@ public class SalmonJumpJudgement : MonoBehaviour
 
     public bool _jumpCoolTime = true;
 
-    //OnTriggerStayŠÖ”
-    //ÚG‚µ‚½ƒIƒuƒWƒFƒNƒg‚ªˆø”other‚Æ‚µ‚Ä“n‚³‚ê‚é
+    //OnTriggerStayé–¢æ•°
+    //æ¥è§¦ã—ãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒå¼•æ•°otherã¨ã—ã¦æ¸¡ã•ã‚Œã‚‹
     void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Cloud") && _jumpCoolTime)
@@ -26,8 +26,8 @@ public class SalmonJumpJudgement : MonoBehaviour
         }
     }
 
-    //OnTriggerExitŠÖ”
-    //—£‚ê‚½ƒIƒuƒWƒFƒNƒg‚ªˆø”other‚Æ‚µ‚Ä“n‚³‚ê‚é
+    //OnTriggerExité–¢æ•°
+    //é›¢ã‚ŒãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒå¼•æ•°otherã¨ã—ã¦æ¸¡ã•ã‚Œã‚‹
     void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Cloud"))

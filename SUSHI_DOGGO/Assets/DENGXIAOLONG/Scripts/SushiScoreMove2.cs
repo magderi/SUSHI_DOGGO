@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SushiScoreMove2 : MonoBehaviour
 {
-    //‰ñ“]’†‚©‚Ç‚¤‚©
+    //å›è»¢ä¸­ã‹ã©ã†ã‹
     bool coroutineBool = false;
 
     public bool _spinStart = false;
@@ -14,7 +14,7 @@ public class SushiScoreMove2 : MonoBehaviour
         /*
         if (_spinStart == true)
         {
-            //‰ñ“]’†‚Å‚Í‚È‚¢ê‡‚ÍÀs 
+            //å›è»¢ä¸­ã§ã¯ãªã„å ´åˆã¯å®Ÿè¡Œ 
             if (!coroutineBool)
             {
                 coroutineBool = true;
@@ -25,11 +25,11 @@ public class SushiScoreMove2 : MonoBehaviour
 
         if (_spinStart == true)
         {
-            //¶
+            //å·¦
             transform.Rotate(0f, -90f * Time.deltaTime, 0f);
 
             /*
-            //‰ñ“]’†‚Å‚Í‚È‚¢ê‡‚ÍÀs 
+            //å›è»¢ä¸­ã§ã¯ãªã„å ´åˆã¯å®Ÿè¡Œ 
             if (!coroutineBool)
             {
                 coroutineBool = true;
@@ -38,7 +38,7 @@ public class SushiScoreMove2 : MonoBehaviour
         }
     }
 
-    //‰E‚É‚ä‚Á‚­‚è‰ñ“]‚µ‚Ä90‹‚ÅƒXƒgƒbƒv
+    //å³ã«ã‚†ã£ãã‚Šå›è»¢ã—ã¦90Â°ã§ã‚¹ãƒˆãƒƒãƒ—
     IEnumerator RightMove()
     {
         for (int turn = 0; turn < 90; turn++)
@@ -49,7 +49,7 @@ public class SushiScoreMove2 : MonoBehaviour
         coroutineBool = false;
     }
 
-    //¶‚É‚ä‚Á‚­‚è‰ñ“]‚µ‚Ä90‹‚ÅƒXƒgƒbƒv
+    //å·¦ã«ã‚†ã£ãã‚Šå›è»¢ã—ã¦90Â°ã§ã‚¹ãƒˆãƒƒãƒ—
     IEnumerator LeftMove()
     {
         for (int turn = 0; turn < 90; turn++)
@@ -58,7 +58,7 @@ public class SushiScoreMove2 : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
         }
         coroutineBool = false;
-        //À•W‚ğ‘‚«Š·‚¦‚é
+        //åº§æ¨™ã‚’æ›¸ãæ›ãˆã‚‹
  
     }
 
@@ -68,7 +68,7 @@ public class SushiScoreMove2 : MonoBehaviour
         yield return new WaitForSeconds(2f);
         _spinStart = false;
 
-        //À•W‚ğ‘‚«Š·‚¦‚é
+        //åº§æ¨™ã‚’æ›¸ãæ›ãˆã‚‹
         transform.position += new Vector3(0, 0, 10) * Time.deltaTime;
     }
 }

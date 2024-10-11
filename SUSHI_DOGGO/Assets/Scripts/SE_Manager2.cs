@@ -5,7 +5,7 @@ using UnityEngine;
 public class SE_Manager2 : MonoBehaviour
 {
     /// <summary>
-    /// QÆ‚Ææ“¾
+    /// å‚ç…§ã¨å–å¾—
     /// </summary>
     public static SE_Manager2 Instance { get => _instance; }
 
@@ -22,7 +22,7 @@ public class SE_Manager2 : MonoBehaviour
 
     }
     /// <summary>
-    /// SE‚ğ—¬‚·ˆ—
+    /// SEã‚’æµã™å‡¦ç†
     /// </summary>
     public void Play(int clip)
     {

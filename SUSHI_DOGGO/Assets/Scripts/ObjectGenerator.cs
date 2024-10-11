@@ -2,25 +2,25 @@ using UnityEngine;
 
 public class ObjectGenerator : MonoBehaviour
 {
-    public GameObject objectToGenerate; // ¶¬‚·‚éƒIƒuƒWƒFƒNƒg
-    public float generationInterval = 3f; // ¶¬ŠÔŠu
-    public float objectLifetime = 10f; // ƒIƒuƒWƒFƒNƒg‚Ìõ–½
+    public GameObject objectToGenerate; // ç”Ÿæˆã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+    public float generationInterval = 3f; // ç”Ÿæˆé–“éš”
+    public float objectLifetime = 10f; // ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å¯¿å‘½
 
     private float timer = 0f;
 
     void Update()
     {
-        // ƒ^ƒCƒ}[‚ğXV
+        // ã‚¿ã‚¤ãƒãƒ¼ã‚’æ›´æ–°
         timer += Time.deltaTime;
 
-        // ˆê’èŠÔ‚²‚Æ‚ÉƒIƒuƒWƒFƒNƒg‚ğ¶¬
+        // ä¸€å®šæ™‚é–“ã”ã¨ã«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆ
         if (timer >= generationInterval)
         {
             GenerateObject();
-            timer = 0f; // ƒ^ƒCƒ}[‚ğƒŠƒZƒbƒg
+            timer = 0f; // ã‚¿ã‚¤ãƒãƒ¼ã‚’ãƒªã‚»ãƒƒãƒˆ
         }
 
-        // ƒIƒuƒWƒFƒNƒg‚Ìõ–½‚ª—ˆ‚½‚ç”j‰ó
+        // ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å¯¿å‘½ãŒæ¥ãŸã‚‰ç ´å£Š
         if (timer >= objectLifetime)
         {
             DestroyGeneratedObject();
@@ -29,22 +29,22 @@ public class ObjectGenerator : MonoBehaviour
 
     void GenerateObject()
     {
-        // ƒIƒuƒWƒFƒNƒg‚ğ¶¬
+        // ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆ
         GameObject newObject = Instantiate(objectToGenerate, transform.position, Quaternion.identity);
 
-        // ¶¬‚³‚ê‚½ƒIƒuƒWƒFƒNƒg‚ğ‚±‚ÌƒXƒNƒŠƒvƒg‚ªƒAƒ^ƒbƒ`‚³‚ê‚Ä‚¢‚éƒQ[ƒ€ƒIƒuƒWƒFƒNƒg‚Ìq‚É‚·‚éi”CˆÓj
+        // ç”Ÿæˆã•ã‚ŒãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ã“ã®ã‚¹ã‚¯ãƒªãƒ—ãƒˆãŒã‚¢ã‚¿ãƒƒãƒã•ã‚Œã¦ã„ã‚‹ã‚²ãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å­ã«ã™ã‚‹ï¼ˆä»»æ„ï¼‰
         newObject.transform.parent = transform;
     }
 
     void DestroyGeneratedObject()
     {
-        // qƒIƒuƒWƒFƒNƒgi¶¬‚³‚ê‚½ƒIƒuƒWƒFƒNƒgj‚ğ”j‰ó
+        // å­ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆï¼ˆç”Ÿæˆã•ã‚ŒãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆï¼‰ã‚’ç ´å£Š
         foreach (Transform child in transform)
         {
             Destroy(child.gameObject);
         }
 
-        // ƒ^ƒCƒ}[‚ğƒŠƒZƒbƒg
+        // ã‚¿ã‚¤ãƒãƒ¼ã‚’ãƒªã‚»ãƒƒãƒˆ
         timer = 0f;
     }
 }

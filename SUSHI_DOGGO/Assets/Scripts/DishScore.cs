@@ -18,8 +18,8 @@ public class DishScore : MonoBehaviour
     {
         GlobalVariables.score = gameManager.score;
 
-        // �v���C���[�̑���ȂǂŃX�R�A���ς��ꍇ�A�����ŏ�������
-        // ��: _scoreInt���X�R�A��\���ꍇ
+        // プレイヤーの操作などでスコアが変わる場合、ここで処理する
+        // 例: _scoreIntがスコアを表す場合
         //score ;
     }
 

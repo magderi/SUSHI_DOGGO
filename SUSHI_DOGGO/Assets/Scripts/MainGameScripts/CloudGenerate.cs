@@ -10,8 +10,8 @@ public class CloudGenerate : MonoBehaviour
     private string[] textData;
     private string[,] dungeonMap;
 
-    private int tateNumber; // s”‚É‘Š“–
-    private int yokoNumber; // —ñ”‚É‘Š“–
+    private int tateNumber; // è¡Œæ•°ã«ç›¸å½“
+    private int yokoNumber; // åˆ—æ•°ã«ç›¸å½“
 
     /*
     [SerializeField]
@@ -25,20 +25,20 @@ public class CloudGenerate : MonoBehaviour
 
     private void Start()
     {
-        string textLines = textFile.text; // ƒeƒLƒXƒg‚Ì‘S‘Ìƒf[ƒ^‚Ì‘ã“ü
+        string textLines = textFile.text; // ãƒ†ã‚­ã‚¹ãƒˆã®å…¨ä½“ãƒ‡ãƒ¼ã‚¿ã®ä»£å…¥
         print(textLines);
 
-        // ‰üs‚Åƒf[ƒ^‚ğ•ªŠ„‚µ‚Ä”z—ñ‚É‘ã“ü
+        // æ”¹è¡Œã§ãƒ‡ãƒ¼ã‚¿ã‚’åˆ†å‰²ã—ã¦é…åˆ—ã«ä»£å…¥
         textData = textLines.Split('\n');
 
-        // s”‚Æ—ñ”‚Ìæ“¾
+        // è¡Œæ•°ã¨åˆ—æ•°ã®å–å¾—
         yokoNumber = textData[0].Split(',').Length;
         tateNumber = textData.Length;
 
         print("tate" + tateNumber);
         print("yoko" + yokoNumber);
 
-        // ‚QŸŒ³”z—ñ‚Ì’è‹`
+        // ï¼’æ¬¡å…ƒé…åˆ—ã®å®šç¾©
         dungeonMap = new string[tateNumber, yokoNumber];
 
         for (int i = 0; i < tateNumber; i++)

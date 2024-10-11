@@ -6,27 +6,27 @@ public class GoalCameraJump : MonoBehaviour
 {
 
 
-    public Transform target;  // –Ú•W’n“_‚ÌTransform
-    public float height = 5f; // •ú•¨ü‚Ì‚‚³
+    public Transform target;  // ç›®æ¨™åœ°ç‚¹ã®Transform
+    public float height = 5f; // æ”¾ç‰©ç·šã®é«˜ã•
 
     private float startTime;
     private float journeyLength;
     private Vector3 startPos;
 
-    public float speed = 2.0f; // ˆÚ“®‘¬“x
+    public float speed = 2.0f; // ç§»å‹•é€Ÿåº¦
 
 
 
 
     void Start()
     {
-        // ‰ŠúˆÊ’u‚Ìİ’è
+        // åˆæœŸä½ç½®ã®è¨­å®š
         startPos = transform.position;
 
-        // ˆÚ“®‚ÌŠJnŠÔ
+        // ç§»å‹•ã®é–‹å§‹æ™‚é–“
         startTime = Time.time;
 
-        // ‰ŠúˆÊ’u‚©‚ç–Ú•W’n“_‚Ü‚Å‚Ì‹——£
+        // åˆæœŸä½ç½®ã‹ã‚‰ç›®æ¨™åœ°ç‚¹ã¾ã§ã®è·é›¢
         journeyLength = Vector3.Distance(startPos, target.position);
     }
 
@@ -41,20 +41,20 @@ public class GoalCameraJump : MonoBehaviour
 
    
 
-        // Œ»İ‚ÌŒo‰ßŠÔ
+        // ç¾åœ¨ã®çµŒéæ™‚é–“
         float distCovered = (Time.time - startTime) * speed;
 
-        // i’»—¦i0‚©‚ç1‚Ì”ÍˆÍj
+        // é€²æ—ç‡ï¼ˆ0ã‹ã‚‰1ã®ç¯„å›²ï¼‰
         float fracJourney = distCovered / journeyLength;
 
-        // •ú•¨ü‚ÌŒvZ
+        // æ”¾ç‰©ç·šã®è¨ˆç®—
         Vector3 currentPos = Vector3.Lerp(startPos, target.position, fracJourney);
         currentPos.y += Mathf.Sin(fracJourney * Mathf.PI) * height;
 
-        // ƒIƒuƒWƒFƒNƒg‚ÌˆÚ“®
+        // ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ç§»å‹•
         transform.position = currentPos;
 
-        // –Ú•W’n“_‚É“’B‚µ‚½‚çƒXƒNƒŠƒvƒg‚ğ–³Œø‚É‚·‚é
+        // ç›®æ¨™åœ°ç‚¹ã«åˆ°é”ã—ãŸã‚‰ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’ç„¡åŠ¹ã«ã™ã‚‹
         if (fracJourney >= 1.0f)
         {
             enabled = false;
