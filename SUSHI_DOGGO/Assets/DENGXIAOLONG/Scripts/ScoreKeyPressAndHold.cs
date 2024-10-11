@@ -8,12 +8,6 @@ using UnityEngine.UI;
 
 public class ScoreKeyPressAndHold : MonoBehaviour
 {
-    // [SerializeField]
-    //private Animator _salmonAnim;
-
-    //[SerializeField]
-    // private Animator _maguroAnim;
-
     [SerializeField]
     private GameObject _syouyu1;
 
@@ -56,10 +50,9 @@ public class ScoreKeyPressAndHold : MonoBehaviour
     [SerializeField]
     private Animator _salmonAnimator;
 
-    public KeyCode targetKey = KeyCode.A;       // ???E???E
-    public Image circleEffect;                  // ��?????E????UI Image
-    public float holdDuration = 3f;             // ?????????????E?
-    public string nextSceneName = "YourScene";  // ???????????????
+    public Image circleEffect;                  // UIにしようしている輪っか状に見えるImage
+    public float holdDuration = 3f;             // 長押しする時間
+    public string nextSceneName = "YourScene";  // 時間以上長押しした際の遷移先シーン名
 
     private bool isPressing = false;
     private float pressStartTime;
@@ -102,11 +95,11 @@ public class ScoreKeyPressAndHold : MonoBehaviour
 
             float pressDuration = Time.time - pressStartTime;
 
-            // ??E???????????
+            // 押した時間に合わせて輪っかゲージを満たす
             float fillAmount = Mathf.Clamp01(pressDuration / holdDuration);
             circleEffect.fillAmount = fillAmount;
 
-            // ??????????????????????????????????
+            // 規定時間以上長押ししたら
             if (pressDuration >= holdDuration)
             {
                 _seManager.Play(2);
@@ -133,21 +126,19 @@ public class ScoreKeyPressAndHold : MonoBehaviour
     {
         isPressing = false;
 
-        // ??????????????
+        // 長押しをやめたら輪っかゲージを0に
         circleEffect.fillAmount = 0f;
     }
 
     async public void LoadNextSceneShort()
     {
         await UniTask.Delay(TimeSpan.FromSeconds(0.5));
-        // ?????????????
         SceneManager.LoadScene(nextSceneName);
     }
 
     async public void LoadNextSceneLong()
     {
         await UniTask.Delay(TimeSpan.FromSeconds(3));
-        // ������һ������
         SceneManager.LoadScene(nextSceneName);
     }
 
@@ -155,7 +146,7 @@ public class ScoreKeyPressAndHold : MonoBehaviour
     {
         await UniTask.Delay(TimeSpan.FromSeconds(0.5));
 
-        // UI�Ǳ�ʾ
+        // canvasを非表示に
         _canvas.enabled = false;
 
         // 醤油UI表示
