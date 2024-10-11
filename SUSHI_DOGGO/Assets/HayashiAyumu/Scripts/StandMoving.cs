@@ -3,22 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-
-//  台を動かすことで普段の左右移動を管理するスクリプト
 public class StandMoving : MonoBehaviour
 {
     private DogStatus dogStatus;
     public Rigidbody standRB;
 
-    //  ジャンプ中は移動を無効に
     public bool isJumping = false;
 
-    //  寿司犬の現在いるレーンを識別するためのint値
-    //  0~5の6通りで、サーモンは１，マグロは４からスタート
+    //  寿司犬のいるレーンを識別するためのint
+    //  0~5の6レーンで、サーモンが1、マグロが4
     public int laneNamber;
 
     private bool _isMoving = false;
-    private bool _isKeyUp = true;
     public bool canRightMove = true;
     public bool canLeftMove = true;
 
@@ -45,7 +41,7 @@ public class StandMoving : MonoBehaviour
 
     private Dictionary<MoveType, Vector3> _addVector = new Dictionary<MoveType, Vector3>()
     {
-        //  左右の移動幅
+        //  Xの移動幅をfloatで設定
         { MoveType.Left, new Vector3(-1.17f, 0, 0) },
         { MoveType.Right, new Vector3(1.17f, 0, 0) },
     };
@@ -66,15 +62,15 @@ public class StandMoving : MonoBehaviour
         _ISPlayerMove = new ISPlayerMove();
         _ISPlayerMove.Enable();
 
-        //  接続されたゲームパッドの番号を取得
+        //  接続しているGamepadの番号を取得
         _connectGamepad = Gamepad.all[_connectGamepadNum];
 
-        //  先に接続されたならサーモン
+        //  最初に接続した方がサーモン
         if(_connectGamepadNum == 0)
         {
             laneNamber = 1;
         }
-        //  後に接続されたならマグロ
+        //  後に接続した方がマグロ
         else if(_connectGamepadNum == 1)
         {
             laneNamber = 4;
@@ -92,118 +88,149 @@ public class StandMoving : MonoBehaviour
         _dogMoving.isJumping = isJumping;
     }
 
+    //  
     public void PlayerJump()
     {
         if(isJumping == false)
         {
-            //  ゲームパッドが接続されているなら
+            //  Gamepadを接続しているとき限定で入力を受ける
+            bool inputPress = false;
             if (_connectGamepad != null)
             {
-                //  Aボタンが押された際の挙動
-                bool inputPress = _connectGamepad.buttonSouth.wasPressedThisFrame;
-                if(inputPress)
-                {
-                    if(_connectGamepadNum == 0)
-                        sushiJump.isSalmonJump = true;
-                    if(_connectGamepadNum == 1)
-                        sushiJump.isMaguroJump = true;
-                }
-                else
-                {
-                    if (_connectGamepadNum == 0)
-                        sushiJump.isSalmonJump = false;
-                    if (_connectGamepadNum == 1)
-                        sushiJump.isMaguroJump = false;
-                }
+                inputPress = _connectGamepad.buttonSouth.wasPressedThisFrame;
+            }
+            bool inputSalmonJump = Input.GetKey(KeyCode.W);
+            bool inputMaguroJump = Input.GetKey(KeyCode.UpArrow);
+
+            if(inputPress)
+            {
+                if(_connectGamepadNum == 0)
+                    sushiJump.isSalmonJump = true;
+                if(_connectGamepadNum == 1)
+                    sushiJump.isMaguroJump = true;
+            }
+            else
+            {
+                if (_connectGamepadNum == 0)
+                    sushiJump.isSalmonJump = false;
+                if (_connectGamepadNum == 1)
+                    sushiJump.isMaguroJump = false;
+            }
+
+            if(inputMaguroJump || inputSalmonJump)
+            {
+                if(_connectGamepadNum == 0 && inputSalmonJump)
+                    sushiJump.isSalmonJump = true;
+                if(_connectGamepadNum == 1 && inputMaguroJump)
+                    sushiJump.isMaguroJump = true;
+            }
+            else
+            {
+                if(_connectGamepadNum == 0 && inputSalmonJump)
+                    sushiJump.isSalmonJump = false;
+                if(_connectGamepadNum == 1 && inputMaguroJump)
+                    sushiJump.isMaguroJump = false;
             }
         }
     }
 
     /// <summary>
-    /// 寿司犬たちの左右移動を管理する関数
+    /// Playerの移動処理
     /// </summary>
     private void PlayerMove()
     {
         
-        //  移動可能な状況なら
+        //  ジャンプ中や移動中の時は移動入力を受けないように
         if (!_isMoving && !isJumping)
         {
-            //  スティックを傾けていれば
-            if (_isKeyUp)
+            //  コントローラーのスティック入力受付
+            float inputX = 0;
+            if (_connectGamepad != null)
             {
-                float inputX = 0;
-                if (_connectGamepad != null)
+                //  InputSystem で左スティックの value を読み込む
+                inputX = _connectGamepad.leftStick.x.ReadValue();
+            }
+
+            //  キーボードでの移動入力用
+            if(_connectGamepadNum == 0)
+            {
+                if(Input.GetKey(KeyCode.A))
                 {
-                    //  InputSystemで左スティックのxのvalueを取得 
-                    inputX = _connectGamepad.leftStick.x.ReadValue();
+                    inputX = -1;
                 }
-                //  左スティックを左右に傾けていれば
-                if (inputX != 0)
+                else if(Input.GetKey(KeyCode.D))
                 {
-                    //  操作中に
-                    _isKeyUp = false;
-                    //  現在の寿司犬のpositionを取得
-                    _playerGoToPos = _playerTransform.position;
-                    
+                    inputX = 1;
+                }
+            }
+            else if(_connectGamepadNum == 1)
+            {
+                if(Input.GetKey(KeyCode.LeftArrow))
+                {
+                    inputX = -1;
+                }
+                else if(Input.GetKey(KeyCode.RightArrow))
+                {
+                    inputX = 1;
+                }
+            }
 
-                    //  右に移動
-                    if (inputX > 0)
+            if (inputX != 0)
+            {
+                //  現在のPlayerのpositionを保存
+                _playerGoToPos = _playerTransform.position;
+                
+
+                //  右へ入力したら
+                if (inputX > 0)
+                {
+                    //  スティックのUIを右に
+                    _stickUIMiniPos = new Vector2(20f, 0);
+                    _stickUIMini.transform.localPosition = _stickUIMiniPos;
+                    //  右への移動が可能なら
+                    if (canRightMove)
                     {
-                        //  スティックのUIを動かす
-                        _stickUIMiniPos = new Vector2(20f, 0);
-                        _stickUIMini.transform.localPosition = _stickUIMiniPos;
-
-                        if (canRightMove)
-                        {
-                            _playerGoToPos += _addVector[MoveType.Right];
-                            laneNamber++;
-                            laneNamber = Mathf.Min(laneNamber, 5);
-                        }}
-                    //  左に移動
-                    else if (inputX < 0)
+                        _playerGoToPos += _addVector[MoveType.Right];
+                        laneNamber++;
+                        laneNamber = Mathf.Min(laneNamber, 5);
+                    }}
+                //  左へ入力したら
+                else if (inputX < 0)
+                {
+                    //  スティックのUIを左に
+                    _stickUIMiniPos = new Vector2(-20f, 0);
+                    _stickUIMini.transform.localPosition = _stickUIMiniPos;
+                    //  左への移動が可能なら
+                    if (canLeftMove)
                     {
-                        //  スティックのUIを動かす
-                        _stickUIMiniPos = new Vector2(-20f, 0);
-                        _stickUIMini.transform.localPosition = _stickUIMiniPos;
-
-                        if (canLeftMove)
-                        {
-                            _playerGoToPos += _addVector[MoveType.Left];
-                            laneNamber--;
-                            laneNamber = Mathf.Max(0, laneNamber);
-                        }
+                        _playerGoToPos += _addVector[MoveType.Left];
+                        laneNamber--;
+                        laneNamber = Mathf.Max(0, laneNamber);
                     }
-                    StartCoroutine(MoveCor());
                 }
+                //if(canRightMove && canLeftMove)
+                StartCoroutine(MoveCor());
             }
             else
             {
-                //  移動のUIを元に戻す
-                float inputX = _connectGamepad.leftStick.x.ReadValue();
-                if (inputX == 0)
-                {
-                    _isKeyUp = true;
-                    canLeftMove = true;
-                    canRightMove = true;
-
-                    _stickUIMini.transform.localPosition = Vector3.zero;
-                }
+                canLeftMove = true;
+                canRightMove = true;
+                _stickUIMini.transform.localPosition = Vector3.zero;
             }
         }
     }
 
     /// <summary>
-    /// 左右移動をなめらかにするためのコルーチン
+    /// 移動のコルーチン
     /// </summary>
     /// <returns></returns>
     private IEnumerator MoveCor()
     {
-        //  移動中に
         _isMoving = true;
+        //  DogStatusの_moveTimerの時間で横に移動する 
         float actionTimer = 0f;
         while (actionTimer < 1f)
         {
-            //  _moveTimer分の時間をかけて左右に移動する
             actionTimer += Time.deltaTime / dogStatus._moveTimer;
             actionTimer = Mathf.Min(actionTimer, 1f);
             var movingPos = _playerTransform.position;
@@ -211,7 +238,6 @@ public class StandMoving : MonoBehaviour
             _playerTransform.position = movingPos;
             yield return null;
         }
-        //  移動中を偽に
         _isMoving = false;
     }
 }
