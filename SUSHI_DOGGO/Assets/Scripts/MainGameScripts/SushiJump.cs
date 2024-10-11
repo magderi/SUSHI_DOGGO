@@ -4,24 +4,24 @@ using UnityEngine;
 using Cysharp.Threading.Tasks;
 using System;
 using UnityEngine.InputSystem;
+
 /// <summary>
-/// ���i���̃W�����v�Ɋւ��鏈�������֐�
-/// �A�j���[�V�����̃g���K�[��DogMoving�X�N���v�g�Ŕ��΂��Ă܂�
+/// 寿司のジャンプに関する機能を管理するクラス
 /// </summary>
 public class SushiJump : MonoBehaviour
 {
-  //  public float jumpPower;
+    // public float jumpPower;
     private Rigidbody rb;
 
-    // �������n�̐���r���̖��c�A���V��ł͎g���ĂȂ�
+    // サーモンのジャンプ状態を管理
     public bool isSalmonJumping = false;
     public bool isMaguroJumping = false;
 
-    // �A�j���[�V�����͂����ł�����
+    // アニメーションの管理用
     [SerializeField]
     private DogMoving _dogMoving;
 
-    // �������n�̐���r���̖��c�A���V��ł͎g���ĂȂ�
+    // サーモンジャンプの判定用
     [SerializeField]
     private SalmonJumpJudgement _salmonJumpJudgement;
     [SerializeField]
@@ -30,7 +30,7 @@ public class SushiJump : MonoBehaviour
     [SerializeField]
     private BoxCollider _boxCollider;
 
-    // �W�����v��������FX�Đ�
+    // ジャンプ時に発生するエフェクト
     [SerializeField]
     private ParticleSystem _jumpSalmonParticle;
     [SerializeField]
@@ -39,84 +39,71 @@ public class SushiJump : MonoBehaviour
     [SerializeField]
     private SE_Manager _seManager;
 
-
-    //  StandMoving �ɂāA�R���g���[���[�̃W�����v�����ꂼ����͂�����
-    //  ���O�߂����Ⴉ�Ԃ��Ă�̂ŁA��X��΂ɕς���ׂ��ӏ��B
+    // フラグを管理することで、連続ジャンプの防止
     public bool isSalmonJump = false;
     public bool isMaguroJump = false;
 
     void Start()
     {
         _jumpSalmonParticle.Stop();
-
         _jumpMaguroParticle.Stop();
-
         rb = GetComponent<Rigidbody>();
-
     }
-    // �T�[������FX�Đ���SE�̍Đ�
+
+    // サーモンジャンプ時のエフェクトとSEの再生
     public void SalmonDogJumpParticle()
     {
         _jumpSalmonParticle.Play();
 
-        // FX��SE
+        // エフェクト音
         _seManager.Play(2);
 
-        // ����SE
+        // ジャンプ音
         _seManager.Play(4);
     }
 
+    // マグロジャンプ時のエフェクトとSEの再生
     public void MaguroDogJumpParticle()
     {
         _jumpMaguroParticle.Play();
 
-        // FX��SE
+        // エフェクト音
         _seManager.Play(2);
 
-        // ����SE
+        // ジャンプ音
         _seManager.Play(3);
     }
 
     async void Update()
     {
-        // �T�[�����W�����v
+        // サーモンのジャンプ
         if (isSalmonJump && isSalmonJumping)
         {
-
-            // DogMoving�̊֐����g�p
             _dogMoving.SalmonDogJumpMotion();
 
-            // rb.velocity = Vector3.up * jumpPower;
-            //await UniTask.Delay(TimeSpan.FromSeconds(1));
 
-            // �ȉ��W�����v�̃N�[���^�C������
+            // ジャンプ終了後、クールダウン時間をリセット
             isSalmonJumping = false;
 
-            
             _salmonJumpJudgement._jumpCoolTime = false;
 
             await UniTask.Delay(TimeSpan.FromSeconds(1.0));
 
             _salmonJumpJudgement._jumpCoolTime = true;
         }
-        else if (isSalmonJump ) 
+        else if (isSalmonJump)
         {
             _dogMoving.SalmonDogNGJumpAnim();
         }
 
-        // �}�O���W�����v
+        // マグロのジャンプ
         if (isMaguroJump && isMaguroJumping)
         {
-
-            // DogMoving�̊֐����g�p
             _dogMoving.MaguroDogJumpMotion();
 
-            // rb.velocity = Vector3.up * jumpPower;
-            //await UniTask.Delay(TimeSpan.FromSeconds(1));
-            // �ȉ��W�����v�̃N�[���^�C������
+            // ジャンプ終了後、クールダウン時間をリセット
             isMaguroJumping = false;
 
-            
             _maguroJumpJudgement._jumpCoolTime = false;
 
             await UniTask.Delay(TimeSpan.FromSeconds(1.0));
@@ -128,6 +115,5 @@ public class SushiJump : MonoBehaviour
             _dogMoving.MaguroDogNGJumpAnim();
         }
 
-    }   
-
+    }
 }
